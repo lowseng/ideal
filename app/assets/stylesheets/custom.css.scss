@@ -1,10 +1,31 @@
+$navbar-default-bg: black;
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#logo { 
+float: left; 
+font-size: 1.7em; 
+color: #00; 
+text-transform: uppercase; 
+letter-spacing: -1px; 
+font-weight: bold; 
+}
+
+#logo:hover { 
+color: #fff; 
+text-decoration: none; 
+} 
+.center { 
+text-align: center; 
+}
+
 .user-name {
 padding: 0 !important ;
 padding-left: 5px;
 padding-top: 15px !important;
 text-align: center;
 a {
-color: black !important;
+color: #f0f0f0 !important;
 margin: 0 !important;
 padding: 5px!important;
 }
@@ -21,9 +42,9 @@ padding-top: 5px;
 }
 .nav.navbar-nav {
 .navbar-link {
-border-radius: 5px;
+border-radius: 50px;
 color: #fff;
-margin-top: 15px;
+margin-top: 150px;
 padding: 8px;
 }
 .navbar-link:focus, .navbar-link:hover {
@@ -79,6 +100,32 @@ font-size: 30px !important;
 }
 .no-left-padding {
 padding-left: 0 !important;
+}
+.listing {
+list-style: none;
+padding-left: 0;
+}
+
+.article-actions { 
+border-top: 1px solid #eaeaea; 
+padding-top: 5px; 
+} 
+.description { 
+margin-top: 0; 
+}
+
+.article-title { 
+font-weight: bold; 
+font-size: 1.5em; 
+} 
+.article-body { 
+border-top: 1px solid #eaeaea; 
+padding-top: 15px; 
+padding-bottom: 15px; 
+}
+.article-meta-details { 
+border-top: 1px solid #eaeaea; 
+/* margin-top: 15px; */ 
 }
 .listing {
 list-style: none;
