@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318055407) do
+ActiveRecord::Schema.define(version: 20160323030543) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20160318055407) do
     t.integer  "user_id"
     t.text     "proptype"
   end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "name"
+    t.string   "picture"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "images", ["article_id"], name: "index_images_on_article_id"
 
   create_table "payments", force: :cascade do |t|
     t.string   "email"

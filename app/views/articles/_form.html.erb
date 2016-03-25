@@ -6,7 +6,7 @@
 
       <div class="form-group"> 
         <div class="control-label col-sm-2"> 
-          <%= f.label :proptype, "Type" %> 
+          <%= "Type" %> 
         </div> 
         <div class="col-sm-8"> 
             <%= f.radio_button :proptype, 'For Sale' %> For Sale&nbsp;&nbsp;&nbsp;
@@ -17,7 +17,7 @@
       
       <div class="form-group"> 
         <div class="control-label col-sm-2"> 
-          <%= f.label :title, "Title NAme" %> 
+          <%= "Title Name" %> 
         </div> 
         <div class="col-sm-8"> 
           <%= f.text_field :title, class: "form-control", placeholder: "Title of article", autofocus: true %> 
@@ -25,7 +25,7 @@
       </div> 
       <div class="form-group"> 
         <div class="control-label col-sm-2"> 
-          <%= f.label :description %> 
+          <%= "Description" %> 
         </div> 
         <div class="col-sm-8"> 
           <%= f.text_area :description, rows: 10, class: "form-control", placeholder: "Body of article" %> 

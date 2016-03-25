@@ -13,7 +13,7 @@ class OneuserController < ApplicationController
   end  
  
   def forauction
-    @articles = Article.paginate(page: params[:page], per_page: 5).where(:proptype => 'For Auction').order('updated_at desc')     
+    @articles = Article.paginate(page: params[:page], per_page: 5).where(:proptype => 'For Auction').order('updated_at desc') 
   end  
   
   private

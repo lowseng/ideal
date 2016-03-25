@@ -19,7 +19,10 @@ class ArticlesController < ApplicationController
     
     if @article.save 
       flash[:success]='Article was successfully created' #Application.html.erb 
-      redirect_to article_path(@article) #Show.hrml.erb 
+      #redirect_to article_path(@article) #Show.hrml.erb 
+      current_article = @article.id
+      session[:current_article] = current_article
+      redirect_to images_path
     else 
       render 'new' 
     end 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :images
   #devise_for :users
   devise_for :users, :controllers => { :registrations => 'registrations' }
   resources :articles, :users
@@ -8,7 +9,6 @@ Rails.application.routes.draw do
   get 'oneuser/tolet', to: 'oneuser#tolet'
   get 'oneuser/forsale', to: 'oneuser#forsale'
   get 'oneuser/forauction', to: 'oneuser#forauction'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
