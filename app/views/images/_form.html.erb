@@ -1,36 +1,34 @@
-<%= form_for @image, :html => { multipart: true, :class => "form-horizontal image" } do |f| %>
-  <% if @image.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-          <% @image.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
+<%= render 'shared/errors', obj: @image %>
+
+<div class="well col-xs-10 col-xs-offset-1">
+  <table width="100%" border="1" cellspacing="5" cellpadding="5">
+    <tr valign="center">  
+      <% @article.images.each do |t| %>
+        <td  valign="center"><%= image_tag t.picture.url, size: "150x100" %></td>
+      <% end %>
+    </tr>
+  </table> <br>
+  <% if @article.images.count < 5 %>
+    <%= form_for @image, :html => { multipart: true, :class => "form-horizontal image" } do |f| %>
+      <% if @image.errors.any? %>
+        <div id="error_expl" class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <% @image.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      <%= f.hidden_field :name, :value => "test hide" %>
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png',  :onchange => "this.form.submit()" %>
+    <% end %>
   <% end %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'form-control' %>
-    </div>
-    <%#= error_span(@image[:name]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :picture, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-    </div>
-    <%#= error_span(@image[:picture]) %>
-  </div>
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-  images_path, :class => 'btn btn-default' %>
-<% end %>
+</div>
 
 <script type="text/javascript">
   $('#image_picture').bind('change', function() {

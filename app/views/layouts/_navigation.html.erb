@@ -6,7 +6,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "For Sale", oneuser_forsale_path(1) %></li>
+        <li><%= link_to "For Sale", oneuser_forsale_path %></li>
+        
         <li><%= link_to "To Let", oneuser_tolet_path  %></li>
         <li><%= link_to "For Auction", oneuser_forauction_path  %></li>
       </ul>
@@ -19,7 +20,8 @@
           <% if logged_in? and current_user.admin? %>
             <li><%= link_to "Manage Users", users_path %></li>
             <li><%= link_to "Manage Listings", articles_path %></li>
-            <li><%= link_to "Manage Images", images_path %></li>
+            <%#= link_to "Add Product", new_product_path(:param1 => "value1", :param2 => "value2") %>
+            <li><%= link_to "Manage Images", images_path(:param1 => "listonly") %></li>
             <li role="separator" class="divider"></li>
           <% end %>
           <li><%= link_to "My Listings", oneuser_index_path %></li>   

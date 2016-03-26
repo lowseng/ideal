@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :show, :destroy]
   before_action :require_user, except: [:index, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
-  before_action :require_admin, only: [:destroy, :index]
+  before_action :require_admin, only: [:index]
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 5).order('updated_at desc')
@@ -22,7 +22,8 @@ class ArticlesController < ApplicationController
       #redirect_to article_path(@article) #Show.hrml.erb 
       current_article = @article.id
       session[:current_article] = current_article
-      redirect_to images_path
+      #redirect_to images_path
+      redirect_to new_image_path(:param1 => "value1", :param2 => "value2")
     else 
       render 'new' 
     end 
@@ -48,7 +49,7 @@ class ArticlesController < ApplicationController
   def destroy 
     @article.destroy 
     flash[:danger] = "Article was successfully deleted" 
-    redirect_to articles_path 
+    redirect_to oneuser_index_path
   end
   
   private 

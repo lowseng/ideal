@@ -3,7 +3,7 @@ class Image < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
   validate :picture_size
   validates :picture, presence: true
-  
+
   private
   def picture_size
     if picture.size > 5.megabytes

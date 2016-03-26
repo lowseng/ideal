@@ -4,7 +4,7 @@
     <% mcol=1 
     mcontinue=1 %>
     
-    <% if logged_in? and current_user.admin? %>
+    <% if logged_in? and current_user.admin? and param1 = params[:param1] %> <%# This is for Admin Image Listing %>
       <% @images.each do |image| %>
         <td  align="center" width = 20%><%= image_tag image.picture.url, size: "150x100" %></br></br>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -19,31 +19,31 @@
         else
           mcol = mcol + 1
         end 
-      end 
-    end %>
-    
-    <% if logged_in? %>
-      <% @images1.each do |image| %>
-        <td align="center" width = 20%><%= image_tag image.picture.url, size: "150x100" %></br></br>
-            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                        image_path(image),
-                        :method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                        :class => 'btn btn-xs btn-danger' %>
-        </td>
-        <% if mcol > 4 %>
-           <tr>
-          <% mcol=1
-          mcontinue = mcontinue + 1 # Max of 5 listing found
-        else
-          mcol = mcol + 1
-        end 
-      end %></tr>
-      <% if mcontinue < 2 and !current_user.admin? %>
-        <tr><td>
-        <%= link_to t('.new', :default => t("helpers.links.new")),
-              new_image_path,
-              :class => 'btn btn-primary' %> Note: Maximum of 5 images can be uploaded per listing.</td></tr>
+      end
+      
+      else if logged_in? %> <%# This is for after adding Article then now Add Image %>
+        <% @images1.each do |image| %>
+          <td align="center" width = 20%><%= image_tag image.picture.url, size: "150x100" %></br></br>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                          image_path(image),
+                          :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-xs btn-danger' %>
+          </td>
+          <% if mcol > 4 %>
+             <tr>
+            <% mcol=1
+            mcontinue = mcontinue + 1 # Max of 5 listing found
+          else
+            mcol = mcol + 1
+          end 
+        end %></tr>
+        <% if mcontinue < 2 %>
+          <tr><td>
+          <%= link_to t('.new', :default => t("helpers.links.new")),
+                new_image_path,
+                :class => 'btn btn-primary' %> Note: Maximum of 5 images can be uploaded per listing.</td></tr>
+        <% end %>
       <% end %>
     <% end %>
   </tbody>

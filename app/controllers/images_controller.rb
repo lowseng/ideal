@@ -4,8 +4,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-        #@articles = Article.paginate(page: params[:page], per_page: 5).order('updated_at desc')
-    
+    #@article = Article.find(session[:current_article])
     @images = Image.all.paginate(page: params[:page], per_page: 15).order('updated_at desc')
     @images1 = Image.where(:article_id => session[:current_article]).order('updated_at desc')  
   end
@@ -18,6 +17,7 @@ class ImagesController < ApplicationController
   # GET /images/new
   def new
     @image = Image.new
+    @article = Article.find(session[:current_article])
   end
 
   # GET /images/1/edit
@@ -27,16 +27,15 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    @image1 = Image.new(image_params)
-    @image1.article_id =  session[:current_article]
-    #@image.article_id = Article.first.id
-    
+    @image = Image.new(image_params)
+    @image.article_id =  session[:current_article]
+   #@article = Article.find(@image1.article_idxxxxxxxxxxxxxxxxx)
     respond_to do |format|
-      if @image1.save
-        format.html { redirect_to images_path, notice: 'Image was successfully created.' }
+      if @image.save
+        format.html { redirect_to new_image_path(:param1 => "0", :param2 => "value2"), notice: 'Image was successfully added.' }
         format.json { render :new, status: :created, location: @image1 }
       else
-        format.html { render :new }
+        format.html { redirect_to new_image_path(:param1 => "0", :param2 => "value2"), alert: 'Image was NOT added. Please select a vaild image to upload!' }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
