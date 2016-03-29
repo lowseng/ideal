@@ -13,13 +13,11 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !!current_user 
-    #@user = User.create(email: "xalowseng@gmail.com", password: "password", admin: true) #user must forget password to reset password!
-
-    user = User.find_by_email("lowseng@yahoo.com")
-    if user.email == "lowseng@yahoo.com"
-      user.admin = "true"
-      user.save
-    end
+    #user = User.find_by_email("lowseng@yahoo.com")
+    #if user.email == "lowseng@yahoo.com"
+    #  user.admin = "true"
+    #  user.save
+    #end
   end
 
   def require_user
