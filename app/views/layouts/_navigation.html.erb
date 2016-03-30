@@ -1,6 +1,6 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -8,18 +8,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "Alpha blog", root_path, class: "navbar-brand", id: "logo" %>
-    </div>
-    
-    
-    <div class="navbar-header">
       <%= link_to "Ideal Virtual Realty", root_path, class: "navbar-brand", id: "logo" %>
     </div>
+    
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "For Sale", oneuser_forsale_path %></li>
-        
         <li><%= link_to "To Let", oneuser_tolet_path  %></li>
         <li><%= link_to "For Auction", oneuser_forauction_path  %></li>
       </ul>
