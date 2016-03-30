@@ -1,36 +1,53 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <%= link_to "Ideal Virtual Realty", root_path, class: "navbar-brand", id: "logo" %>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Alpha blog", root_path, class: "navbar-brand", id: "logo" %>
     </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "For Sale", oneuser_forsale_path %></li>
-        
-        <li><%= link_to "To Let", oneuser_tolet_path  %></li>
-        <li><%= link_to "For Auction", oneuser_forauction_path  %></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if current_user %>
-          <li><%= link_to "<span class='glyphicon glyphicon-edit'></span> New Listing".html_safe, new_article_path %></li>
-          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe %> <span class="caret"></span></a>
+        <li><%= link_to "Articles", articles_path %></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
-          <% if logged_in? and current_user.admin? %>
-            <li><%= link_to "Manage Users", users_path %></li>
-            <li><%= link_to "Manage Listings", articles_path %></li>
-            <%#= link_to "Add Product", new_product_path(:param1 => "value1", :param2 => "value2") %>
-            <li><%= link_to "Manage Images", images_path(:param1 => "listonly") %></li>
+            <li><%= link_to "New Article", new_article_path %></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
-          <% end %>
-          <li><%= link_to "My Listings", oneuser_index_path %></li>   
-          <li><%= link_to "Settings", edit_user_registration_path %></li>
-          <li ><%= link_to "Sign Out ".html_safe, destroy_user_session_path, :method => :delete %></li>        
-        <% else %>
-          <li><%= link_to "<span class='glyphicon glyphicon-log-in'></span> Sign In".html_safe, new_user_session_path %></li>
-        <% end %>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
       </ul>
-    </div>
-  </div>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>
