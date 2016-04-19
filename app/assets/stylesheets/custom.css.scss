@@ -2,6 +2,19 @@ $navbar-default-bg: #000000;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+#comments-section {
+  display: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #C92931;
+    margin: 1em 0;
+    padding: 0; 
+}
+
 #logo { 
 float: left; 
 font-size: 1.7em; 

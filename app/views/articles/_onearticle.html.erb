@@ -1,40 +1,42 @@
-<h2 align="center">Id: <%= @article.id %> - <%= @article.proptype %>: <%= @article.title %></h2>
-
 <div class="well col-xs-10 col-xs-offset-1">
-  <table width="100%" border="1" cellspacing="5" cellpadding="5">
-    <tr valign="center">  
-      <% @article.images.each do |t| %>
-        <td  valign="center"><%= image_tag t.picture.url, size: "150x100" %></td>
-      <% end %>
-    </tr>
-  </table> <br>
+  <% if @article.user %>
+    <table width = 100% border="0">
+      <tr>
+        <td width=33%>
+          <h3><%= @article.user.name %></h3>
+          Company: <%= @article.user.company %><br>
+          Agent Id: <%= @article.user.agentno %>
+        </td>
+        <td align = "center">
+          <% if params[:param1] == "1" %>
+            <% if current_user && current_user == @article.user || current_user && current_user.admin? %>
+              <%= gravatar_for @article.user, size:120 %>
+            <% else %>
+              <%= gravatar_for @user, size:120 %>
+            <% end %>
+          <% end %>
+        </td>
+        <td width=33% align="right">
+          <%= @article.user.telephone %> <span class='glyphicon glyphicon-earphone'></span><br>
+          <%= link_to @article.user.email, "mailto:"+@article.user.email %> <span class='glyphicon glyphicon-envelope'></span><br>          
+          <%= link_to pluralize(@article.user.articles.count, "listing"), user_path(@article.user) if @article.user.articles %> <span class='glyphicon glyphicon-tasks'></span><br>
+          <%= @article.created_at %> <span class='glyphicon glyphicon-time'></span>
+
+        </td>
+      </tr>
+    </table><hr>
+    <table width="100%" border="0" cellspacing="5" cellpadding="5">
+      <tr valign="center">  
+        <% @article.images.each do |t| %>
+          <td  valign="center"><%= image_tag t.picture.url, size: "280x190" %></td>
+        <% end %>
+      </tr>
+    </table>
+  <% end %>  
+
+  <h1 align="center"><%= @article.category %> <%= @article.proptype %></h1>
+  <h2 align="center">Id: <%= @article.id %> - <%= @article.proptype %>: <%= @article.title %></h2>
   <h4 class="center description"><strong>Description:</strong></h4>
   <hr>
   <%= simple_format(@article.description) %>
-
-  <% if @article.user %>
-    <ul class="listing">
-      <div class="row center">
-        <div class="col-md-4 col-md-offset-4">
-          
-          <% if params[:param1] == "1" %>
-            <li>Created by:</li>
-              <% if current_user && current_user == @article.user || current_user && current_user.admin? %>
-                <li><%= link_to gravatar_for(@article.user), user_path(@article.user) %></li>
-                <li class="article-title">
-                <%= link_to @article.user.email, user_path(@article.user) %>
-              <% else %>
-                <li><%= gravatar_for(@article.user) %></li>
-                <li class="article-title">
-                <%=  @article.user.email %>
-              <% end %>
-            </li>
-            <li><small>
-              <%= pluralize(@article.user.articles.count, "article") if @article.user.articles %>
-            </small></li>
-          <% end %>
-        </div>
-      </div>
-    </ul>
-  <% end %>  
 </div>

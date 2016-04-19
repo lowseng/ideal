@@ -17,7 +17,11 @@ class ImagesController < ApplicationController
   # GET /images/new
   def new
     @image = Image.new
-    @article = Article.find(session[:current_article])
+    if session[:current_article]
+      @article = Article.find(session[:current_article])
+    else
+      redirect_to new_article_path(:param1 => "new")
+    end
   end
 
   # GET /images/1/edit

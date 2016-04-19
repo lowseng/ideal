@@ -3,21 +3,38 @@
 <div class='row'> 
   <div class='col-xs-12'>
     <%= form_for(@article, :html => {class: "form-horizontal", role: "form"}) do |f| %> 
-
+      <div class="form-group"> 
+        <div class="control-label col-sm-2"> 
+          <%= "Category" %> 
+        </div> 
+        <div class=" col-sm-8">
+          <%#= f.select :category, [['Apartments','apartments'],['Houses','houses'],['Commercial Properties','commercial'],['Land','land'],['Rooms','rooms'],['New Properties','new']] %>
+          <select class="form-control" name=article[category] id="category" %> >
+            <option value="">--- Select Category ---</option>
+            <option value="Apartment">Apartments</option>
+            <option value="House">Houses</option>
+            <option value="Commercial Property">Commercial Properties</option>
+            <option value="Land">Land</option>
+            <option value="Room">Rooms</option>
+            <option value="New Property">New Properties</option>            
+          </select>
+        </div> 
+      </div> 
       <div class="form-group"> 
         <div class="control-label col-sm-2"> 
           <%= "Type" %> 
         </div> 
-        <div class="col-sm-8"> 
-            <%= f.radio_button :proptype, 'For Sale' %> For Sale&nbsp;&nbsp;&nbsp;
-            <%= f.radio_button :proptype, 'To Let' %> To Let&nbsp;&nbsp;&nbsp;
-            <%= f.radio_button :proptype, 'For Auction' %> For Auction
+        <div class="checkbox col-sm-8"> 
+            <%= f.radio_button :proptype, 'for Sale', :checked => (params[:param1] == "new")  %> For Sale&nbsp;&nbsp;&nbsp;
+            <%= f.radio_button :proptype, 'for Rent' %> To Let&nbsp;&nbsp;&nbsp;
+            <%= f.radio_button :proptype, 'for Auction' %> For Auction&nbsp;&nbsp;&nbsp;
+            <%= f.radio_button :proptype, 'wanted to rent' %> Wanted to Rent&nbsp;&nbsp;&nbsp;
+            <%= f.radio_button :proptype, 'wanted' %> Wanted
         </div> 
       </div>
-      
       <div class="form-group"> 
         <div class="control-label col-sm-2"> 
-          <%= "Title Name" %> 
+          <%= "Ad Title" %> 
         </div> 
         <div class="col-sm-8"> 
           <%= f.text_field :title, class: "form-control", placeholder: "Title of article", autofocus: true %> 

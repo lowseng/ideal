@@ -54,7 +54,7 @@ class ArticlesController < ApplicationController
   
   private 
   def article_params #(method for whitelisting) 
-    params.require(:article).permit(:title, :description, :proptype) 
+    params.require(:article).permit(:title, :description, :proptype, :category, :created_at) 
   end 
   
   def set_article 

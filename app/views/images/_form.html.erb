@@ -1,14 +1,30 @@
 <%= render 'shared/errors', obj: @image %>
 
 <div class="well col-xs-10 col-xs-offset-1">
-  <table width="100%" border="1" cellspacing="5" cellpadding="5">
+  <table width="100%" border="0" cellspacing=5 cellpadding=25>
     <tr valign="center">  
+      <%# mcount = @article.images.count %>
+      <% mcount = 6 %>
       <% @article.images.each do |t| %>
-        <td  valign="center"><%= image_tag t.picture.url, size: "150x100" %></td>
+        <td align="center"><%= image_tag t.picture.url, size: "280x190" %><br><br>
+        </td>
+        <% mcount = mcount - 1 %>
+        <% if mcount == 3 %>
+           <tr>
+        <% end %>
       <% end %>
+
+      <% while mcount > 0 %>
+        <% if mcount == 3 %>
+           <tr>
+        <% end %>
+        <td><%= image_tag("camera.gif") %><%#= render 'formaddimage' %></td>
+        <% mcount = mcount - 1 %>        
+      <%end %>
     </tr>
   </table> <br>
-  <% if @article.images.count < 5 %>
+  
+  <% if @article.images.count < 6 %>
     <%= form_for @image, :html => { multipart: true, :class => "form-horizontal image" } do |f| %>
       <% if @image.errors.any? %>
         <div id="error_expl" class="panel panel-danger">
@@ -28,7 +44,9 @@
       <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png',  :onchange => "this.form.submit()" %>
     <% end %>
   <% end %>
+  
 </div>
+
 
 <script type="text/javascript">
   $('#image_picture').bind('change', function() {

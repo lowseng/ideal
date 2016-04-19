@@ -9,7 +9,8 @@ gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 # Use sqlite3 as the database for Active Record
 
-gem 'carrierwave' #image uploader
+#gem 'carrierwave' #image uploader
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick' #image resize
 gem 'fog' 
 

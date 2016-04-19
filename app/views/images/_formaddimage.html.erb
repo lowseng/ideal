@@ -1,0 +1,19 @@
+<%= form_for @image, :html => { multipart: true, :class => "form-horizontal image" } do |f| %>
+  <% if @image.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @image.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  <%= f.hidden_field :name, :value => "test hide" %>
+  <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png',  :onchange => "this.form.submit()" %>
+  
+<% end %>
