@@ -1,0 +1,24 @@
+class StaticController < ApplicationController
+  def home
+    # creating data arrays for selects
+    @places = Place.all
+    @places_for_dropdown = []
+    @places.each do |i|
+      @places_for_dropdown << [i.name, i.id]
+    end
+
+    @regions = Region.all
+    @regions_for_dropdown = []
+    @regions.each do |i|
+      # class of dependent option must be equal to id of parent one
+      @regions_for_dropdown << [i.name, i.id, {class: i.place.id}]
+    end
+
+    @areas = Area.all
+    @areas_for_dropdown = []
+    @areas.each do |i|
+      # class of dependent option must be equal to id of parent one
+      @areas_for_dropdown << [i.name, i.id, {class: i.region.id}]
+    end 
+  end
+end

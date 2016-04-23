@@ -11,11 +11,38 @@ class ArticlesController < ApplicationController
 
   def new 
     @article = Article.new 
+
+    # creating data arrays for selects
+    ##################################
+    @places = Place.all
+    @places_for_dropdown = []
+    @places.each do |i|
+      @places_for_dropdown << [i.name, i.id]
+    end
+
+    @regions = Region.all
+    @regions_for_dropdown = []
+    @regions.each do |i|
+      @regions_for_dropdown << [i.name, i.id, {class: i.place.id}]
+    end
+
+    @areas = Area.all
+    @areas_for_dropdown = []
+    @areas.each do |i|
+      @areas_for_dropdown << [i.name, i.id, {class: i.region.id}]
+    end
+    # END #############################
+
   end
 
   def create 
     @article = Article.new(article_params) #(article_params as a method to whitelist) 
     @article.user = current_user
+
+    #Retrieve data from Post Request
+    @article.place = params[:place][:name]
+    @article.region = params[:region][:name]
+    @article.area = params[:area][:name]
     
     if @article.save 
       flash[:success]='Article was successfully created' #Application.html.erb 
@@ -54,7 +81,7 @@ class ArticlesController < ApplicationController
   
   private 
   def article_params #(method for whitelisting) 
-    params.require(:article).permit(:title, :description, :proptype, :category, :created_at) 
+    params.require(:article).permit(:title, :description, :proptype, :category, :created_at, :place, :region, :area) 
   end 
   
   def set_article 

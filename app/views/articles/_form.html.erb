@@ -3,21 +3,38 @@
 <div class='row'> 
   <div class='col-xs-12'>
     <%= form_for(@article, :html => {class: "form-horizontal", role: "form"}) do |f| %> 
+    
+      <div class="form-group"> 
+        <div class="control-label col-sm-2">
+          <%="Location"%> 
+        </div> 
+        <div class="col-sm-2"> 
+          <%= select("place", "name", options_for_select(@places_for_dropdown), {prompt: 'Select Country'}, {class: 'form-control'}) %>
+        </div> 
+        <div class="col-sm-2"> 
+          <%= select("region", "name", options_for_select(@regions_for_dropdown), {prompt: 'Select Region'}, {class: 'form-control'}) %>
+        </div> 
+        <div class="col-sm-2"> 
+          <%= select("area", "name", options_for_select(@areas_for_dropdown), {prompt: 'Select Area'}, {class: 'form-control'}) %>
+        </div> 
+      </div>    
+
       <div class="form-group"> 
         <div class="control-label col-sm-2"> 
-          <%= "Category" %> 
+          <%= "Property" %> 
         </div> 
         <div class=" col-sm-8">
-          <%#= f.select :category, [['Apartments','apartments'],['Houses','houses'],['Commercial Properties','commercial'],['Land','land'],['Rooms','rooms'],['New Properties','new']] %>
-          <select class="form-control" name=article[category] id="category" %> >
+          <%= f.select :category, [['Apartment','Apartment'],['House','House'],['Commercial Property','Commercial Property'],['Land','Land'],['Room','Room'],['New Property','New Property']], {}, { class: "form-control" } %>
+          <!--  
+          <select class="form-control" name="article[category]" id="category">
             <option value="">--- Select Category ---</option>
-            <option value="Apartment">Apartments</option>
-            <option value="House">Houses</option>
-            <option value="Commercial Property">Commercial Properties</option>
+            <option value="Apartment">Apartment</option>
+            <option value="House">House</option>
+            <option value="Commercial Property">Commercial Property</option>
             <option value="Land">Land</option>
-            <option value="Room">Rooms</option>
-            <option value="New Property">New Properties</option>            
-          </select>
+            <option value="Room">Room</option>
+            <option value="New Property">New Property</option>            
+          </select> -->
         </div> 
       </div> 
       <div class="form-group"> 
@@ -26,12 +43,11 @@
         </div> 
         <div class="checkbox col-sm-8"> 
             <%= f.radio_button :proptype, 'for Sale', :checked => (params[:param1] == "new")  %> For Sale&nbsp;&nbsp;&nbsp;
-            <%= f.radio_button :proptype, 'for Rent' %> To Let&nbsp;&nbsp;&nbsp;
+            <%= f.radio_button :proptype, 'for Rent' %> For Rent&nbsp;&nbsp;&nbsp;
             <%= f.radio_button :proptype, 'for Auction' %> For Auction&nbsp;&nbsp;&nbsp;
-            <%= f.radio_button :proptype, 'wanted to rent' %> Wanted to Rent&nbsp;&nbsp;&nbsp;
-            <%= f.radio_button :proptype, 'wanted' %> Wanted
         </div> 
       </div>
+      
       <div class="form-group"> 
         <div class="control-label col-sm-2"> 
           <%= "Ad Title" %> 
@@ -55,7 +71,7 @@
       </div> 
     <% end %> 
     <div class="col-xs-4 col-xs-offset-4"> 
-      [ <%= link_to "Cancel request and return to articles listing", articles_path %> ] 
+      [ <%= link_to "Cancel request and return to Ads List", articles_path %> ] 
     </div> 
   </div> 
 </div>

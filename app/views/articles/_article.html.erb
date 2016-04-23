@@ -20,6 +20,7 @@
             <% end %>
             <td>
               <div class="article-title">
+                <%#= article.category %> <%#= article.proptype%>
                 <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>
               </div>
               <div>

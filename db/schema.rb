@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401023637) do
+ActiveRecord::Schema.define(version: 20160422033726) do
+
+  create_table "areas", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "region_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "areas", ["region_id"], name: "index_areas_on_region_id"
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -21,6 +30,9 @@ ActiveRecord::Schema.define(version: 20160401023637) do
     t.integer  "user_id"
     t.text     "proptype"
     t.text     "category"
+    t.text     "place"
+    t.text     "region"
+    t.text     "area"
   end
 
   create_table "images", force: :cascade do |t|
@@ -40,6 +52,21 @@ ActiveRecord::Schema.define(version: 20160401023637) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "places", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "place_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "regions", ["place_id"], name: "index_regions_on_place_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

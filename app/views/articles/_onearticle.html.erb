@@ -2,7 +2,7 @@
   <% if @article.user %>
     <table width = 100% border="0">
       <tr>
-        <td width=33%>
+        <td valign="bottom" width=33%>
           <h3><%= @article.user.name %></h3>
           Company: <%= @article.user.company %><br>
           Agent Id: <%= @article.user.agentno %>
@@ -12,11 +12,11 @@
             <% if current_user && current_user == @article.user || current_user && current_user.admin? %>
               <%= gravatar_for @article.user, size:120 %>
             <% else %>
-              <%= gravatar_for @user, size:120 %>
+              <%= gravatar_for @article.user, size:120 %>
             <% end %>
           <% end %>
         </td>
-        <td width=33% align="right">
+        <td valign="bottom" width=33% align="right">
           <%= @article.user.telephone %> <span class='glyphicon glyphicon-earphone'></span><br>
           <%= link_to @article.user.email, "mailto:"+@article.user.email %> <span class='glyphicon glyphicon-envelope'></span><br>          
           <%= link_to pluralize(@article.user.articles.count, "listing"), user_path(@article.user) if @article.user.articles %> <span class='glyphicon glyphicon-tasks'></span><br>
@@ -25,15 +25,15 @@
         </td>
       </tr>
     </table><hr>
+    <!--
     <table width="100%" border="0" cellspacing="5" cellpadding="5">
       <tr valign="center">  
-        <% @article.images.each do |t| %>
-          <td  valign="center"><%= image_tag t.picture.url, size: "280x190" %></td>
-        <% end %>
+        <%# @article.images.each do |t| %>
+          <td  valign="center"><%#= image_tag t.picture.url, size: "280x190" %></td>
+        <%# end %>
       </tr>
-    </table>
+    </table> -->
   <% end %>  
-
   <h1 align="center"><%= @article.category %> <%= @article.proptype %></h1>
   <h2 align="center">Id: <%= @article.id %> - <%= @article.proptype %>: <%= @article.title %></h2>
   <h4 class="center description"><strong>Description:</strong></h4>
