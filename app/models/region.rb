@@ -1,4 +1,6 @@
 class Region < ActiveRecord::Base
+  validates :name, presence: true
+  has_many :areas, dependent: :destroy
   belongs_to :place
-  has_many :areas
+  validates :place_id, presence: true
 end

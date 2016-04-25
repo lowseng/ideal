@@ -1,0 +1,30 @@
+<div class="col-xs-8 col-xs-offset-2">
+  <div class="well well-lg">
+    <h3>dB Area - <%= pluralize(@rawareas.count, "record") if @rawareas %></h3>
+    <table border="1" cellspacing = "5" cellpadding = "5">
+      <thead>
+        <tr>
+          <th>Updated_at</th>
+          <th>Country</th>
+          <th>Region_id</th>
+          <th>Region</th> 
+          <th>Area</th>          
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rawareas.each do |area| %>
+          <tr>
+            <td><%= area.updated_at.localtime "+08:00"%></td>
+            <td><%= area.region.place.name %></td>    
+            <td align="center"><%= area.region_id %></td>
+            <td><%= area.region.name %></td>            
+            <td><%= area.name %></td>
+            <td><%= link_to 'Edit', edit_area_path(area) %></td>
+            <td><%= link_to 'Destroy', area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

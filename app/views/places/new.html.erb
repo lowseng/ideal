@@ -1,5 +1,4 @@
-<h1>New Place</h1>
+<h4 align="center"><%= "Manage Countries" %></h4>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', places_path %>
+<%= render 'place', obj: @places %>

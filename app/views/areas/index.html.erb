@@ -1,0 +1,9 @@
+<h4 align="center"><%=link_to "Manage Countries", places_path%> > <%= link_to params[:country_name], regions_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name]) %> > <%= params[:region_name] %></h4>
+<div align="center">
+  <%#= will_paginate %>
+</div>
+<%= render 'area', obj: @areas %>
+<div align="center">
+  <%= link_to 'Add New Area', new_area_path(:m_region_id => params[:m_region_id]) %><br><br>
+  <%#= will_paginate %>
+</div>

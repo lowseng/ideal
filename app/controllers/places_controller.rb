@@ -5,6 +5,7 @@ class PlacesController < ApplicationController
   # GET /places.json
   def index
     @places = Place.all
+    #@places = Place.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /places/1
@@ -15,39 +16,37 @@ class PlacesController < ApplicationController
   # GET /places/new
   def new
     @place = Place.new
+    # 24-Apr-2016 - To enable merging index to list regions when viewing    
+    @places = Place.all.order('name asc') 
   end
 
   # GET /places/1/edit
   def edit
+    # 24-Apr-2016 - To enable merging index to list regions when viewing    
+    @places = Place.all.order('name asc') 
   end
 
   # POST /places
   # POST /places.json
   def create
     @place = Place.new(place_params)
-
-    respond_to do |format|
-      if @place.save
-        format.html { redirect_to @place, notice: 'Place was successfully created.' }
-        format.json { render :show, status: :created, location: @place }
-      else
-        format.html { render :new }
-        format.json { render json: @place.errors, status: :unprocessable_entity }
-      end
+    #@place added for validates :name, presence: true ELSE error!
+    @places = Place.all.order('name asc') 
+    if @place.save
+      redirect_to new_place_path
+    else 
+      flash[:danger]='No spaces allowed'
+      render 'new'
     end
   end
 
   # PATCH/PUT /places/1
   # PATCH/PUT /places/1.json
   def update
-    respond_to do |format|
-      if @place.update(place_params)
-        format.html { redirect_to @place, notice: 'Place was successfully updated.' }
-        format.json { render :show, status: :ok, location: @place }
-      else
-        format.html { render :edit }
-        format.json { render json: @place.errors, status: :unprocessable_entity }
-      end
+    if @place.update(place_params)
+      redirect_to new_place_path
+    else 
+      render 'new' 
     end
   end
 
@@ -56,7 +55,7 @@ class PlacesController < ApplicationController
   def destroy
     @place.destroy
     respond_to do |format|
-      format.html { redirect_to places_url, notice: 'Place was successfully destroyed.' }
+      format.html { redirect_to new_place_url, notice: 'Place was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

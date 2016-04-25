@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   resources :images
   resources :places
+  resources :regions
+  resources :areas
+  
+  #for coder use only
+  resources :rawplaces
+  resources :rawregions
+  resources :rawareas  
+  
   #devise_for :users
   devise_for :users, :controllers => { :registrations => 'registrations' }
   resources :articles, :users
