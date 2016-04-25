@@ -31,10 +31,15 @@ class AreasController < ApplicationController
   def create
     @area = Area.new(area_params)
     @area.region_id = params[:m_region_id]
+    #@areas & @rawareas added for validates :name, presence: true ELSE error!
+    @areas = Area.where(:region_id => params[:m_region_id]).order('name asc')   
+    @rawareas = Area.all.order('updated_at desc') 
 
     if @area.save
+      flash[:success]='New record added'      
       redirect_to new_area_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name], :m_region_id => params[:m_region_id], :region_name => params[:region_name])
     else 
+      flash[:danger]='Denied. Record existed or spaces entered'
       render 'new' 
     end
   end
@@ -43,14 +48,20 @@ class AreasController < ApplicationController
   # PATCH/PUT /areas/1.json
   def update
     if @area.update(area_params)
+      flash[:success]='Record updated'
       redirect_to new_area_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name], :m_region_id => params[:m_region_id], :region_name => params[:region_name])
     else 
+      flash[:danger]='Denied. Record existed or spaces entered'      
+      #@areas & @rawareas added for validates :name, presence: true ELSE error!
+      @areas = Area.where(:region_id => params[:m_region_id]).order('name asc')   
+      @rawareas = Area.all.order('updated_at desc')  
       render 'new' 
     end
   end
 
   def destroy
     @area.destroy
+    flash[:success]='Record removed'
     redirect_to new_area_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name], :m_region_id => params[:m_region_id], :region_name => params[:region_name])
   end
 

@@ -1,4 +1,4 @@
-<h4 align="center"><%=link_to "Countries", new_place_path%> > <%= link_to params[:country_name], regions_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name]) %> > <%= params[:region_name] %></h4>
+<h4 align="center"><%=link_to "Countries", new_place_path%> > <%= link_to params[:country_name], new_region_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name]) %> > <%= params[:region_name] %></h4>
 
 
 <%= render 'form' %>

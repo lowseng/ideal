@@ -39,9 +39,10 @@ class RegionsController < ApplicationController
     @region.place_id = params[:m_place_id]
 
     if @region.save
+      flash[:success]='New record added'
       redirect_to new_region_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name])
     else 
-      flash[:danger]='No spaces allowed'
+      flash[:danger]='Denied. Record existed or spaces entered'
       render 'new' 
     end
   end
@@ -51,15 +52,19 @@ class RegionsController < ApplicationController
   def update
     
     if @region.update(region_params)
+      flash[:success]='Record updated'
       redirect_to new_region_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name])
     else 
+      flash[:danger]='Denied. Record existed or spaces entered'      
+      @regions = Region.where(:place_id => params[:m_place_id]).order('name asc')
+      @rawregions = Region.all.order('updated_at desc') 
       render 'new' 
     end
   end
 
   def destroy
-
     @region.destroy
+    flash[:success]='Record removed'
     redirect_to new_region_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name])
   end
 

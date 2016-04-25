@@ -20,8 +20,8 @@
             <td align="center"><%= area.region_id %></td>
             <td><%= area.region.name %></td>            
             <td><%= area.name %></td>
-            <td><%= link_to 'Edit', edit_area_path(area) %></td>
-            <td><%= link_to 'Destroy', area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Edit', edit_area_path(area, :m_place_id => params[:m_place_id], :country_name => params[:country_name], :m_region_id => params[:m_region_id], :region_name => params[:region_name]) %></td>
+            <td><%= link_to 'Destroy', area_path(area, :m_place_id => params[:m_place_id], :country_name => params[:country_name], :m_region_id => params[:m_region_id], :region_name => params[:region_name]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>

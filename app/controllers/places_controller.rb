@@ -1,4 +1,6 @@
 class PlacesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :require_admin, only: [:index, :new, :show, :edit, :update, :destroy]
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 
   # GET /places
@@ -30,12 +32,15 @@ class PlacesController < ApplicationController
   # POST /places.json
   def create
     @place = Place.new(place_params)
+    
     #@place added for validates :name, presence: true ELSE error!
     @places = Place.all.order('name asc') 
+    
     if @place.save
+      flash[:success]='New record added'
       redirect_to new_place_path
     else 
-      flash[:danger]='No spaces allowed'
+      flash[:danger]='Denied. Record existed or spaces entered'
       render 'new'
     end
   end
@@ -44,8 +49,11 @@ class PlacesController < ApplicationController
   # PATCH/PUT /places/1.json
   def update
     if @place.update(place_params)
+      flash[:success]='Record updated'
       redirect_to new_place_path
     else 
+      flash[:danger]='Denied. Record existed or spaces entered'      
+      @places = Place.all.order('name asc') 
       render 'new' 
     end
   end
@@ -55,7 +63,7 @@ class PlacesController < ApplicationController
   def destroy
     @place.destroy
     respond_to do |format|
-      format.html { redirect_to new_place_url, notice: 'Place was successfully destroyed.' }
+      format.html { redirect_to new_place_url, notice: 'Country was successfully removed.' }
       format.json { head :no_content }
     end
   end
@@ -69,5 +77,12 @@ class PlacesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
       params.require(:place).permit(:name)
+    end
+    
+    def require_admin
+      if logged_in? and !current_user.admin?
+        flash[:danger] = "Only admin users can perform that action"
+        redirect_to root_path
+      end
     end
 end
