@@ -14,7 +14,8 @@ class ArticlesController < ApplicationController
 
     # creating data arrays for selects
     ##################################
-    @places = Place.all
+    #@places = Place.all
+    @places = Place.where(status: true)
     @places_for_dropdown = []
     @places.each do |i|
       @places_for_dropdown << [i.name, i.id]
@@ -36,13 +37,37 @@ class ArticlesController < ApplicationController
   end
 
   def create 
+
+    # creating data arrays for selects
+    ##################################
+    #@places = Place.all
+    @places = Place.where(status: true)
+    @places_for_dropdown = []
+    @places.each do |i|
+      @places_for_dropdown << [i.name, i.id]
+    end
+
+    @regions = Region.all
+    @regions_for_dropdown = []
+    @regions.each do |i|
+      @regions_for_dropdown << [i.name, i.id, {class: i.place.id}]
+   end
+
+    @areas = Area.all
+    @areas_for_dropdown = []
+    @areas.each do |i|
+      @areas_for_dropdown << [i.name, i.id, {class: i.region.id}]
+    end
+    # END #############################
+
+
     @article = Article.new(article_params) #(article_params as a method to whitelist) 
     @article.user = current_user
 
     #Retrieve data from Post Request
-    @article.place = params[:place][:name]
-    @article.region = params[:region][:name]
-    @article.area = params[:area][:name]
+    @article.place = params[:place][:name] if params[:place].present?
+    @article.region = params[:region][:name] if params[:region].present?
+    @article.area = params[:area][:name] if params[:area].present?
     
     if @article.save 
       flash[:success]='Article was successfully created' #Application.html.erb 
@@ -61,7 +86,26 @@ class ArticlesController < ApplicationController
   end
   
   def edit 
+    # creating data arrays for selects
+    ##################################
+    @places = Place.where(status: true)
+    @places_for_dropdown = []
+    @places.each do |i|
+      @places_for_dropdown << [i.name, i.id]
+    end
 
+    @regions = Region.all
+    @regions_for_dropdown = []
+    @regions.each do |i|
+      @regions_for_dropdown << [i.name, i.id, {class: i.place.id}]
+    end
+
+    @areas = Area.all
+    @areas_for_dropdown = []
+    @areas.each do |i|
+      @areas_for_dropdown << [i.name, i.id, {class: i.region.id}]
+    end
+    # END #############################
   end
   
   def update 
@@ -81,7 +125,7 @@ class ArticlesController < ApplicationController
   
   private 
   def article_params #(method for whitelisting) 
-    params.require(:article).permit(:title, :description, :proptype, :category, :created_at, :place, :region, :area) 
+    params.require(:article).permit(:title, :description, :proptype, :category, :created_at, :place, :region, :area, :bedroom, :bathroom, :size, :amount, :uom, :currency) 
   end 
   
   def set_article 

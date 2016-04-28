@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422033726) do
+ActiveRecord::Schema.define(version: 20160428062533) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "name"
@@ -33,6 +33,12 @@ ActiveRecord::Schema.define(version: 20160422033726) do
     t.text     "place"
     t.text     "region"
     t.text     "area"
+    t.integer  "bathroom"
+    t.integer  "bedroom"
+    t.decimal  "size",        precision: 10, scale: 2
+    t.decimal  "amount",      precision: 10, scale: 2
+    t.text     "uom"
+    t.text     "currency"
   end
 
   create_table "images", force: :cascade do |t|
@@ -57,6 +63,8 @@ ActiveRecord::Schema.define(version: 20160422033726) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status",     default: false
+    t.text     "currency"
   end
 
   create_table "regions", force: :cascade do |t|
@@ -90,6 +98,8 @@ ActiveRecord::Schema.define(version: 20160422033726) do
     t.text     "telephone"
     t.text     "agentno"
     t.text     "company"
+    t.text     "preferuom"
+    t.text     "prefercountry"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

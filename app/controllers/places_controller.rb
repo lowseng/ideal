@@ -18,6 +18,7 @@ class PlacesController < ApplicationController
   # GET /places/new
   def new
     @place = Place.new
+
     # 24-Apr-2016 - To enable merging index to list regions when viewing    
     @places = Place.all.order('name asc') 
   end
@@ -76,7 +77,7 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name)
+      params.require(:place).permit(:name, :status, :currency)
     end
     
     def require_admin
