@@ -32,8 +32,13 @@ class ArticlesController < ApplicationController
     @areas.each do |i|
       @areas_for_dropdown << [i.name, i.id, {class: i.region.id}]
     end
-    # END #############################
+    # END ############# START OTHERINFO ################
 
+    @otherinfos = Otherinfo.all
+    @otherinfos_for_dropdown = []
+    @otherinfos.each do |i|
+      @otherinfos_for_dropdown << [i.name, i.id, {class: i.place.id}]
+    end
   end
 
   def create 
@@ -58,7 +63,13 @@ class ArticlesController < ApplicationController
     @areas.each do |i|
       @areas_for_dropdown << [i.name, i.id, {class: i.region.id}]
     end
-    # END #############################
+    # END ############# START OTHERINFO ################
+
+    @otherinfos = Otherinfo.all
+    @otherinfos_for_dropdown = []
+    @otherinfos.each do |i|
+      @otherinfos_for_dropdown << [i.name, i.id, {class: i.place.id}]
+    end
 
 
     @article = Article.new(article_params) #(article_params as a method to whitelist) 
@@ -68,7 +79,8 @@ class ArticlesController < ApplicationController
     @article.place = params[:place][:name] if params[:place].present?
     @article.region = params[:region][:name] if params[:region].present?
     @article.area = params[:area][:name] if params[:area].present?
-    
+    @article.otherinfo = params[:otherinfo][:name] if params[:otherinfo].present?    
+
     if @article.save 
       flash[:success]='Article was successfully created' #Application.html.erb 
       #redirect_to article_path(@article) #Show.hrml.erb 
@@ -105,10 +117,22 @@ class ArticlesController < ApplicationController
     @areas.each do |i|
       @areas_for_dropdown << [i.name, i.id, {class: i.region.id}]
     end
-    # END #############################
+    # END ############# START OTHERINFO ################
+
+    @otherinfos = Otherinfo.all
+    @otherinfos_for_dropdown = []
+    @otherinfos.each do |i|
+      @otherinfos_for_dropdown << [i.name, i.id, {class: i.place.id}]
+    end
   end
   
   def update 
+    #Retrieve data from Post Request
+    @article.place = params[:place][:name] if params[:place].present?
+    @article.region = params[:region][:name] if params[:region].present?
+    @article.area = params[:area][:name] if params[:area].present?
+    @article.otherinfo = params[:otherinfo][:name] if params[:otherinfo].present?    
+
     if @article.update(article_params) 
       flash[:success]='Article was successfully updated' 
       redirect_to article_path(@article)
@@ -125,7 +149,9 @@ class ArticlesController < ApplicationController
   
   private 
   def article_params #(method for whitelisting) 
-    params.require(:article).permit(:title, :description, :proptype, :category, :created_at, :place, :region, :area, :bedroom, :bathroom, :size, :amount, :uom, :currency) 
+    params.require(:article).permit(:title, :description, :proptype, :category, :created_at, :place,
+    :region, :area, :bedroom, :bathroom, :size, :amount, :uom, :currency, :xlift, :xsqua, :xplay, :xbalc,
+    :xgymn, :xmini, :xjogg, :xcabl, :xtenn, :xpark, :xsecu, :xpool, :otherinfo) 
   end 
   
   def set_article 

@@ -1,0 +1,30 @@
+<div class="col-xs-8 col-xs-offset-2">
+  <div class="well well-lg">
+    <h3>dB Other Info - <%= pluralize(@rawotherinfos.count, "record") if @rawotherinfos %></h3>
+    <table border="1" cellspacing = "5" cellpadding = "5">
+      <thead>
+        <tr>
+          <th>Updated_at</th>
+          <th>Place_id</th>
+          <th>Country</th>
+          <th>Region</th>            
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rawotherinfos.each do |otherinfo| %>
+          <tr>
+            <td><%= otherinfo.updated_at.localtime "+08:00" %></td>
+            <td align="center"><%= otherinfo.place_id %></td>
+            <td><%= otherinfo.place.name %></td>              
+            <td><%= otherinfo.name %></td>
+            <td><%= link_to 'Edit', edit_otherinfo_path(otherinfo, :m_place_id => params[:m_place_id], :country_name => params[:country_name])%></td>
+            <td><%= link_to 'Destroy', otherinfo_path(otherinfo, :m_place_id => params[:m_place_id], :country_name => params[:country_name]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

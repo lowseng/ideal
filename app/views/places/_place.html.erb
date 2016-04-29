@@ -22,6 +22,7 @@
                 <% else %>
                   <span class='glyphicon glyphicon-remove'></span> <%= place.name%>
                 <% end %>
+                - <%= place.currency %>
                 (<%= pluralize(place.regions.count, "").strip if place.regions %>)
               <% end %><br><br>
             </td>
@@ -31,6 +32,7 @@
                 <%= link_to "Delete this Country", place_path(place), method: :delete,
                 data: { confirm: "Are you sure you want to delete this Country?"},
                 class: "btn btn-xs btn-danger" %>
+                | <%= link_to 'Other Info', new_otherinfo_path(:m_place_id => place.id, :country_name => place.name) %>
               <% end %><br><br>
             </td>
           </tr>

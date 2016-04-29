@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :places
   resources :regions
   resources :areas
-  
+  resources :otherinfos 
   #for coder use only
   resources :rawplaces
   resources :rawregions

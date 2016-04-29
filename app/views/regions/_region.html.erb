@@ -6,7 +6,7 @@
           <tr>
             <td>
               <%= link_to new_area_path(:m_region_id => region.id, :country_name => params[:country_name], :m_place_id => params[:m_place_id], :region_name => region.name) do %>
-                <span class='glyphicon glyphicon-ok'></span> <%= region.name %>
+                <%= region.name %>
                 (<%= pluralize(region.areas.count, "").strip if region.areas %>)
               <% end %><br><br> 
             </td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428062533) do
+ActiveRecord::Schema.define(version: 20160429053805) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "name"
@@ -39,6 +39,19 @@ ActiveRecord::Schema.define(version: 20160428062533) do
     t.decimal  "amount",      precision: 10, scale: 2
     t.text     "uom"
     t.text     "currency"
+    t.boolean  "xpool",                                default: false
+    t.boolean  "xsqua",                                default: false
+    t.boolean  "xplay",                                default: false
+    t.boolean  "xbalc",                                default: false
+    t.boolean  "xgymn",                                default: false
+    t.boolean  "xmini",                                default: false
+    t.boolean  "xjogg",                                default: false
+    t.boolean  "xcabl",                                default: false
+    t.boolean  "xtenn",                                default: false
+    t.boolean  "xpark",                                default: false
+    t.boolean  "xsecu",                                default: false
+    t.boolean  "xlift",                                default: false
+    t.text     "otherinfo"
   end
 
   create_table "images", force: :cascade do |t|
@@ -50,6 +63,15 @@ ActiveRecord::Schema.define(version: 20160428062533) do
   end
 
   add_index "images", ["article_id"], name: "index_images_on_article_id"
+
+  create_table "otherinfos", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "place_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "otherinfos", ["place_id"], name: "index_otherinfos_on_place_id"
 
   create_table "payments", force: :cascade do |t|
     t.string   "email"

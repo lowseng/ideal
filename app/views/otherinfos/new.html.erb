@@ -1,0 +1,7 @@
+<h4 align="center">Other Info: <%=link_to "Countries", new_place_path%> > <%= params[:country_name] %></h4>
+
+<%= render 'form' %>
+<%= render 'otherinfo', obj: @otherinfos %>
+<% if current_user.email == "lowseng@yahoo.com" %>
+  <%= render 'rawotherinfo', obj: @rawotherinfos %>
+<% end %>
