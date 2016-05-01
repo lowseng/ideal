@@ -8,5 +8,11 @@ class Article < ActiveRecord::Base
   
  	validates :title, presence: true, length: {minimum: 3, maximum: 50}
 	validates :description, presence: true, length: {minimum: 10, maximum: 300}
+	#has_many :images, dependent: :destroy
+
+  # multiple image uploading
+	#has_many :images, :inverse_of => :article, dependent: :destroy
 	has_many :images, dependent: :destroy
+	# enable nested attributes for images through article class
+	accepts_nested_attributes_for :images, :allow_destroy => true
 end

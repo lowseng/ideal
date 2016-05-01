@@ -11,7 +11,8 @@ class ArticlesController < ApplicationController
 
   def new 
     @article = Article.new 
-
+    @image = @article.images.new
+    
     # creating data arrays for selects
     ##################################
     #@places = Place.all
@@ -71,7 +72,6 @@ class ArticlesController < ApplicationController
       @otherinfos_for_dropdown << [i.name, i.id, {class: i.place.id}]
     end
 
-
     @article = Article.new(article_params) #(article_params as a method to whitelist) 
     @article.user = current_user
 
@@ -82,6 +82,13 @@ class ArticlesController < ApplicationController
     @article.otherinfo = params[:otherinfo][:name] if params[:otherinfo].present?    
 
     if @article.save 
+      #authorize @article
+      if params[:images_attributes]
+        params[:images_attributes].each do |image|
+          @article.images.create(picture: image[:picture])
+        end
+      end
+
       flash[:success]='Article was successfully created' #Application.html.erb 
       #redirect_to article_path(@article) #Show.hrml.erb 
       current_article = @article.id
@@ -151,7 +158,7 @@ class ArticlesController < ApplicationController
   def article_params #(method for whitelisting) 
     params.require(:article).permit(:title, :description, :proptype, :category, :created_at, :place,
     :region, :area, :bedroom, :bathroom, :size, :amount, :uom, :currency, :xlift, :xsqua, :xplay, :xbalc,
-    :xgymn, :xmini, :xjogg, :xcabl, :xtenn, :xpark, :xsecu, :xpool, :otherinfo) 
+    :xgymn, :xmini, :xjogg, :xcabl, :xtenn, :xpark, :xsecu, :xpool, :otherinfo, :images_attributes => [:picture]) 
   end 
   
   def set_article 

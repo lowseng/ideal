@@ -1,0 +1,46 @@
+<div class="form-group">
+  <div class="well col-xs-12 col-xs-offset-0">
+    <table width="100%" border="0" cellspacing=0cellpadding=0>
+      <tr valign="center">  
+        <% mcount = 6 %>
+        <% @article.images.each do |t| %>
+          <% if mcount = 6 %>
+            <td><%= image_tag("camera.gif") %><%#= render 'formaddimage' %></td>            
+          <% else %>
+            <td align="center"><%= image_tag t.picture.url, size: "200x150" %><br><br>
+          <% end %>
+          </td>
+          <% mcount = mcount - 1 %>
+          <% if mcount == 3 %>
+             <tr>
+          <% end %>
+        <% end %>
+  
+        <% while mcount > 0 %>
+          <% if mcount == 3 %>
+             <tr>
+          <% end %>
+          <td><%= image_tag("camera.gif") %><%#= render 'formaddimage' %></td>
+          <% mcount = mcount - 1 %>        
+        <%end %>
+      </tr>
+    </table> <br>
+
+    <% if @article.images.count < 6 %>
+      <%= form_for @image, :html => { multipart: true, :class => "form-horizontal image" } do |f| %>
+        <%= f.hidden_field :name, :value => "test hide" %>
+        <%#= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %> 
+        <%= f.file_field :picture, multiple: true, :name=>'article[images_attributes][][picture]', :class => 'form-control' %>
+      <% end %>
+    <% end %>
+  </div> 
+</div>
+
+<script type="text/javascript">
+  $('#image_picture').bind('change', function() {
+  var size_in_megabytes = this.files[0].size/1024/1024;
+  if (size_in_megabytes > 5) {
+    alert('Maximum file size is 5MB.');
+}
+});
+</script>
