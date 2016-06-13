@@ -6,6 +6,7 @@ class OneuserController < ApplicationController
 
   def forsale
     @articles = Article.paginate(page: params[:page], per_page: 5).where(:proptype => 'for Sale').order('updated_at desc')     
+    @articles = Article.paginate(page: params[:page], per_page: 5).search(params[:search])
   end
   
   def tolet
@@ -15,7 +16,9 @@ class OneuserController < ApplicationController
   def forauction
     @articles = Article.paginate(page: params[:page], per_page: 5).where(:proptype => 'for Auction').order('updated_at desc') 
   end  
-  
+  def search
+    @articles = Article.paginate(page: params[:page], per_page: 15).search(params[:search])
+  end   
   private
 
 end

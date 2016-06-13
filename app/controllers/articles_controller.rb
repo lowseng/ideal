@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
   before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :require_admin, only: [:index]
 
+  
   def index
     @articles = Article.paginate(page: params[:page], per_page: 5).order('updated_at desc')
   end
@@ -12,7 +13,7 @@ class ArticlesController < ApplicationController
   def new 
     @article = Article.new 
     @image = @article.images.new
-    
+ 
     # creating data arrays for selects
     ##################################
     #@places = Place.all
@@ -94,17 +95,22 @@ class ArticlesController < ApplicationController
       current_article = @article.id
       session[:current_article] = current_article
       #redirect_to images_path
-      redirect_to new_image_path(:param1 => "value1", :param2 => "value2")
+      redirect_to new_image_path(:param1 => "1", :param2 => "value2")
     else 
       render 'new' 
     end 
   end
 
   def show 
-
+      @place = Place.find(@article.place)
+      @region = Region.find(@article.region)
+      @area = Area.find(@article.area)
+      @otherinfo = Otherinfo.find(@article.otherinfo)
   end
   
   def edit 
+
+
     # creating data arrays for selects
     ##################################
     @places = Place.where(status: true)
@@ -131,6 +137,9 @@ class ArticlesController < ApplicationController
     @otherinfos.each do |i|
       @otherinfos_for_dropdown << [i.name, i.id, {class: i.place.id}]
     end
+
+
+
   end
   
   def update 
@@ -142,7 +151,13 @@ class ArticlesController < ApplicationController
 
     if @article.update(article_params) 
       flash[:success]='Article was successfully updated' 
-      redirect_to article_path(@article)
+      #redirect_to article_path(@article, :param1 => "1", :param2 => "value2")
+
+      current_article = @article.id
+      session[:current_article] = current_article
+      #redirect_to images_path
+      redirect_to new_image_path(:param1 => "1", :param2 => "value2")
+
     else 
       render 'edit'
     end 
@@ -158,7 +173,8 @@ class ArticlesController < ApplicationController
   def article_params #(method for whitelisting) 
     params.require(:article).permit(:title, :description, :proptype, :category, :created_at, :place,
     :region, :area, :bedroom, :bathroom, :size, :amount, :uom, :currency, :xlift, :xsqua, :xplay, :xbalc,
-    :xgymn, :xmini, :xjogg, :xcabl, :xtenn, :xpark, :xsecu, :xpool, :otherinfo, :images_attributes => [:picture]) 
+    :xgymn, :xmini, :xjogg, :xcabl, :xtenn, :xpark, :xsecu, :xpool, :otherinfo,
+    :images_attributes => [:picture]) 
   end 
   
   def set_article 

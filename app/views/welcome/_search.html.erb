@@ -1,0 +1,37 @@
+<div class='row'> 
+  <div class='col-sm-offset-1 col-xs-10'>
+    <div class="well well-lg">
+      <%#= form_tag oneuser_search_path, :method => "get", :enforce_utf8 => false do %>
+      <%#= form_tag root_path, :method => "get", :enforce_utf8 => false do %>
+      <%= form_tag root_path, :method => "get", id: "search-form", :enforce_utf8 => false do %>
+        <div class="form-group"> 
+          <div class="col-sm-offset-1 col-sm-10">
+            <%= text_field_tag :search, params[:search], placeholder: "Search titles & descriptions", class: 'form-control' %>
+          </div>
+          <div class="col-sm-offset- col-sm-1">
+            <%= submit_tag "Go!", :name => nil %>
+          </div>
+        </div><br><br><br>
+        <div class="form-group">
+          <div class="col-sm-offset-1 col-sm-3"> 
+            <%= select("place", "name", options_for_select(@places_for_dropdown), {prompt: 'Select Country'}, {class: 'form-control'}) %>
+          </div> 
+          <div class="col-sm-4"> 
+            <%= select("region", "name", options_for_select(@regions_for_dropdown), {prompt: 'Select Region'}, {class: 'form-control'}) %>
+          </div> 
+          <div class="col-sm-4"> 
+            <%= select("area", "name", options_for_select(@areas_for_dropdown), {prompt: 'Select Area'}, {class: 'form-control'}) %>
+          </div> 
+        </div><br><br>  
+        <div class="form-group">
+          <div class="col-sm-offset-1 col-sm-3"> 
+            <%= select("otherinfo", "name", options_for_select(@otherinfos_for_dropdown), {prompt: 'Other Iinfo'}, {class: 'form-control'}) %>
+          </div> 
+        </div>
+      <% end %>
+      <br><br>
+
+    </div>
+
+  </div>
+</div>

@@ -72,7 +72,8 @@
             <%= "Size" %> 
           </div> 
           <div class=" col-sm-2">
-            <%= f.number_field :size, :step => 2, class: "form-control", placeholder: "Size", :value => (number_with_precision(f.object.size, :precision => 0) ) %> 
+            <%#= f.number_field :size, :step => 2, class: "form-control", placeholder: "Size", :value => (number_with_precision(f.object.size, :precision => 0) ) %> 
+            <%= f.number_field :size, class: "form-control", placeholder: "Size", :value => (number_with_precision(f.object.size, :precision => 0) ) %> 
           </div>                 
           <div class=" col-sm-2">
             <%= f.select :uom, options_for_select([['Sqft','1'],['Sqm','2'],['Acre(s)','3'],['Hectre(s)','4']], @article.uom || current_user.preferuom), {}, { class: "form-control" } %>
@@ -150,8 +151,6 @@
             <%= f.number_field :amount, class: "form-control", placeholder: "Amount" , :value => (number_with_precision(f.object.amount, :precision => 0))%> 
           </div>                 
           <div class=" col-sm-2">
-            <%#= f.collection_select(:prefercountry, Place.where(status: true), :id, :name, {}, {:class => 'form-control'}) %>
-            <%#= f.collection_select(:currency, Place.where(status: true), :id, :currency, {:selected => current_user.prefercountry}) %>
             <%= f.collection_select(:currency, Place.where(status: true), :id, :currency, {:selected => current_user.prefercountry}, {:class => 'form-control'} ) %>
           </div>
         </div>       
@@ -171,22 +170,26 @@
             <%= f.text_area :description, rows: 5, class: "form-control", placeholder: "Body of Ad" %> 
           </div> 
         </div> 
-        <%= render 'ximage' %>
         <!--
         <div class="form-group">
           <%#= f.fields_for :images, @article.images do |f_screenshot| %>
             <%#= f_screenshot.label :picture, :class => 'col-sm-2 control-label' do %>
               Images
             <%# end %>
-            <div class="col-sm-10">
-              <%#= f_screenshot.file_field :picture, multiple: true, :name=>'article[images_attributes][][picture]', :class => 'form-control' %>
-            </div>
+
+            <div class="col-sm-4">
+              <img id="img_prev" width=300 height=300 src="#" alt="your image" class="img-thumbnail hidden"/> 
+              <%#= f_screenshot.file_field :picture, id: "avatar-upload" , multiple: true, :name=>'article[images_attributes][][picture]', :class => 'form-control' %>
+            </div>     
           <%# end %>
-        </div>  -->
+          -->
+        </div>  
         <div class="form-actions">
+          <div class="col-sm-offset-2 col-sm-10"> 
             <%= f.submit nil, :class => 'btn btn-primary' %>
             <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                       articles_path, :class => 'btn btn-default' %>
+          </div>
         </div>
       <% end %> 
     </div>

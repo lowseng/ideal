@@ -1,4 +1,5 @@
 class Article < ActiveRecord::Base
+  attr_accessor :picture_cache, :mimage #to unset field after submission - params.except(:card_number) in your controller
   belongs_to :user 
   validates :user_id, presence: true
   validates :proptype, presence: true
@@ -15,4 +16,11 @@ class Article < ActiveRecord::Base
 	has_many :images, dependent: :destroy
 	# enable nested attributes for images through article class
 	accepts_nested_attributes_for :images, :allow_destroy => true
+
+  scope :otherinfo, -> (otherinfo) { where otherinfo: otherinfo }
+
+  def self.search(search)
+   where(['title LIKE ? OR description LIKE ?', "%#{search}%", "%#{search}%"])
+  end
+
 end

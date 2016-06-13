@@ -1,0 +1,12 @@
+<h1 align="center">Search Results</h1>
+<% if@articles.present? %>
+  <div align="center">
+    <%= will_paginate @articles %>
+  </div>
+  <%= render 'articles/article', obj: @articles %>
+  <div align="center">
+    <%= will_paginate @articles %>
+  </div>
+<% else %>
+  <p>No Results found</p>
+<% end %>

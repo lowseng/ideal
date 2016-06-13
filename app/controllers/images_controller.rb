@@ -17,8 +17,13 @@ class ImagesController < ApplicationController
   # GET /images/new
   def new
     @image = Image.new
+
     if session[:current_article]
       @article = Article.find(session[:current_article])
+      @place = Place.find(@article.place)
+      @region = Region.find(@article.region)
+      @area = Area.find(@article.area)
+      @otherinfo = Otherinfo.find(@article.otherinfo)
     else
       redirect_to new_article_path(:param1 => "new")
     end
