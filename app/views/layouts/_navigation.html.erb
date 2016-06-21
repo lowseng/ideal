@@ -8,18 +8,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "Ideal Virtual Realty", root_path, class: "navbar-brand", id: "logo" %>
+      <%= link_to "WINDAQ", root_path, class: "navbar-brand", id: "logo" %>
     </div>
     
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "For Sale", oneuser_forsale_path %></li>
-        <li><%= link_to "For Rent", oneuser_tolet_path  %></li>
-        <li><%= link_to "For Auction", oneuser_forauction_path  %></li>
+
+
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "<span class='glyphicon glyphicon-home'></span> Home".html_safe, root_path %></li>
         <% if current_user %>
           <li><%= link_to "<span class='glyphicon glyphicon-edit'></span> New Ad".html_safe, new_article_path(:param1 => "new") %></li>
           <li class="dropdown">

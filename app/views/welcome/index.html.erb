@@ -1,13 +1,17 @@
-<!--<%# if current_user %>
-  <div class="lowseng">
-    <h3>Welcome: <%#= current_user.email %></h3>
+<div class='row'> 
+  <div class='col-sm-offset-1 col-xs-10'>
+    <div class="well well-lg">
+      <% if current_user %>
+        <br>
+        <div class="lowseng">
+          <h3><%#= current_user.email %></h3>
+        </div><br>
+      <% end %>
+      <%= render 'search' %>
+      <%= render 'articles/article', obj: @articles %>
+      <div align="left">
+        <%= will_paginate @articles %>
+      </div>
+    </div>
   </div>
-<%# end %> -->
-<%= render 'search' %>
-<div align="center">
-  <%= will_paginate @articles %>
-</div>
-<%= render 'articles/article', obj: @articles %>
-<div align="center">
-  <%= will_paginate @articles %>
 </div>

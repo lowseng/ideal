@@ -1,7 +1,7 @@
 <%= render 'shared/errors', obj: @article %>
 
 <div class='row'> 
-  <div class='col-sm-offset-1 col-xs-10'>
+  <div class='col-sm-offset-0 col-xs-12'>
     <div class="well well-lg">
       <%#= form_for(@article, :html => {class: "form-horizontal", role: "form"}) do |f| %> 
       <%#= form_for(@article, :html => {:multipart => true, class: "form-horizontal", role: "form"}) do |f| %> 
@@ -28,7 +28,7 @@
             <%= "Property" %> 
           </div> 
           <div class=" col-sm-3">
-            <%= f.select :category, [['Apartment','Apartment'],['House','House'],['Commercial Property','Commercial Property'],['Land','Land'],['Room','Room'],['New Property','New Property']], {}, { class: "form-control" } %>
+            <%= f.select :category, [['Apartment','Apartment'],['House','House'],['Commercial','Commercial'],['Land','Land'],['Room','Room'],['New','New']], {}, { class: "form-control" } %>
             <!--  
             <select class="form-control" name="article[category]" id="category">
               <option value="">--- Select Category ---</option>
@@ -91,13 +91,13 @@
           <div class="control-label col-sm-2"> 
             <%= "Facilities" %> 
           </div> 
-          <div class="checkbox col-sm-offset-1 col-sm-2">
+          <div class="checkbox col-sm-offset-1 col-sm-3">
             <%= f.check_box :xlift  %><%= 'Lift/ Elevator'%>
           </div> 
-          <div class="checkbox col-sm-2">
+          <div class="checkbox col-sm-3">
             <%= f.check_box :xpool %><%= 'Swimming Pool'%>          
           </div>   
-          <div class="checkbox col-sm-2">
+          <div class="checkbox col-sm-3">
             <%= f.check_box :xsqua %><%= 'Squash Court'%>          
           </div>
         </div>       
@@ -105,13 +105,13 @@
           <div class="control-label col-sm-2"> 
             <%= "" %> 
           </div> 
-          <div class="checkbox col-sm-offset-1 col-sm-2">
+          <div class="checkbox col-sm-offset-1 col-sm-3">
             <%= f.check_box :xplay %><%= 'Playground'%>
           </div> 
-          <div class="checkbox col-sm-2">
+          <div class="checkbox col-sm-3">
             <%= f.check_box :xbalc %><%= 'Balcony'%>          
           </div>   
-          <div class="checkbox col-sm-2">
+          <div class="checkbox col-sm-3">
             <%= f.check_box :xgymn %><%= 'Gymnasium'%>          
           </div>
         </div>
@@ -119,13 +119,13 @@
           <div class="control-label col-sm-2"> 
             <%= "" %> 
           </div> 
-          <div class="checkbox col-sm-offset-1 col-sm-2">
+          <div class="checkbox col-sm-offset-1 col-sm-3">
             <%= f.check_box :xmini %><%= 'Mini Market'%>
           </div> 
-          <div class="checkbox col-sm-2">
+          <div class="checkbox col-sm-3">
             <%= f.check_box :xjogg %><%= 'Jogging Track'%>          
           </div>   
-          <div class="checkbox col-sm-2">
+          <div class="checkbox col-sm-3">
             <%= f.check_box :xcabl %><%= 'Cable TV'%>          
           </div>
         </div>        
@@ -133,13 +133,13 @@
           <div class="control-label col-sm-2"> 
             <%= "" %> 
           </div> 
-          <div class="checkbox col-sm-offset-1 col-sm-2">
+          <div class="checkbox col-sm-offset-1 col-sm-3">
             <%= f.check_box :xtenn %><%= 'Tennis Court'%>
           </div> 
-          <div class="checkbox col-sm-2">
+          <div class="checkbox col-sm-3">
             <%= f.check_box :xpark %><%= 'Covered Car Park'%>          
           </div>   
-          <div class="checkbox col-sm-2">
+          <div class="checkbox col-sm-3">
             <%= f.check_box :xsecu %><%= '24 hours Security'%>          
           </div>
         </div>

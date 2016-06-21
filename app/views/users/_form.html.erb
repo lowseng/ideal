@@ -4,62 +4,63 @@
     <%= form_for(@user, :html => {class: "form-horizontal", role: "form"}) do |f| %> 
 
       <div class="form-group"> 
-        <div class="control-label col-sm-4"> 
-          <%= f.label :email, "Email" %> 
+        <div class="control-label col-sm-2"> 
+          <%= "Email" %> 
         </div> 
-        <div class="col-sm-4"> 
+        <div class="col-sm-5"> 
           <%#= @user.email %> 
           <%= f.text_field :email, class: "form-control", :disabled=>true %> 
+          <%= hidden_field(:user, :email) %>
         </div> 
       </div> 
       <div class="form-group"> 
-        <div class="control-label col-sm-4"> 
-          <%= f.label :name, "Name" %> 
+        <div class="control-label col-sm-2"> 
+          <%="Name" %> 
         </div> 
         <div class="col-sm-4"> 
           <%= f.text_field :name, class: "form-control", placeholder: "Agent Name", autofocus: true %> 
         </div> 
-      </div>
-      <div class="form-group"> 
-        <div class="control-label col-sm-4"> 
-          <%= f.label :Telephone, "Telephone" %> 
+        <div class="control-label col-sm-2"> 
+          <%= "Telephone" %> 
         </div> 
-        <div class="col-sm-3"> 
+        <div class="col-sm-4"> 
           <%= f.text_field :telephone, class: "form-control", placeholder: "Contact Number", autofocus: true %> 
         </div> 
       </div>
       <div class="form-group"> 
-        <div class="control-label col-sm-4"> 
-          <%= f.label :Agentno, "Agent No" %> 
+        <div class="control-label col-sm-2"> 
+          <%= "Agent No" %> 
         </div> 
-        <div class="col-sm-3"> 
+        <div class="col-sm-4"> 
           <%= f.text_field :agentno, class: "form-control", placeholder: "", autofocus: true %> 
         </div> 
-      </div>
-      <div class="form-group"> 
-        <div class="control-label col-sm-4"> 
-          <%= f.label :company, "Company" %> 
+        <div class="control-label col-sm-2"> 
+          <%= "Company" %> 
         </div> 
         <div class="col-sm-4"> 
           <%= f.text_field :company, class: "form-control", placeholder: "Company Name", autofocus: true %> 
         </div> 
       </div>
       <div class="form-group"> 
-        <div class="control-label col-sm-4"> 
-          <%= f.label :prefercountry, "Default Country" %> 
+        <div class="control-label col-sm-2"> 
+          <%= "Default Country" %> 
         </div> 
         <div class="col-sm-4"> 
           <%= f.collection_select(:prefercountry, Place.where(status: true), :id, :name, {}, {:class => 'form-control'}) %>
         </div> 
-      </div>       
-      <div class="form-group"> 
-        <div class="control-label col-sm-4"> 
-          <%= f.label :preferuom, "Default Area Type" %> 
+        <div class="control-label col-sm-2"> 
+          <%= "Default Area" %> 
         </div> 
         <div class="col-sm-2"> 
           <%= f.select :preferuom, options_for_select([['Sqft','1'],['Sqm','2'],['Acre(s)','3'],['Hectre(s)','4']], @user.preferuom), {}, { class: "form-control" } %>
         </div> 
       </div>     
+
+      <div class="form-group"> 
+        <div class="checkbox col-sm-offset-1 col-sm-3"> 
+          <%= f.check_box :gold %><%= "Upgrade to Gold Account" %> 
+        </div> 
+      </div> 
       <!--
       <div class="form-group"> 
         <div class="control-label col-sm-2"> 
@@ -146,16 +147,13 @@
           </div>
         <% end %>
         <div class="form-group"> 
-          <div class="col-sm-offset-4 col-sm-8"> 
-            <%= f.submit class: 'btn btn-primary btn-lg' %> 
+          <div class="col-sm-offset-2 col-sm-2"> 
+            <br><br><%= f.submit class: 'btn btn-primary btn-lg' %> 
             <%#= f.submit class: 'btn btn-primary btn-lg' %> 
             <%#= link_to "Change Password", edit_user_registration_path, class: 'btn btn-primary btn-lg' %>
           </div> 
-  
         </div> 
-
       </section>
     <% end %> 
-
   </div> 
 </div>

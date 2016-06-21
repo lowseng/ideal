@@ -17,8 +17,13 @@ class Article < ActiveRecord::Base
 	# enable nested attributes for images through article class
 	accepts_nested_attributes_for :images, :allow_destroy => true
 
-  scope :otherinfo, -> (otherinfo) { where otherinfo: otherinfo }
-
+  scope :place, -> (place) { where place: place }
+  scope :region, -> (region) { where region: region }
+  scope :area, -> (area) { where area: area }
+  scope :category, -> (category) { where category: category }
+  scope :otherinfo, -> (otherinfo) { where otherinfo: otherinfo }  
+  scope :proptype, -> (proptype) { where proptype: proptype }
+  
   def self.search(search)
    where(['title LIKE ? OR description LIKE ?', "%#{search}%", "%#{search}%"])
   end

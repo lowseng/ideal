@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   before_action :set_user, only: [:edit, :update, :show]
-  before_action :require_same_user, only: [:edit, :update, :destroy, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :require_admin, only: [:destroy, :index]
-  
+
   def index
     @users = User.paginate(page: params[:page], per_page: 5).order('updated_at desc')
   end
@@ -31,16 +31,22 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = "Your account was updated successfully"
-      redirect_to edit_user_path(current_user.id)
+      if @user.gold?
+        redirect_to @user.paypal_url(user_path(@user))
+      else
+        #redirect_to 'http://www.yahoo.com'
+        redirect_to edit_user_path(current_user.id)
+      end
+      
     else
       render 'edit'
     end
   end
   
   def show
-    @user_articles = @user.articles.paginate(page: params[:page], per_page: 5)
+    @user_articles = @user.articles.paginate(page: params[:page], per_page: 15)
   end
-  
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -48,10 +54,23 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
   
+  protect_from_forgery except: [:hook]
+  def hook
+    redirect_to 'http://www.yahoo.com'
+    params.permit! # Permit all Paypal input params
+    status = params[:payment_status]
+    if status == "Completed"
+      @user = User.find params[:id]
+      @user.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
+    end
+    render nothing: true
+  end
+  
   private
   
   def user_params
-    params.require(:user).permit(:username, :email, :password, :admin, :name, :telephone, :agentno, :company, :preferuom, :prefercountry)
+    params.require(:user).permit(:username, :email, :password, :admin, :name, :telephone, :agentno, :company, :preferuom,
+        :prefercountry, :gold, :notification_params, :status, :transaction_id, :purchased_at)
   end
   
   def set_user
@@ -59,6 +78,7 @@ class UsersController < ApplicationController
   end
   
   def require_same_user
+    #if current_user != @user and !current_user.admin?
     if current_user != @user and !current_user.admin?
       flash[:danger] = "You can only edit your own account"
       redirect_to root_path

@@ -102,10 +102,12 @@ class ArticlesController < ApplicationController
   end
 
   def show 
-      @place = Place.find(@article.place)
-      @region = Region.find(@article.region)
-      @area = Area.find(@article.area)
-      @otherinfo = Otherinfo.find(@article.otherinfo)
+    
+      @places = Place.find(@article.currency) if @article.currency.present?
+      @place = Place.find(@article.place) if @article.place.present?
+      @region = Region.find(@article.region) if @article.region.present?
+      @area = Area.find(@article.area) if @article.area.present?
+      @otherinfo = Otherinfo.find(@article.otherinfo) if @article.otherinfo.present?
   end
   
   def edit 
@@ -166,7 +168,7 @@ class ArticlesController < ApplicationController
   def destroy 
     @article.destroy 
     flash[:danger] = "Article was successfully deleted" 
-    redirect_to oneuser_index_path
+    redirect_to root_path
   end
   
   private 

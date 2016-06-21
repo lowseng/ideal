@@ -35,7 +35,7 @@
     </table> -->
   <% end %>  
   <h3 align="center"><b><%= @article.title %></b></h3>
-  <h4 align="center"><b><%= @area.name %> &#183; <%= @region.name %> &#183; <%= @place.name %></b></h4><br>
+  <h4 align="center"><b><%= @area.name if @area.present? %> &#183; <%= @region.name if @region.present?%> &#183; <%= @place.name if @place.present?%></b></h4><br>
     <table width = 100% border="0" >
       <tr>
         <td valign="bottom" width=100> 
@@ -56,7 +56,7 @@
           <%= @article.size %> 
             <%= "Sqft" if @article.uom == "1" %><%= "Sqm" if @article.uom == "2" %><%= "Acre(s)" if @article.uom == "3" %><%= "Hectre(s)" if @article.uom == "4" %>
               (<%= number_with_precision(@article.size*0.092903, precision: 2, delimiter: ',') if @article.uom == "1" %><%= " Sqm" if @article.uom == "1" %>
-              <%= number_with_precision(@article.size*10.7639, precision: 2, delimiter: ',') if @article.uom == "2" %><%= " Sqft" if @article.uom == "2" %>
+              <%= number_with_precision(@article.size*10.7639, precision: 2, delimiter: ',') if @article.uom == "2" and @article.size.present? %><%= " Sqft" if @article.uom == "2" %>
               )
         </td>
 
@@ -79,7 +79,7 @@
           <b><%= "Other info:" %></b>
         </td>
         <td>
-          <%= @otherinfo.name %>
+          <%= @otherinfo.name if @otherinfo.present? %>
         </td>
         <td align="right" valign="bottom" width=150> 
           <b><%= "Bedrooms: " %></b>
@@ -93,7 +93,7 @@
           <b><%= "Amount:" %></b>
         </td>
         <td>
-          <%= @place.currency %> <%= number_with_precision(@article.amount, precision: 0, delimiter: ',') %>
+          <%= @places.currency if @places.present? %> <%= number_with_precision(@article.amount, precision: 0, delimiter: ',') %>
         </td>
         <td Align="right" valign="top"> 
           <b><%= "Bathrooms: " %></b>

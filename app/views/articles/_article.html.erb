@@ -1,51 +1,71 @@
-<% obj.each do |article| %> 
   <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-      <div class="well well-lg">
-        
-        <table width="100%" border="0" cellspacing="0" cellpadding="5">
-          <tr>
-            <% article.images.each do |t| %>
-              <td width = "160" >
-                <% if t.picture.url %>
-                  <%= image_tag t.picture.url, size: "150x100" %>
-                <% else %>
-                  xx<%= image_tag url('images/noimage.gif'), size: "150x100" %>xx
-                <% end %>
-                <% break %>
-              </td>
-            <% end %>
-            <% if !article.images.present? %>
-              <td width = "160" ><%= image_tag("noimage.gif") %></td>
-            <% end %>
-            <td>
-              <div class="article-title">
-                <%#= article.category %> <%#= article.proptype%>
-                <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>
-              </div>
-              <div>
-                <br><%= truncate(article.description, length: 100) %>
-                <div>
-                  <small>Created by: <%= article.user.email if article.user%>,
-                  <%= time_ago_in_words(article.created_at) %> ago. </small>
-                </div>
-              </div>
+    <div class="col-xs-12 col-xs-offset-0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+<% obj.each do |article| %> 
+
+    <div class="col-xs-12">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <% article.images.each do |t| %>
+            <td width = "160" >
+              <% if t.picture.url %>
+                <%= image_tag t.picture.url, size: "150x100" %>
+              <% else %>
+                xx<%= image_tag url('images/noimage.gif'), size: "150x100" %>xx
+              <% end %>
+              <% break %>
+            </td>
+          <% end %>
+          <% if !article.images.present? %>
+            <td width = "160" ><%= image_tag("noimage.gif") %></td>
+          <% end %>
+
+          <td width = "400" valign="top">
+            <div class="article-title">
+              <%#= article.category %> <%#= article.proptype%>
+              <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>
+            </div>
+            <div class="article-price">
+              <% @place = Place.find(article.currency) if article.currency.present? %>
+              <%= @place.currency if @place.present? %> <%= number_with_precision(article.amount, precision: 0, delimiter: ',') %>
+            </div>
+            <div>
+              <%= truncate(article.description, length: 100) %>
+            </div>
+            <div>
+              <small>Created by: <%= article.user.email if article.user%>,
+              <%= time_ago_in_words(article.created_at) %> ago. </small>
+            </div>
+            <div>
               <% if current_user %>
                 <% if current_user && current_user == article.user || current_user.admin? %>
-                    <% if current_user.admin? %>
-                      <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-xs btn-primary" %>
-                    <% end %>
-                    <%= link_to "Delete this article", article_path(article), method: :delete,
-                    data: { confirm: "Are you sure you want to delete the article?"},
-                    class: "btn btn-xs btn-danger" %>
-
+                  <% if current_user.admin? %>
+                    <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-xs btn-primary" %>
+                  <% end %>
+                  <%= link_to "Delete this article", article_path(article), method: :delete,
+                  data: { confirm: "Are you sure you want to delete the article?"},
+                  class: "btn btn-xs btn-danger" %>
                 <% end %>
-              <% end %>
-            </td>
-          </tr>
-        </table>
-        
-      </div>
+            <% end %>  
+            </div>
+            
+          </td>
+          <tr><td colspan='2'><hr></td></tr>
+        </tr>
+      </table>
     </div>
   </div>
 <% end %>
+    </td>
+    <td valign="top">
+      <%= image_tag "/assets/250x400.jpg" %>
+      <br><br><%= image_tag "/assets/250x300.jpg" %>
+      <br><br><%= image_tag "/assets/250x200.jpg" %>
+      <br><br><%= image_tag "/assets/250x100.jpg" %>
+    </td>
+  </tr>
+</table>
+</div>
+</div>

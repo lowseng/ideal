@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429053805) do
+ActiveRecord::Schema.define(version: 20160620043514) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "name"
@@ -122,6 +122,11 @@ ActiveRecord::Schema.define(version: 20160429053805) do
     t.text     "company"
     t.text     "preferuom"
     t.text     "prefercountry"
+    t.boolean  "gold",                   default: false
+    t.text     "notification_params"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.datetime "purchased_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
