@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
         cmd: "_xclick",
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
-        invoice: '180',
+        invoice: '188',
         amount: '23.00',
         item_name: 'premier-gold',
         item_number: id,

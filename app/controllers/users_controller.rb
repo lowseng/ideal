@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   #before_action :authenticate_user!
   before_action :set_user, only: [:edit, :update, :show]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy, :hook]
   before_action :require_admin, only: [:destroy, :index]
 
   def index
@@ -57,13 +57,6 @@ class UsersController < ApplicationController
   protect_from_forgery except: [:hook]
   def hook
     redirect_to 'http://www.yahoo.com'
-    params.permit! # Permit all Paypal input params
-    status = params[:payment_status]
-    if status == "Completed"
-      @user = User.find params[:id]
-      @user.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
-    end
-    render nothing: true
   end
   
   private

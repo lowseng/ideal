@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   
-  post "/hook" => "users#hook"
-  post "/users/:id" => "users#show"  
-  
   resources :images
   resources :places
   resources :regions
@@ -29,7 +26,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 
   root 'welcome#index'
-
+  post "/hook" => "users#hook"
+  post "/users/:id" => "users#show"  
 
 
 
