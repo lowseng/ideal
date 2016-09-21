@@ -1,0 +1,42 @@
+<div class="well col-xs-10 col-xs-offset-1">
+  <h4 align="center">PayPal Receipts</h4><br>
+  Note: 21-Sep-2016 - Complete process only ie. buyer returns to website without interference. If buyer visit paypal after trx, no entry will be added here. If buyer press returns to website when paypal about to return to website, a double entry will exist! Must visit paypal website to get correct details. Happens in the development area. May be ok in the production platform.
+  <br><br>
+  <table border="0" width="100%">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Product</th>
+        <th>Amount</th> 
+        <th>Txn-Id</th>
+        <th>Date</th>
+        <th>?</th>    
+        <th></th>
+      </tr>
+      <tr><td colspan=7><hr></td></tr>
+    </thead>
+    <tbody>
+      <% @paypals.each do |paypal| %>
+        <tr>
+          <td><%= link_to paypal.user.email, edit_user_path(paypal.user_id) if paypal.user.present? %></td>
+          <td><%= paypal.item_name %></td>
+          <td><%= paypal.mc_currency %> <%= paypal.mc_gross %></td>          
+
+          <td><%= link_to paypal.txn_id, paypal %></td>
+          <td><%= paypal.payment_date %></td>
+          <td align="center">
+            <% if paypal.payment_status = 'Completed' %>
+              <span class='glyphicon glyphicon-ok'></span>
+            <% else %>
+              <span class='glyphicon glyphicon-remove'></span>
+            <% end %>
+          </td>
+          <td align="right"><%= link_to 'Destroy', paypal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div align="left">
+  <%= will_paginate %>
+</div>
+</div>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :paypals
+  resources :cards
   resources :images
   resources :places
   resources :regions
@@ -16,9 +18,9 @@ Rails.application.routes.draw do
   #get 'welcome/index'
   #get 'users/index'
   get 'oneuser/index'
-  get 'oneuser/tolet', to: 'oneuser#tolet'
-  get 'oneuser/forsale', to: 'oneuser#forsale'
-  get 'oneuser/forauction', to: 'oneuser#forauction'
+  #get 'oneuser/tolet', to: 'oneuser#tolet'
+  #get 'oneuser/forsale', to: 'oneuser#forsale'
+  #get 'oneuser/forauction', to: 'oneuser#forauction'
   get 'oneuser/search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -26,8 +28,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 
   root 'welcome#index'
-  post "/hook" => "users#hook"
-  post "/users/:id" => "users#show"  
+  post "/hook" => "paypals#hook"
+  post "/paypals/:id" => "paypals#new"  
 
 
 

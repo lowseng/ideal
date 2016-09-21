@@ -1,4 +1,4 @@
-<div class="well col-xs-10 col-xs-offset-1">
+<div class="well col-xs-12 col-xs-offset-0">
   <% if @article.user %>
     <table width = 100% border="0">
       <tr>
@@ -54,9 +54,9 @@
         </td>
         <td>
           <%= @article.size %> 
-            <%= "Sqft" if @article.uom == "1" %><%= "Sqm" if @article.uom == "2" %><%= "Acre(s)" if @article.uom == "3" %><%= "Hectre(s)" if @article.uom == "4" %>
-              (<%= number_with_precision(@article.size*0.092903, precision: 2, delimiter: ',') if @article.uom == "1" %><%= " Sqm" if @article.uom == "1" %>
-              <%= number_with_precision(@article.size*10.7639, precision: 2, delimiter: ',') if @article.uom == "2" and @article.size.present? %><%= " Sqft" if @article.uom == "2" %>
+            <%= "SqFt" if @article.uom == "3" %><%= "SqM" if @article.uom == "4" %><%= "Acres" if @article.uom == "5" %><%= "Hectres" if @article.uom == "6" %>
+              (<%= number_with_precision(@article.size*0.092903, precision: 2, delimiter: ',') if @article.uom == "3" %><%= " SqM" if @article.uom == "3" %>
+              <%= number_with_precision(@article.size*10.7639, precision: 2, delimiter: ',') if @article.uom == "4" and @article.size.present? %><%= " SqFt" if @article.uom == "4" %>
               )
         </td>
 

@@ -1,30 +1,32 @@
-<div class="col-xs-8 col-xs-offset-2">
-  <div class="well well-lg">
-    <h3>dB Area - <%= pluralize(@rawareas.count, "record") if @rawareas %></h3>
-    <table border="1" cellspacing = "5" cellpadding = "5">
-      <thead>
-        <tr>
-          <th>Updated_at</th>
-          <th>Country</th>
-          <th>Region_id</th>
-          <th>Region</th> 
-          <th>Area</th>          
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @rawareas.each do |area| %>
+<div class="row">
+  <div class="col-xs-12 col-xs-offset-0">
+    <div class="well well-lg">
+      <h3>dB Area - <%= pluralize(@rawareas.count, "record") if @rawareas %></h3>
+      <table border="1" cellspacing = "5" cellpadding = "5">
+        <thead>
           <tr>
-            <td><%= area.updated_at.localtime "+08:00"%></td>
-            <td><%= area.region.place.name %></td>    
-            <td align="center"><%= area.region_id %></td>
-            <td><%= area.region.name %></td>            
-            <td><%= area.name %></td>
-            <td><%= link_to 'Edit', edit_area_path(area, :m_place_id => params[:m_place_id], :country_name => params[:country_name], :m_region_id => params[:m_region_id], :region_name => params[:region_name]) %></td>
-            <td><%= link_to 'Destroy', area_path(area, :m_place_id => params[:m_place_id], :country_name => params[:country_name], :m_region_id => params[:m_region_id], :region_name => params[:region_name]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <th>Updated_at</th>
+            <th>Country</th>
+            <th>Region_id</th>
+            <th>Region</th> 
+            <th>Area</th>          
+            <th colspan="3"></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @rawareas.each do |area| %>
+            <tr>
+              <td><%= area.updated_at.localtime "+08:00"%></td>
+              <td><%= area.region.place.name %></td>    
+              <td align="center"><%= area.region_id %></td>
+              <td><%= area.region.name %></td>            
+              <td><%= area.name %></td>
+              <td><%= link_to 'Edit', edit_area_path(area, :m_place_id => params[:m_place_id], :country_name => params[:country_name], :m_region_id => params[:m_region_id], :region_name => params[:region_name]) %></td>
+              <td><%= link_to 'Destroy', area_path(area, :m_place_id => params[:m_place_id], :country_name => params[:country_name], :m_region_id => params[:m_region_id], :region_name => params[:region_name]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

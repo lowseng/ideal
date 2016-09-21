@@ -1,19 +1,31 @@
-<h1><%#= @article.title %></h1>
-<%- model_class = Image -%>
-<% if param1 = params[:param1] %>
+<!--<%#- model_class = Image -%>
+<%# if param1 = params[:param1] %>
   <div align="center">
-    <%= will_paginate %> 
+    <%#= will_paginate %> 
   </div>
-<% else %>
-  <%= render 'articles/onearticle', obj: @article %>
-<% end %>
+<%# else %>
+  <%#= render 'articles/onearticle', obj: @article %>
+<%# end %>
 
-<%= render 'image' %>
+<%#= render 'image' %>
 
-<% if param1 = params[:param1] %>
+<%# if param1 = params[:param1] %>
   <div align="center">
-    <%= will_paginate %> 
+    <%#= will_paginate %> 
   </div>
-<% end %>
+<%# end %>-->
 
- 
+<div class='row'> 
+  <div class='col-sm-offset-1 col-xs-10'>
+    <div class="well well-lg">
+      <h4 align="center">List all Images</h4>
+      <div align="center">
+        <%= will_paginate %>
+      </div>
+      <%= render 'image' %>
+      <div align="center">
+        <%= will_paginate %>
+      </div>
+    </div>
+  </div>
+</div>   

@@ -1,0 +1,32 @@
+<%= render 'shared/errors', obj: @card %>
+
+<%= form_for @card, :html => {:multipart => true,  :class => "form-horizontal project" } do |c| %>
+  <div class="field">
+    <%= c.label :first_name %>
+    <%= c.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= c.label :last_name %>
+    <%= c.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= c.label :card_type %>
+    <%= c.select :card_type, [["Visa", "visa"], ["MasterCard", "master"]] %>
+  </div>
+  <div class="field">
+    <%= c.label :card_number %>
+    <%= c.text_field :card_number, :value => '4024007148673576' %>
+  </div>
+  <div class="field">
+    <%= c.label :card_verification, "Card Verification Value (CVV)" %>
+    <%= c.text_field :card_verification, :value => '123'  %>
+  </div>
+  <div class="field">
+    <%= c.label :card_expires_on %>
+    <%= c.date_select :card_expires_on, discard_day: true, start_year: Date.today.year, end_year: (Date.today.year+10), add_month_numbers: true %>
+  </div>
+  <div>
+    <%= c.submit "Submit" %>
+  </div>
+<% end %>
+

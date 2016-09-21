@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   #before_action :authenticate_user!
+  before_action :authenticate_user!, :except => [:show]
   before_action :set_user, only: [:edit, :update, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy, :hook]
   before_action :require_admin, only: [:destroy, :index]
@@ -32,7 +33,11 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       flash[:success] = "Your account was updated successfully"
       if @user.gold?
-        redirect_to @user.paypal_url(user_path(@user))
+        if @user.m_gold == "PayPal" #m_gold defined at attr_accessor
+          redirect_to @user.paypal_url(paypal_path)
+        else 
+          redirect_to new_card_path
+        end 
       else
         #redirect_to 'http://www.yahoo.com'
         redirect_to edit_user_path(current_user.id)
@@ -63,7 +68,7 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:username, :email, :password, :admin, :name, :telephone, :agentno, :company, :preferuom,
-        :prefercountry, :gold, :notification_params, :status, :transaction_id, :purchased_at)
+        :prefercountry, :gold, :notification_params, :status, :transaction_id, :purchased_at, :m_gold)
   end
   
   def set_user

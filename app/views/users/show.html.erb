@@ -25,9 +25,9 @@
         </td>
       </tr>
     </table><hr>
-      <%= 'Payment Status: ' %><%= params[:payment_status] %>
-      <%= ' | Payment Date: ' %><%= params[:payment_date] %>      
-      <%= ' | Txn Id: ' %><%= params[:txn_id] %> 
+      <%#= 'Payment Status: ' %><%#= params[:payment_status] %>
+      <%#= ' | Payment Date: ' %><%#= params[:payment_date] %>      
+      <%# = ' | Txn Id: ' %><%#= params[:txn_id] %> 
       <%= render 'articles/article', obj: @user_articles %>
       <div align="left">
         <%= will_paginate @user_articles %>

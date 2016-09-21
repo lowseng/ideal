@@ -1,9 +1,22 @@
-<h4 align="center"><%=link_to "Manage Countries", places_path%> > <%= params[:country_name] %></h4>
+<!--<h4 align="center"><%#=link_to "Manage Countries", places_path%> > <%= params[:country_name] %></h4>
 <div align="center">
   <%#= will_paginate %>
 </div>
-<%= render 'region', obj: @regions %>
+<%#= render 'region', obj: @regions %>
 <div align="center">
-  <%= link_to 'Add New Region', new_region_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name]) %><br><br>
+  <%#= link_to 'Add New Region', new_region_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name]) %><br><br>
   <%#= will_paginate %>
-</div>
+</div>-->
+
+<div class='row'> 
+  <div class='col-sm-offset-1 col-xs-10'>
+    <div class="well well-lg">
+      <h4 align="center"><%=link_to "Manage Countries", places_path%> > <%= params[:country_name] %></h4><hr><br>
+      <%= render 'region', obj: @regions %>
+      <div align="center">
+        <%= link_to 'Add New Region', new_region_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name]) %><br><br>
+        <%#= will_paginate %>
+      </div>
+    </div>
+  </div>
+</div> 

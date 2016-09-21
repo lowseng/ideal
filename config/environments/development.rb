@@ -42,4 +42,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
   config.action_mailer.default_url_options = { :host => 'test-lowseng.c9users.io/'}
   
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test  # :production when you will use a real Pro Account
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+      login: "merchant_api1.windaq.com",
+      password: "UGLDLMRV86KPMNTS",
+      signature: "Art4iQVfdFfAIsky78f999eBLNc5AblwcvHda0l9WQz.UFwIs-LYbras"
+    )
+  end 
 end

@@ -23,6 +23,7 @@ class Article < ActiveRecord::Base
   scope :category, -> (category) { where category: category }
   scope :otherinfo, -> (otherinfo) { where otherinfo: otherinfo }  
   scope :proptype, -> (proptype) { where proptype: proptype }
+  scope :titletype, -> (titletype) { where titletype: titletype }  
   
   def self.search(search)
    where(['title LIKE ? OR description LIKE ?', "%#{search}%", "%#{search}%"])

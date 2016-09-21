@@ -40,17 +40,13 @@
               <option value="New Property">New Property</option>            
             </select> -->
           </div> 
-        </div> 
-        <div class="form-group"> 
-          <div class="control-label col-sm-2"> 
-            <%= "Type" %> 
-          </div> 
-          <div class="checkbox col-sm-8"> 
+          <div class="checkbox col-sm-7"> 
               <!-- <%#= f.radio_button :proptype, 'for Sale', :checked => (params[:param1] == "new" if params[:param1])  %> For Sale&nbsp;&nbsp;&nbsp; -->
               <%= f.radio_button :proptype, 'for Sale', :checked => (params[:param1] == "new"  || @article.proptype == "for Sale" )  %> For Sale&nbsp;&nbsp;&nbsp;
               <!-- <%#= f.radio_button :proptype, 'for Sale' %> For Sale&nbsp;&nbsp;&nbsp; -->
               <%= f.radio_button :proptype, 'for Rent' %> For Rent&nbsp;&nbsp;&nbsp;
               <%= f.radio_button :proptype, 'for Auction' %> For Auction&nbsp;&nbsp;&nbsp;
+              <%= f.radio_button :proptype, 'new Launch' %> New Launch&nbsp;&nbsp;&nbsp;
           </div> 
         </div>
         <div class="form-group">
@@ -60,7 +56,7 @@
           <div class=" col-sm-2">
             <%= f.select :bedroom, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9'],['10','10']], {}, { class: "form-control" } %>
           </div>
-          <div class="control-label col-sm-1"> 
+          <div class="control-label col-sm-2"> 
             <%= "Baths" %> 
           </div> 
           <div class=" col-sm-2">
@@ -69,21 +65,34 @@
         </div> 
         <div class="form-group">
           <div class="control-label col-sm-2"> 
-            <%= "Size" %> 
+            <%= "Land" %> 
           </div> 
           <div class=" col-sm-2">
             <%#= f.number_field :size, :step => 2, class: "form-control", placeholder: "Size", :value => (number_with_precision(f.object.size, :precision => 0) ) %> 
             <%= f.number_field :size, class: "form-control", placeholder: "Size", :value => (number_with_precision(f.object.size, :precision => 0) ) %> 
           </div>                 
+          <div class="control-label col-sm-2"> 
+            <%= "Built-up" %> 
+          </div> 
           <div class=" col-sm-2">
-            <%= f.select :uom, options_for_select([['Sqft','1'],['Sqm','2'],['Acre(s)','3'],['Hectre(s)','4']], @article.uom || current_user.preferuom), {}, { class: "form-control" } %>
+            <%#= f.number_field :size, :step => 2, class: "form-control", placeholder: "Size", :value => (number_with_precision(f.object.size, :precision => 0) ) %> 
+            <%= f.number_field :size1, class: "form-control", placeholder: "Size", :value => (number_with_precision(f.object.size1, :precision => 0) ) %> 
+          </div>  
+          <div class=" col-sm-2">
+            <%= f.select :uom, options_for_select([['SqFt','3'],['SqM','4'],['Acres','5'],['Hectres','6']], @article.uom || current_user.preferuom), {}, { class: "form-control" } %>
           </div>
         </div> 
         <div class="form-group">
           <div class="control-label col-sm-2"> 
+            <%= "Title Type" %> 
+          </div> 
+          <div class="col-sm-3"> 
+            <%= f.select :titletype, [['-- Please select',''], ['Freehold','Freehold'],['Leasehold','Leasehold']], {}, { class: "form-control" } %>
+          </div> 
+          <div class="control-label col-sm-2"> 
             <%= "Other Info" %> 
           </div> 
-          <div class="col-sm-4"> 
+          <div class="col-sm-3"> 
             <%= select("otherinfo", "name", options_for_select(@otherinfos_for_dropdown, :selected => @article.otherinfo), {prompt: '-- Other info, if any --'}, {class: 'form-control'}) %>
           </div> 
         </div>  

@@ -1,0 +1,52 @@
+<div class="well col-xs-10 col-xs-offset-1">
+  <h4 align="center">Credit Card Receipts</h4><br>
+  <table border="0" width="100%">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>IP Address</th>
+        <th>First Name</th> 
+        <th>Last Name</th> 
+        <th>Card Type</th>
+        <th>Expiry</th>
+        <th>Date</th>   
+        <th>?</th>
+      </tr>
+      <tr><td colspan=9><hr></td></tr>
+    </thead>
+    <tbody>
+      <% @cards.each do |card| %>
+        <tr>
+          <td><%= link_to card.user.email, edit_user_path(card.user_id) if card.user.present? %></td>
+          <td><%= card.ip_address %></td>
+          <td><%= card.first_name%></td>          
+          <td><%= card.last_name%></td>
+          <td><%= card.card_type%></td>            
+          <td><%= card.card_expires_on %></td>  
+          <td>
+            <% if card.card_transaction %>
+              <%= link_to card.created_at, card %>
+            <% else %>
+              <%= card.created_at %>
+            <% end %>
+          </td>
+          <td>
+            <% if card.card_transaction.present? %>
+              <% if card.card_transaction.success %>
+                <span class='glyphicon glyphicon-ok'></span>
+              <% else %>
+                <span class='glyphicon glyphicon-remove'></span>
+              <% end %>  
+            <% else %>
+                <span class='glyphicon glyphicon-remove'></span>            
+            <% end %>
+          </td>
+          <td align="right"><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div align="left">
+  <%= will_paginate %>
+</div>
+</div>

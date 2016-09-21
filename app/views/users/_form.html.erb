@@ -12,6 +12,11 @@
           <%= f.text_field :email, class: "form-control", :disabled=>true %> 
           <%= hidden_field(:user, :email) %>
         </div> 
+        <div class="control-label col-sm-2">
+          <% if @user.status == 'Premier' %>
+            <%= "- Premier Account" %>
+          <% end %>
+        </div>
       </div> 
       <div class="form-group"> 
         <div class="control-label col-sm-2"> 
@@ -52,15 +57,21 @@
           <%= "Default Area" %> 
         </div> 
         <div class="col-sm-2"> 
-          <%= f.select :preferuom, options_for_select([['Sqft','1'],['Sqm','2'],['Acre(s)','3'],['Hectre(s)','4']], @user.preferuom), {}, { class: "form-control" } %>
+          <%= f.select :preferuom, options_for_select([['SqFt','3'],['SqM','4'],['Acres','5'],['Hectres','6']], @user.preferuom), {}, { class: "form-control" } %>
         </div> 
       </div>     
-
-      <div class="form-group"> 
-        <div class="checkbox col-sm-offset-1 col-sm-3"> 
-          <%= f.check_box :gold %><%= "Upgrade to Gold Account" %> 
+      <%# if @user.status != 'Premier' %>
+      <% if @user.status != 'Premier' %>      
+        <div class="form-group"> 
+          <div class="checkbox col-sm-offset-2 col-sm-5">
+            <%= f.check_box :gold %><%= 'Upgrade to Premier Account @ RM150.00' %><br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<%= f.radio_button :m_gold, 'PayPal', { :checked => true } %>&nbsp;&nbsp;<%= "PayPal" %>
+            &nbsp;&nbsp;&nbsp;&nbsp;<%= f.radio_button :m_gold, 'CreditCards' %>&nbsp;&nbsp;<%= "Credit Cards" %>
+          </div>
+          <div class="paypal col-sm-3">
+          </div>
         </div> 
-      </div> 
+      <% end %>
       <!--
       <div class="form-group"> 
         <div class="control-label col-sm-2"> 
@@ -79,69 +90,61 @@
         2. customs.css.scss for comments-section
         3. comments.coffee
         %>
-        <p><%= link_to "More Information", "#", id: "comments-link" %></p>
-        <section id="comments-section">
+        <!--<p><%#= link_to "More Information", "#", id: "comments-link" %></p>
+        <section id="comments-section">-->
           <div class="form-group"> 
             <div class="control-label col-sm-2"> 
-              <%= f.label :last_sign_in_at, "Last Signed-In" %> 
+              <%= "Last Signed-In" %> 
             </div> 
-            <div class="col-sm-8"> 
+            <div class="col-sm-4"> 
               <%= f.text_field :last_sign_in_at, class: "form-control", :disabled=>true %> 
             </div> 
-          </div>   
-          <div class="form-group"> 
             <div class="control-label col-sm-2"> 
-              <%= f.label :current_sign_in_at, "Currently Signed-In" %> 
+              <%= "Now Signed-In" %> 
             </div> 
-            <div class="col-sm-8"> 
+            <div class="col-sm-4"> 
               <%= f.text_field :current_sign_in_at, class: "form-control", :disabled=>true %> 
             </div> 
           </div>
           <div class="form-group"> 
             <div class="control-label col-sm-2"> 
-              <%= f.label :sign_in_count, "Signed-In Count" %> 
+              <%= "Signed-In Count" %> 
             </div> 
-            <div class="col-sm-8"> 
+            <div class="col-sm-4"> 
               <%= f.text_field :sign_in_count, class: "form-control", :disabled=>true %> 
             </div> 
-          </div>
-          <div class="form-group"> 
             <div class="control-label col-sm-2"> 
-              <%= f.label :current_sign_in_ip, "Currently Signed-In ip" %> 
+              <%= "Now Signed-In ip" %> 
             </div> 
-            <div class="col-sm-8"> 
+            <div class="col-sm-4"> 
               <%= f.text_field :current_sign_in_ip, class: "form-control", :disabled=>true %> 
             </div> 
           </div>
           <div class="form-group"> 
             <div class="control-label col-sm-2"> 
-              <%= f.label :last_sign_in_ip, "Last Signed-In IP" %> 
+              <%= "Last Signed-In IP" %> 
             </div> 
-            <div class="col-sm-8"> 
+            <div class="col-sm-4"> 
               <%= f.text_field :last_sign_in_ip, class: "form-control", :disabled=>true %> 
             </div> 
-          </div>      
-          <div class="form-group"> 
             <div class="control-label col-sm-2"> 
-              <%= f.label :created_at, "Created" %> 
+              <%= "Created" %> 
             </div> 
-            <div class="col-sm-8"> 
+            <div class="col-sm-4"> 
               <%= f.text_field :created_at, class: "form-control", :disabled=>true %> 
             </div> 
           </div> 
           <div class="form-group"> 
             <div class="control-label col-sm-2"> 
-              <%= f.label :confirmed_at, "Confirmed" %> 
+              <%= "Confirmed" %> 
             </div> 
-            <div class="col-sm-8"> 
+            <div class="col-sm-4"> 
               <%= f.text_field :confirmed_at, class: "form-control", :disabled=>true %> 
             </div> 
-          </div>   
-          <div class="form-group"> 
             <div class="control-label col-sm-2"> 
-              <%= f.label :updated_at, "Updated" %> 
+              <%= "Updated" %> 
             </div> 
-            <div class="col-sm-8"> 
+            <div class="col-sm-4"> 
               <%= f.text_field :updated_at, class: "form-control", :disabled=>true %> 
             </div> 
           </div>

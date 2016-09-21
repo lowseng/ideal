@@ -1,9 +1,22 @@
-<h4 align="center">Manage Countries</h4>
+<!--<h4 align="center">Manage Countries</h4>
 <div align="center">
   <%#= will_paginate %>
 </div>
-<%= render 'place', obj: @places %>
+<%#= render 'place', obj: @places %>
 <div align="center">
-  <%= link_to 'Add New Country', new_place_path %><br><br>
+  <%#= link_to 'Add New Country', new_place_path %><br><br>
   <%#= will_paginate %>
-</div>
+</div>-->
+
+<div class='row'> 
+  <div class='col-sm-offset-1 col-xs-10'>
+    <div class="well well-lg">
+      <h4 align="center">Manage Countries</h4><hr><br>
+      <%= render 'place', obj: @places %>
+      <div align="center">
+        <%= link_to 'Add New Country', new_place_path %><br><br>
+        <%#= will_paginate %>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,8 +1,19 @@
-<h4 align="center"><%=link_to "Countries", new_place_path%> > <%= link_to params[:country_name], new_region_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name]) %> > <%= params[:region_name] %></h4>
+<!--<h4 align="center"><%#=link_to "Countries", new_place_path%> > <%= link_to params[:country_name], new_region_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name]) %> > <%= params[:region_name] %></h4>
+<%#= render 'form' %>
+<%#= render 'area', obj: @areas %>
+<%# if current_user.email == "lowseng@yahoo.com" %>
+  <%#= render 'rawarea', obj: @rawareas %>
+<%# end %>-->
 
-
-<%= render 'form' %>
-<%= render 'area', obj: @areas %>
-<% if current_user.email == "lowseng@yahoo.com" %>
-  <%= render 'rawarea', obj: @rawareas %>
-<% end %>
+<div class='row'> 
+  <div class='col-sm-offset-1 col-xs-10'>
+    <div class="well well-lg">
+      <h4 align="center"><%=link_to "Countries", new_place_path%> > <%= link_to params[:country_name], new_region_path(:m_place_id => params[:m_place_id], :country_name => params[:country_name]) %> > <%= params[:region_name] %></h4><hr><br>
+      <%= render 'form' %>
+      <%= render 'area', obj: @areas %>
+      <% if current_user.email == "lowseng@yahoo.com" %>
+        <%= render 'rawarea', obj: @rawareas %>
+      <% end %>
+    </div>
+  </div>
+</div> 

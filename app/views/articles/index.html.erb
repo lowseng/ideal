@@ -1,8 +1,14 @@
-<h1 align="center">List all Ads</h1>
-<div align="center">
-  <%= will_paginate %>
-</div>
-<%= render 'article', obj: @articles %>
-<div align="center">
-  <%= will_paginate %>
-</div>
+<div class='row'> 
+  <div class='col-sm-offset-1 col-xs-10'>
+    <div class="well well-lg">
+      <h4 align="center">List all Ads</h4>
+      <div align="center">
+        <%= will_paginate %>
+      </div>
+      <%= render 'article', obj: @articles %>
+      <div align="center">
+        <%= will_paginate %>
+      </div>
+    </div>
+  </div>
+</div>  

@@ -5,7 +5,7 @@ class ImagesController < ApplicationController
   # GET /images.json
   def index
     #@article = Article.find(session[:current_article])
-    @images = Image.all.paginate(page: params[:page], per_page: 15).order('updated_at desc')
+    @images = Image.all.paginate(page: params[:page], per_page: 90).order('updated_at desc')
     @images1 = Image.where(:article_id => session[:current_article]).order('updated_at desc')  
   end
 
@@ -23,7 +23,7 @@ class ImagesController < ApplicationController
       @place = Place.find(@article.place)
       @region = Region.find(@article.region)
       @area = Area.find(@article.area)
-      @otherinfo = Otherinfo.find(@article.otherinfo)
+      @otherinfo = Otherinfo.find(@article.otherinfo) if @article.otherinfo !=''
     else
       redirect_to new_article_path(:param1 => "new")
     end

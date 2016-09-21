@@ -7,81 +7,239 @@
             <%= text_field_tag :search, params[:search], placeholder: "Search titles & descriptions", class: 'form-control' %>
           </div>
           <div class="col-sm-offset-0 col-sm-1">
-            <%= submit_tag "Go!", :name => nil %>
+            <%= submit_tag "Search!", :name => nil %>
           </div>
         </div>
-        <!--
-        <p><%#= link_to "Extended search", "#", id: "comments-link" %></p>
-          <section id="comments-section">-->
-          <div class="form-group">        
-            <div class="col-sm-3"> 
-              <% if params[:place].present? %>
-                <%= select("place", "name", options_for_select(@places_for_dropdown, :selected => params[:place][:name] ),
-                  {prompt: 'Select country'}, {class: 'form-control'}) %>
-              <% else %>
-                <%= select("place", "name", options_for_select(@places_for_dropdown), {prompt: 'Select country'}, {class: 'form-control'}) %>            
-              <% end %>
-            </div> 
-            <div class="col-sm-3"> 
-              <% if params[:region].present? %>
-                <%= select("region", "name", options_for_select(@regions_for_dropdown, :selected => params[:region][:name] ),
-                  {prompt: 'All regions'}, {class: 'form-control'}) %>
-              <% else %>
-                <%= select("region", "name", options_for_select(@regions_for_dropdown), {prompt: 'All regions'}, {class: 'form-control'}) %>
-              <% end %>
-            </div> 
-            <div class="col-sm-3"> 
-              <% if params[:area].present? %>
-                <%= select("area", "name", options_for_select(@areas_for_dropdown, :selected => params[:area][:name] ),
-                  {prompt: 'All areas'}, {class: 'form-control'}) %>
-              <% else %>
-                <%= select("area", "name", options_for_select(@areas_for_dropdown), {prompt: 'All areas'}, {class: 'form-control'}) %>            
-              <% end %>
-            </div> 
-          </div>
-  
-          <div class="form-group">
-            <div class="col-sm-offset-0 col-sm-3"> 
-              <select class="form-control" name="category" id="category">
-                <option value="">All types</option>
-                <% if params[:category].present? %>
-                  <option value=<%= params[:category] %> selected="selected"><%= params[:category] %></option>
+        <div class="form-group">        
+          <div class="col-sm-3"> 
+
+            <% if params[:place].present? %>
+              <%= select("place", "name", options_for_select(@places_for_dropdown, :selected => params[:place][:name] ),
+                {prompt: 'Select country'}, {class: 'form-control'}) %>
+              <% else if current_user.present? %>
+                  <%= select("place", "name", options_for_select(@places_for_dropdown, current_user.prefercountry), {prompt: 'Select country'}, {class: 'form-control'}) %>            
+                <% else if @places_for_dropdown.count.to_i == 1 %>
+                    <%= select("place", "name", options_for_select(@places_for_dropdown, @places_for_dropdown.first), {prompt: 'Select country'}, {class: 'form-control'}) %>            
+                  <% else%>
+                    <%= select("place", "name", options_for_select(@places_for_dropdown), {prompt: 'Select country'}, {class: 'form-control'}) %>            
                 <% end %>
-                <option value="Apartment">Apartment</option>
-                <option value="House">House</option>
-                <option value="Commercial">Commercial</option>
-                <option value="Land">Land</option>
-                <option value="Room">Room</option>
-                <option value="New">New-Property</option>            
-              </select> 
-            </div>           
-            <div align="center" class="checkbox col-sm-6"> 
-              <%= radio_button_tag 'proptype', '', checked = true %> All&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <% if params[:proptype] == 'for Sale' %>
-                <%= radio_button_tag 'proptype', 'for Sale', checked = true if params[:proptype] == 'for Sale' %> For sale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <% else %>
-                <%= radio_button_tag 'proptype', 'for Sale' %> For sale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <% end %>
-              <% if params[:proptype] == 'for Rent' %>
-                <%= radio_button_tag 'proptype', 'for Rent', checked = true if params[:proptype] == 'for Rent' %> For rent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <% else %>
-                <%= radio_button_tag 'proptype', 'for Rent' %> For rent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <% end %>
+
+          </div> 
+          <div class="col-sm-3"> 
+            <% if params[:region].present? %>
+              <%= select("region", "name", options_for_select(@regions_for_dropdown, :selected => params[:region][:name] ),
+                {prompt: 'All regions'}, {class: 'form-control'}) %>
+            <% else %>
+              <%= select("region", "name", options_for_select(@regions_for_dropdown), {prompt: 'All regions '}, {class: 'form-control'}) %>
+            <% end %>
+          </div> 
+          <div class="col-sm-3"> 
+            <% if params[:area].present? %>
+              <%= select("area", "name", options_for_select(@areas_for_dropdown, :selected => params[:area][:name] ),
+                {prompt: 'All areas'}, {class: 'form-control'}) %>
+            <% else %>
+              <%= select("area", "name", options_for_select(@areas_for_dropdown), {prompt: 'All areas'}, {class: 'form-control'}) %>            
+            <% end %>
+          </div> 
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-0 col-sm-3"> 
+            <select class="form-control" name="category" id="category">
+              <option value="">All types</option>
+              <% if params[:category].present? %>
+                <option value=<%= params[:category] %> selected="selected"><%= params[:category] %></option>
               <% end %>
-              <% if params[:proptype] == 'for Auction' %>
-                <%= radio_button_tag 'proptype', 'for Auction', checked = true if params[:proptype] == 'for Auction' %> For auction
+              <option value="Apartment">Apartment</option>
+              <option value="House">House</option>
+              <option value="Commercial">Commercial</option>
+              <option value="Land">Land</option>
+              <option value="Room">Room</option>
+              <option value="New">New-Property</option>            
+            </select> 
+          </div>           
+          <div align="left" class="checkbox col-sm-7"> 
+            <!--<%#= radio_button_tag 'proptype', '', checked = true %> All&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+            <% if params[:proptype] == 'for Sale' %>
+              <%= radio_button_tag 'proptype', 'for Sale', checked = true if params[:proptype] == 'for Sale' %> For sale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <% else %>
+              <%#= radio_button_tag 'proptype', 'for Sale', checked = true %>
+              <%= radio_button_tag 'proptype', 'for Sale'%> For sale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <% end %>
+            <% if params[:proptype] == 'for Rent' %>
+              <%= radio_button_tag 'proptype', 'for Rent', checked = true if params[:proptype] == 'for Rent' %> For rent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <% else %>
+              <%= radio_button_tag 'proptype', 'for Rent' %> For rent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <% end %>
+            <% if params[:proptype] == 'for Auction' %>
+              <%= radio_button_tag 'proptype', 'for Auction', checked = true if params[:proptype] == 'for Auction' %> For auction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <% else %>
+              <%= radio_button_tag 'proptype', 'for Auction' %> For auction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <% end %>
+            <% if params[:proptype] == 'new Launch' %>
+              <%= radio_button_tag 'proptype', 'new Launch', checked = true if params[:proptype] == 'new Launch' %> New launch
+            <% else %>
+              <%= radio_button_tag 'proptype', 'new Launch' %> New launch
+            <% end %>
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+          <div class="col-sm-offset-0 col-sm-3"> 
+            <select class="form-control" name="titletype" id="titletype">
+              <option value="">Title type</option>
+              <% if params[:titletype].present? %>
+                <option value=<%= params[:titletype] %> selected="selected"><%= params[:titletype] %></option>
+              <% end %>
+              <option value="Freehold">Freehold</option>
+              <option value="Leasehold">Leasehold</option>
+            </select> 
+          </div>  
+          <div class="col-sm-3"> 
+            <% if params[:otherinfo].present? %>
+              <%= select("otherinfo", "name", options_for_select(@otherinfos_for_dropdown, :selected => params[:otherinfo][:name] ), 
+                {prompt: 'Others'}, {class: 'form-control'}) %>
+            <% else %>
+              <%= select("otherinfo", "name", options_for_select(@otherinfos_for_dropdown), {prompt: 'Others'}, {class: 'form-control'}) %>            
+            <% end %>
+          </div> 
+          <div align="right" class="col-sm-offset-3 checkbox col-sm-3"> 
+            <%= link_to "Extended Search&nbsp;&nbsp;<span class='glyphicon glyphicon-circle-arrow-down'></span>".html_safe, "#", id: "comments-link" %>          
+          </div>
+        </div>
+
+        <section id="comments-section">
+          <div class="form-group">
+            <div class="control-label col-sm-offset-0 col-sm-2"> 
+              <%= "Rooms:" %>
+            </div>
+            <div class="col-sm-offset-0 col-sm-2"> 
+              <% if params[:chainb].present? %>
+                <%= select("chainb", "name", options_for_select(@roomsmin_for_dropdown, :selected => params[:chainb][:name] ),
+                  {prompt: 'Min'}, {class: 'form-control'}) %>
               <% else %>
-                <%= radio_button_tag 'proptype', 'for Auction' %> For auction
+                <%= select("chainb", "name", options_for_select(@roomsmin_for_dropdown), {prompt: 'Min'}, {class: 'form-control'}) %>
               <% end %>
             </div>
-            <div class="col-sm-3"> 
-              <% if params[:otherinfo].present? %>
-                <%= select("otherinfo", "name", options_for_select(@otherinfos_for_dropdown, :selected => params[:otherinfo][:name] ), 
-                  {prompt: 'All types'}, {class: 'form-control'}) %>
+            <div class="col-sm-offset-0 col-sm-2"> 
+              <% if params[:chainc].present? %>
+                <%= select("chainc", "name", options_for_select(@roomsmax_for_dropdown, :selected => params[:chainc][:name] ), 
+                  {prompt: 'Max'}, {class: 'form-control'}) %>
               <% else %>
-                <%= select("otherinfo", "name", options_for_select(@otherinfos_for_dropdown), {prompt: 'Others'}, {class: 'form-control'}) %>            
+                <%= select("chainc", "name", options_for_select(@roomsmax_for_dropdown), {prompt: 'Max'},
+                  {class: 'form-control'}) %>            
+              <% end %>
+            </div>
+
+            <div class="control-label col-sm-offset-0 col-sm-4"> 
+              <%= "Measurement:" %>
+            </div>
+            <div class="col-sm-offset-0 col-sm-2"> 
+              <% if params[:chaina].present? %>
+                <%= select("chaina", "uom", options_for_select(@uoms_for_dropdown, :selected => params[:chaina][:uom] ),
+                  {prompt: 'UOM'}, {class: 'form-control'}) %>
+                <% else if current_user.present? %>
+                    <%= select("chaina", "uom", options_for_select(@uoms_for_dropdown, current_user.preferuom), {prompt: 'Unit type'}, {class: 'form-control'}) %>            
+                  <% else %>
+                    <%= select("chaina", "uom", options_for_select(@uoms_for_dropdown), {prompt: 'Unit type'}, {class: 'form-control'}) %>            
+                <% end %>
+              <% end %>
+            </div>  
+          </div>
+
+          <div class="form-group">
+            <div class="control-label col-sm-offset-0 col-sm-2"> 
+              <%= "Baths:" %>
+            </div>
+            <div class="col-sm-offset-0 col-sm-2"> 
+              <% if params[:chainb].present? %>
+                <%= select("chainb", "bath", options_for_select(@roomsmin_for_dropdown, :selected => params[:chainb][:bath] ),
+                  {prompt: 'Min'}, {class: 'form-control'}) %>
+              <% else %>
+                <%= select("chainb", "bath", options_for_select(@roomsmin_for_dropdown), {prompt: 'Min'}, {class: 'form-control'}) %>
+              <% end %>
+            </div>
+            <div class="col-sm-offset-0 col-sm-2"> 
+              <% if params[:chainc].present? %>
+                <%= select("chainc", "bath", options_for_select(@roomsmax_for_dropdown, :selected => params[:chainc][:bath] ), 
+                  {prompt: 'Max'}, {class: 'form-control'}) %>
+              <% else %>
+                <%= select("chainc", "bath", options_for_select(@roomsmax_for_dropdown), {prompt: 'Max'},
+                  {class: 'form-control'}) %>            
+              <% end %>
+            </div>
+
+            <div class="control-label col-sm-offset-0 col-sm-2"> 
+              <%= "Land area:" %>
+            </div>
+            <div class="col-sm-offset-0 col-sm-2"> 
+              <% if params[:chainb].present? %>
+                <%= select("chainb", "landarea", options_for_select(@buildupmin_for_dropdown, :selected => params[:chainb][:landarea] ),
+                  {prompt: 'Min'}, {class: 'form-control'}) %>
+              <% else %>
+                <%= select("chainb", "landarea", options_for_select(@buildupmin_for_dropdown), {prompt: 'Min'}, {class: 'form-control'}) %>
+              <% end %>
+            </div>
+            <div class="col-sm-offset-0 col-sm-2"> 
+              <% if params[:chainc].present? %>
+                <%= select("chainc", "landarea", options_for_select(@buildupmax_for_dropdown, :selected => params[:chainc][:landarea] ), 
+                  {prompt: 'Max'}, {class: 'form-control'}) %>
+              <% else %>
+                <%= select("chainc", "landarea", options_for_select(@buildupmax_for_dropdown), {prompt: 'Max'},
+                  {class: 'form-control'}) %>            
               <% end %>
             </div> 
           </div>
+
+          <div class="form-group">
+            <div class="control-label col-sm-offset-0 col-sm-2"> 
+              <%= "Price:" %>
+            </div>
+            <div class="col-sm-offset-0 col-sm-2"> 
+              <% if params[:chainb].present? %>
+                <%= select("chainb", "price", options_for_select(@pricemin_for_dropdown, :selected => params[:chainb][:price] ),
+                  {prompt: 'Min'}, {class: 'form-control'}) %>
+              <% else %>
+                <%= select("chainb", "price", options_for_select(@pricemin_for_dropdown), {prompt: 'Min'}, {class: 'form-control'}) %>
+              <% end %>
+            </div>
+            <div class="col-sm-offset-0 col-sm-2"> 
+              <% if params[:chainc].present? %>
+                <%= select("chainc", "price", options_for_select(@pricemax_for_dropdown, :selected => params[:chainc][:price] ), 
+                  {prompt: 'Max'}, {class: 'form-control'}) %>
+              <% else %>
+                <%= select("chainc", "price", options_for_select(@pricemax_for_dropdown), {prompt: 'Max'},
+                  {class: 'form-control'}) %>            
+              <% end %>
+            </div>
+            
+            <div class="control-label col-sm-offset-0 col-sm-2"> 
+              <%= "Built-up area:" %>
+            </div>
+           <div class="col-sm-offset-0 col-sm-2"> 
+              <% if params[:chainb].present? %>
+                <%= select("chainb", "buildup", options_for_select(@buildupmin_for_dropdown, :selected => params[:chainb][:buildup] ),
+                  {prompt: 'Min'}, {class: 'form-control'}) %>
+              <% else %>
+                <%= select("chainb", "buildup", options_for_select(@buildupmin_for_dropdown), {prompt: 'Min'}, {class: 'form-control'}) %>
+              <% end %>
+            </div>
+            <div class="col-sm-offset-0 col-sm-2"> 
+              <% if params[:chainc].present? %>
+                <%= select("chainc", "buildup", options_for_select(@buildupmax_for_dropdown, :selected => params[:chainc][:buildup] ), 
+                  {prompt: 'Max'}, {class: 'form-control'}) %>
+              <% else %>
+                <%= select("chainc", "buildup", options_for_select(@buildupmax_for_dropdown), {prompt: 'Max'},
+                  {class: 'form-control'}) %>            
+              <% end %>
+            </div>
+
+          </div>
+          
         </section>
       <% end %>
     </div>

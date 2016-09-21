@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620043514) do
+ActiveRecord::Schema.define(version: 20160909035532) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "name"
@@ -52,7 +52,58 @@ ActiveRecord::Schema.define(version: 20160620043514) do
     t.boolean  "xsecu",                                default: false
     t.boolean  "xlift",                                default: false
     t.text     "otherinfo"
+    t.decimal  "size1",       precision: 10, scale: 2
+    t.text     "titletype"
   end
+
+  create_table "card_transactions", force: :cascade do |t|
+    t.string   "action"
+    t.integer  "amount"
+    t.boolean  "success"
+    t.string   "authorization"
+    t.string   "message"
+    t.text     "params"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "card_id"
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_type"
+    t.date     "card_expires_on"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "cards", ["user_id"], name: "index_cards_on_user_id"
+
+  create_table "chainas", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "chainbs", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "chaina_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chainbs", ["chaina_id"], name: "index_chainbs_on_chaina_id"
+
+  create_table "chaincs", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "chainb_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chaincs", ["chainb_id"], name: "index_chaincs_on_chainb_id"
 
   create_table "images", force: :cascade do |t|
     t.string   "name"
@@ -79,6 +130,46 @@ ActiveRecord::Schema.define(version: 20160620043514) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "paypals", force: :cascade do |t|
+    t.string   "item_number"
+    t.string   "invoice"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "m_id"
+    t.string   "quantity"
+    t.string   "item_name"
+    t.string   "mc_currency"
+    t.string   "mc_gross"
+    t.string   "mc_fee"
+    t.string   "payment_gross"
+    t.string   "handling_amount"
+    t.string   "shipping"
+    t.string   "tax"
+    t.string   "payment_status"
+    t.string   "payment_type"
+    t.string   "payment_date"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address_name"
+    t.string   "address_street"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.string   "address_zip"
+    t.string   "address_country"
+    t.string   "address_country_code"
+    t.string   "payer_id"
+    t.string   "payer_email"
+    t.string   "payer_status"
+    t.string   "business"
+    t.string   "receiver_email"
+    t.string   "receiver_id"
+    t.string   "payment_fee"
+    t.string   "txn_id"
+    t.string   "txn_type"
+    t.string   "residence_country"
+    t.integer  "user_id"
   end
 
   create_table "places", force: :cascade do |t|

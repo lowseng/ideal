@@ -22,6 +22,7 @@ gem 'devise-bootstrap-views'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 gem 'stripe'
+gem 'activemerchant'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'

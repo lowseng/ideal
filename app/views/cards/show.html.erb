@@ -1,0 +1,21 @@
+<div class="well col-xs-10 col-xs-offset-1">
+  <h4>Credit Card Receipts - Detail</h4><hr>
+  <p><strong>user_id: </strong><%= @card.user_id %></p>
+  <p><strong>ip_address: </strong><%= @card.ip_address %></p>
+  <p><strong>first_name: </strong><%= @card.first_name %></p>
+  <p><strong>last_name: </strong><%= @card.last_name %></p>
+  <p><strong>card_type: </strong><%= @card.card_type %></p>
+  <p><strong>card_expires_on: </strong><%= @card.card_expires_on %></p>
+  <p><strong>created_at: </strong><%= @card.created_at %></p>
+
+  <br><h4>Other Information</h4><hr>
+  <p><strong>action: </strong><%= @card.card_transaction.action %></p>  
+  <p><strong>amount: </strong><%= @card.card_transaction.amount %></p>
+  <p><strong>success: </strong><%= @card.card_transaction.success %></p>  
+  <p><strong>authorization: </strong><%= @card.card_transaction.authorization %></p>
+  <p><strong>message: </strong><%= @card.card_transaction.message %></p>
+  <p><strong>params: </strong><%= @card.card_transaction.params %></p>  
+  <p><strong>created_at: </strong><%= @card.card_transaction.created_at %></p>
+
+  <%= link_to 'Back', cards_path %>
+</div>

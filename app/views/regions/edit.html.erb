@@ -1,4 +1,13 @@
-<h4 align="center"><%=link_to "Countries", new_place_path%> > <%= params[:country_name] %></h4>
+<!--<h4 align="center"><%#=link_to "Countries", new_place_path%> > <%= params[:country_name] %></h4>
+<%#= render 'form' %>
+<%#= render 'region', obj: @regions %>-->
 
-<%= render 'form' %>
-<%= render 'region', obj: @regions %>
+<div class='row'> 
+  <div class='col-sm-offset-1 col-xs-10'>
+    <div class="well well-lg">
+      <h4 align="center"><%=link_to "Countries", new_place_path%> > <%= params[:country_name] %></h4><hr><br>
+      <%= render 'form' %>
+      <%= render 'region', obj: @regions %>
+    </div>
+  </div>
+</div> 

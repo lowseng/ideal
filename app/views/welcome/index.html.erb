@@ -1,12 +1,12 @@
 <div class='row'> 
-  <div class='col-sm-offset-1 col-xs-10'>
+  <div class='col-sm-offset-0 col-xs-12'>
     <div class="well well-lg">
-      <% if current_user %>
+      <%# if current_user %>
         <br>
         <div class="lowseng">
           <h3><%#= current_user.email %></h3>
         </div><br>
-      <% end %>
+      <%# end %>
       <%= render 'search' %>
       <%= render 'articles/article', obj: @articles %>
       <div align="left">
