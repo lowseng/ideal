@@ -1,4 +1,9 @@
-<h4 align="center"><%=link_to "Countries", new_place_path%> > <%= params[:country_name] %></h4>
-
-<%= render 'form' %>
-<%= render 'otherinfo', obj: @otherinfos %>
+<div class='row'> 
+  <div class='col-sm-offset-0 col-xs-12'>
+    <div class="well well-lg">
+      <h4 align="center"><%=link_to "Countries", new_place_path%> > <%= params[:country_name] %></h4>
+      <%= render 'form' %>
+      <%= render 'otherinfo', obj: @otherinfos %>
+    </div>
+  </div>
+</div>

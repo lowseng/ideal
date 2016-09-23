@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
   has_many :articles, dependent: :destroy
   has_many :paypals, dependent: :destroy
   has_many :cards
+
+# must check the following during updates only
+  validates :name, presence: true, :on => :update
+  validates :telephone, presence: true, :on => :update  
   
   serialize :notification_params, Hash
   def paypal_url(return_path)

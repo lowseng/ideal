@@ -1,7 +1,7 @@
 <div class='row'> 
-  <div class='col-sm-offset-1 col-xs-10'>
+  <div class='col-sm-offset-0 col-xs-12'>
     <div class="well well-lg">
-      <h4 align="center">My Ads</h4>
+      <h4 align="center">My Ads (<%= current_user.articles.count %> of <%= session[:m_posting] %>)</h4>
       <div align="center">
         <%= will_paginate @articles %>
       </div>

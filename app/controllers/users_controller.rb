@@ -36,7 +36,11 @@ class UsersController < ApplicationController
         if @user.m_gold == "PayPal" #m_gold defined at attr_accessor
           redirect_to @user.paypal_url(paypal_path)
         else 
-          redirect_to new_card_path
+          if @user.m_gold == "CreditCard"
+            redirect_to new_card_path
+          else
+            redirect_to edit_user_path(current_user.id)
+          end
         end 
       else
         #redirect_to 'http://www.yahoo.com'

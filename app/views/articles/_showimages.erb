@@ -1,0 +1,21 @@
+<table width="100%" border="0" cellspacing=5 cellpadding=25>
+  <tr valign="center">  
+    <%# mcount = @article.images.count %>
+    <% mcount = 6 %>
+    <% @article.images.each do |t| %>
+      <% if @article.images.count == 1 %>
+        <td align="center"><%= image_tag t.picture.url, size: "800x600" %><br><br>
+        <% else if @article.images.count == 2 %>
+          <td align="center"><%= image_tag t.picture.url, size: "400x300" %><br><br>
+        <% else %>
+          <td align="center"><%= image_tag t.picture.url, size: "280x190" %><br><br>
+        <% end %>
+      <% end %>
+      </td>
+      <% mcount = mcount - 1 %>
+      <% if mcount == 3 %>
+         <tr>
+      <% end %>
+    <% end %>
+  </tr>
+</table>

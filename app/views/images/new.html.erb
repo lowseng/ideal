@@ -1,10 +1,16 @@
-<table width="100%" border="0" cellspacing="5" cellpadding="5">
-  <tr>
-    <td><%= render 'articles/onearticle' %></td>
-  </tr>
-  <%# if @article.images.count < 5 %>
-    <tr>
-      <td><%= render :partial => 'form' %></td>
-    </tr>
-  <%# end %>
-</table>
+<div class='row'> 
+  <div class='col-sm-offset-0 col-xs-12'>
+    <div class="well well-lg">
+      <table width="100%" border="0" cellspacing="5" cellpadding="5">
+        <tr>
+          <td><%= render 'articles/onearticle' %><br><br></td>
+        </tr>
+        <%# if @article.images.count < 5 %>
+          <tr>
+            <td><%= render :partial => 'form' %></td>
+          </tr>
+        <%# end %>
+      </table>
+    </div>
+  </div>
+</div>

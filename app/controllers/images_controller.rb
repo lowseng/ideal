@@ -23,7 +23,7 @@ class ImagesController < ApplicationController
       @place = Place.find(@article.place)
       @region = Region.find(@article.region)
       @area = Area.find(@article.area)
-      @otherinfo = Otherinfo.find(@article.otherinfo) if @article.otherinfo !=''
+      @otherinfo = Otherinfo.find(@article.otherinfo) if @article.otherinfo.present? and @article.otherinfo !=""
     else
       redirect_to new_article_path(:param1 => "new")
     end
@@ -68,10 +68,12 @@ class ImagesController < ApplicationController
   # DELETE /images/1.json
   def destroy
     @image.destroy
-    respond_to do |format|
-      #format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
-      format.html { redirect_to images_path(:param1 => "listonly"), notice: 'Image was successfully destroyed.' }
-      format.json { head :no_content }
+    if params[:param1] = "listonly"
+      respond_to do |format|
+        #format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
+        format.html { redirect_to images_path(:param1 => "listonly"), notice: 'Image was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

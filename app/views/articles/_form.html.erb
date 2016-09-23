@@ -179,8 +179,8 @@
             <%= f.text_area :description, rows: 5, class: "form-control", placeholder: "Body of Ad" %> 
           </div> 
         </div> 
-        <!--
-        <div class="form-group">
+        
+        <!--<div class="form-group">
           <%#= f.fields_for :images, @article.images do |f_screenshot| %>
             <%#= f_screenshot.label :picture, :class => 'col-sm-2 control-label' do %>
               Images
@@ -191,13 +191,13 @@
               <%#= f_screenshot.file_field :picture, id: "avatar-upload" , multiple: true, :name=>'article[images_attributes][][picture]', :class => 'form-control' %>
             </div>     
           <%# end %>
-          -->
-        </div>  
+        </div>  -->
+        </div>
         <div class="form-actions">
           <div class="col-sm-offset-2 col-sm-10"> 
-            <%= f.submit nil, :class => 'btn btn-primary' %>
-            <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                      articles_path, :class => 'btn btn-default' %>
+            <%= f.submit nil, :class => 'btn btn-primary' %>&nbsp;&nbsp;&nbsp;
+            <%= link_to t('.cancel', :default => t("helpers.links.cancel")), articles_path, :class => 'btn btn-default' %>&nbsp;&nbsp;&nbsp;
+            <%= f.check_box :xonline  %><%= 'Display this Ad'%>
           </div>
         </div>
       <% end %> 

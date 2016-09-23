@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909035532) do
+ActiveRecord::Schema.define(version: 20160921083823) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160909035532) do
     t.text     "otherinfo"
     t.decimal  "size1",       precision: 10, scale: 2
     t.text     "titletype"
+    t.boolean  "xonline",                              default: true
   end
 
   create_table "card_transactions", force: :cascade do |t|

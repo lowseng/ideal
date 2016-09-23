@@ -145,7 +145,35 @@ class ArticlesController < ApplicationController
   end
   
   def update 
-    #Retrieve data from Post Request
+    
+    # creating data arrays for selects
+    ##################################
+    @places = Place.where(status: true)
+    @places_for_dropdown = []
+    @places.each do |i|
+      @places_for_dropdown << [i.name, i.id]
+    end
+
+    @regions = Region.all
+    @regions_for_dropdown = []
+    @regions.each do |i|
+      @regions_for_dropdown << [i.name, i.id, {class: i.place.id}]
+    end
+
+    @areas = Area.all
+    @areas_for_dropdown = []
+    @areas.each do |i|
+      @areas_for_dropdown << [i.name, i.id, {class: i.region.id}]
+    end
+    # END ############# START OTHERINFO ################
+
+    @otherinfos = Otherinfo.all
+    @otherinfos_for_dropdown = []
+    @otherinfos.each do |i|
+      @otherinfos_for_dropdown << [i.name, i.id, {class: i.place.id}]
+    end
+    
+#Retrieve data from Post Request (Getting new updated values)
     @article.place = params[:place][:name] if params[:place].present?
     @article.region = params[:region][:name] if params[:region].present?
     @article.area = params[:area][:name] if params[:area].present?
@@ -153,13 +181,11 @@ class ArticlesController < ApplicationController
 
     if @article.update(article_params) 
       flash[:success]='Article was successfully updated' 
-      #redirect_to article_path(@article, :param1 => "1", :param2 => "value2")
-
       current_article = @article.id
       session[:current_article] = current_article
-      #redirect_to images_path
+      #redirect_to images_path - to delete
       redirect_to new_image_path(:param1 => "1", :param2 => "value2")
-
+      # redirect_to 'http://www.yahoo.com'
     else 
       render 'edit'
     end 
@@ -175,7 +201,7 @@ class ArticlesController < ApplicationController
   def article_params #(method for whitelisting) 
     params.require(:article).permit(:title, :description, :proptype, :category, :created_at, :place,
     :region, :area, :bedroom, :bathroom, :size, :amount, :uom, :currency, :xlift, :xsqua, :xplay, :xbalc,
-    :xgymn, :xmini, :xjogg, :xcabl, :xtenn, :xpark, :xsecu, :xpool, :otherinfo, :size1, :titletype,
+    :xgymn, :xmini, :xjogg, :xcabl, :xtenn, :xpark, :xsecu, :xpool, :otherinfo, :size1, :titletype, :xonline,
     :images_attributes => [:picture]) 
   end 
   

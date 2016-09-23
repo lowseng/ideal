@@ -1,4 +1,3 @@
-<div class="well col-xs-12 col-xs-offset-0">
   <% if @article.user %>
     <table width = 100% border="0">
       <tr>
@@ -55,8 +54,8 @@
         <td>
           <%= @article.size %> 
             <%= "SqFt" if @article.uom == "3" %><%= "SqM" if @article.uom == "4" %><%= "Acres" if @article.uom == "5" %><%= "Hectres" if @article.uom == "6" %>
-              (<%= number_with_precision(@article.size*0.092903, precision: 2, delimiter: ',') if @article.uom == "3" %><%= " SqM" if @article.uom == "3" %>
-              <%= number_with_precision(@article.size*10.7639, precision: 2, delimiter: ',') if @article.uom == "4" and @article.size.present? %><%= " SqFt" if @article.uom == "4" %>
+              (<%= number_with_precision(@article.size.to_i*0.092903, precision: 2, delimiter: ',') if @article.uom == "3" %><%= " SqM" if @article.uom == "3" %>
+              <%= number_with_precision(@article.size.to_i*10.7639, precision: 2, delimiter: ',') if @article.uom == "4" and @article.size.present? %><%= " SqFt" if @article.uom == "4" %>
               )
         </td>
 
@@ -105,7 +104,3 @@
     </table><br>
   <b><%= "Description:" %></b>
   <%= simple_format(@article.description) %>
-
-
-
-</div>
