@@ -25,4 +25,3 @@ module Ideal
     config.serve_static_assets = true
   end
 end
-    config.serve_static_assets = true
