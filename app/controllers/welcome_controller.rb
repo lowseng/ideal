@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
   def index
-    
+    session[:mpage] = "0"    
     @articles = Article.all
     if params[:search]
       @articles = Article.paginate(page: params[:page], per_page: 15).search(params[:search]).order('updated_at desc')

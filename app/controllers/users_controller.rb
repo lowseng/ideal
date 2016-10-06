@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy, :hook]
   before_action :require_admin, only: [:destroy, :index]
-
+  before_action :enforce_tenancy, except: [:index]
+  
   def index
     @users = User.paginate(page: params[:page], per_page: 5).order('updated_at desc')
   end
@@ -69,6 +70,10 @@ class UsersController < ApplicationController
   end
   
   private
+
+  def enforce_tenancy
+    redirect_to root_path unless session[:m_posting].present?
+  end
   
   def user_params
     params.require(:user).permit(:username, :email, :password, :admin, :name, :telephone, :agentno, :company, :preferuom,

@@ -20,7 +20,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "<span class='glyphicon glyphicon-home'></span> Home".html_safe, root_path %></li>
         <% if current_user %>
-          <% if current_user.status = "Premier" %>
+          <% if current_user.status == "Premier" %>
             <% session[:m_posting] = 105 %>
           <% else %>
             <% session[:m_posting] = 5 %>

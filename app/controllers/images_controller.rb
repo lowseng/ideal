@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
-
+  before_action :enforce_tenancy, except: [:index]
+  
   # GET /images
   # GET /images.json
   def index
@@ -16,6 +17,11 @@ class ImagesController < ApplicationController
 
   # GET /images/new
   def new
+    if session[:mpage] == "1"
+      session[:mpage] = "2"
+    else
+      redirect_to new_article_path
+    end
     @image = Image.new
 
     if session[:current_article]
@@ -48,6 +54,7 @@ class ImagesController < ApplicationController
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /images/1
@@ -68,16 +75,23 @@ class ImagesController < ApplicationController
   # DELETE /images/1.json
   def destroy
     @image.destroy
-    if params[:param1] = "listonly"
+    if params[:param1] == "listonly"
       respond_to do |format|
         #format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
         format.html { redirect_to images_path(:param1 => "listonly"), notice: 'Image was successfully destroyed.' }
         format.json { head :no_content }
       end
+    else
+      redirect_to(:back)
     end
   end
 
   private
+  
+    def enforce_tenancy
+      redirect_to root_path unless session[:m_posting].present?
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_image
       @image = Image.find(params[:id])

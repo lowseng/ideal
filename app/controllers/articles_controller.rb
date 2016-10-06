@@ -4,13 +4,14 @@ class ArticlesController < ApplicationController
   before_action :require_user, except: [:index, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :require_admin, only: [:index]
+  before_action :enforce_tenancy, except: [:index, :show]
 
-  
   def index
     @articles = Article.paginate(page: params[:page], per_page: 5).order('updated_at desc')
   end
 
   def new 
+
     @article = Article.new 
     @image = @article.images.new
  
@@ -83,18 +84,18 @@ class ArticlesController < ApplicationController
     @article.otherinfo = params[:otherinfo][:name] if params[:otherinfo].present?    
 
     if @article.save 
-      #authorize @article
-      if params[:images_attributes]
-        params[:images_attributes].each do |image|
-          @article.images.create(picture: image[:picture])
-        end
-      end
+#authorize @article removed 28-sep-2016 deemed unused
+      #if params[:images_attributes]
+      #  params[:images_attributes].each do |image|
+      #    @article.images.create(picture: image[:picture])
+      #  end
+      #end
 
-      flash[:success]='Article was successfully created' #Application.html.erb 
-      #redirect_to article_path(@article) #Show.hrml.erb 
+      flash[:success]='Article was successfully created' 
       current_article = @article.id
       session[:current_article] = current_article
-      #redirect_to images_path
+#redirect_to images_path to add new images
+      session[:mpage] = "1"
       redirect_to new_image_path(:param1 => "1", :param2 => "value2")
     else 
       render 'new' 
@@ -198,6 +199,11 @@ class ArticlesController < ApplicationController
   end
   
   private 
+  
+  def enforce_tenancy
+    redirect_to root_path unless session[:m_posting].present?
+  end
+
   def article_params #(method for whitelisting) 
     params.require(:article).permit(:title, :description, :proptype, :category, :created_at, :place,
     :region, :area, :bedroom, :bathroom, :size, :amount, :uom, :currency, :xlift, :xsqua, :xplay, :xbalc,

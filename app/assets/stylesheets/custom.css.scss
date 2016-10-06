@@ -15,6 +15,40 @@ hr {
     padding: 0; 
 }
 
+
+#container {
+  display: table;
+  width:100%;
+  background-color:#eee;
+  border:0px solid  #666666;
+  border-spacing:5px;/*cellspacing:poor IE support for  this*/  
+  
+}
+
+#row  {
+  display: table-row;
+  border:1px solid  #666666;
+  vertical-align: top;  
+}
+#left {
+  border:0px solid  #666666;
+  display: table-cell;
+  width: 160px;
+}
+#middle {
+  border:0px solid  #666666;
+  display: table-cell;
+  vertical-align: top;
+  
+}
+#right {
+  border:0px solid  #666666;
+  display: table-cell;
+  width: 250px;
+  vertical-align: top;
+  
+}  
+  
 #logo { 
 float: left; 
 font-size: 1.7em; 
@@ -93,6 +127,7 @@ padding-left: 15px;
 .tdbg {
 text-align: center;
 background-image: asset-url('camera280x190.gif');
+/*background-image: asset-url(':t.picture.url');*/
 background-size: 280px 190px;
 background-repeat: no-repeat;
 background-position: center; 
