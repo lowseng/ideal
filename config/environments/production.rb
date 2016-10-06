@@ -80,5 +80,5 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => 'windaq-ideal.herokuapp.com/', :protocol => 'https'}
 
-config.assets.serve_static_files = true
+  config.serve_static_files = true
 end
