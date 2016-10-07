@@ -168,7 +168,7 @@ text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
 }
 .bg250x400 {
 text-align: center;
-background-image: asset-url('250x400jpg');
+background-image: asset-url('250x400.jpg');
 background-size: 250px 400px;
 background-repeat: no-repeat;
 color: #fff;
@@ -188,6 +188,30 @@ font-family: 'Helvetica Neue' !important;
 font-stretch: expanded;
 padding-top: 50px;
 padding-bottom: 250px;
+text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+.bg250x200 {
+text-align: center;
+background-image: asset-url('250x200.jpg');
+background-size: 250px 200px;
+background-repeat: no-repeat;
+color: #fff;
+font-family: 'Helvetica Neue' !important;
+font-stretch: expanded;
+padding-top: 50px;
+padding-bottom: 150px;
+text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+.bg250x100 {
+text-align: center;
+background-image: asset-url('250x100.jpg');
+background-size: 250px 100px;
+background-repeat: no-repeat;
+color: #fff;
+font-family: 'Helvetica Neue' !important;
+font-stretch: expanded;
+padding-top: 50px;
+padding-bottom: 50px;
 text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
 }
 .paypal {
