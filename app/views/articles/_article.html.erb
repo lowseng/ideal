@@ -20,43 +20,43 @@
 
 	</div>
 </div>-->
-<div class="well">
-<div id="container" class="form-group">
-	<div  class='col-sm-offset-0 col-sm-9'>
-    <% obj.each do |article| %> 
-      <div id="container">
 
+  <div class='col-sm-offset-0 col-xs-12'>
 
-        	<div id="left">
-            <% article.images.each do |t| %>
-              <% if t.picture.url %>
-                <%= image_tag t.picture.url, size: "150x100" %>
-              <% else %>
-                xx<%= image_tag url('images/noimage.gif'), size: "150x100" %>xx
+      <%= form_tag root_path, :method => "get", id: "search-form", :class => "form-horizontal project" , :enforce_utf8 => false do %>      
+      <div  class='col-sm-offset-0 col-sm-9'>
+        <% obj.each do |article| %> 
+          <div class="form-group">
+          	<div class="col-sm-3">
+              <% article.images.each do |t| %>
+                <% if t.picture.url %>
+                  <%= image_tag t.picture.url, size: "150x100" %>
+                <% else %>
+                  xx<%= image_tag url('images/noimage.gif'), size: "150x100" %>xx
+                <% end %>
+                <% break %>
               <% end %>
-              <% break %>
-            <% end %>
-            <% if !article.images.present? %>
-              <%= image_tag("noimage.gif") %>
-            <% end %>
-        	</div>
-        	<div id="middle">
-            <div class="article-title">
+              <% if !article.images.present? %>
+                <%= image_tag("noimage.gif") %>
+              <% end %>
+          	</div>
+  
+            <div class="article-title col-sm-6">
               <%#= article.category %> <%#= article.proptype%>
               <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>
             </div>
-            <div class="article-price">
+            <div class="article-price col-sm-6">
               <% @place = Place.find(article.currency) if article.currency.present? %>
               <%= @place.currency if @place.present? %> <%= number_with_precision(article.amount, precision: 0, delimiter: ',') %>
             </div>
-            <div>
+            <div class="col-sm-6">
               <%= truncate(article.description, length: 100) %>
             </div>
-            <div>
+            <div class="col-sm-6" >
               <small>Created by: <%= article.user.email if article.user%>,
               <%= time_ago_in_words(article.created_at) %> ago. </small>
             </div>
-            <div>
+            <div class="col-sm-6">
               <% if current_user %>
                 <% if current_user && current_user == article.user || current_user.admin? %>
                   <% if current_user.admin? %>
@@ -68,17 +68,17 @@
                 <% end %>
               <% end %>  
             </div>
-        	</div>
+          </div><hr>
+        <% end %>
+    	</div>
+  
+    	<div class='col-sm-offset-0 col-sm-3'>
+    	  <div class="bg250x400">1</div>
+        <div class="bg250x300">2</div>
+    	  <div class="bg250x200">3</div>
+        <div class="bg250x100">4</div>
+    	</div>
+      <% end %>	
 
-      </div><hr>
-    <% end %>
-	</div>
+  </div>
 
-	<div class='col-sm-offset-0 col-sm-3'>
-	  <div class="bg250x400">1</div>
-    <div class="bg250x300">2</div>
-	  <div class="bg250x200">3</div>
-    <div class="bg250x100">4</div>
-	</div>
-</div>
-</div>
