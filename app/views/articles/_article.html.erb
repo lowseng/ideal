@@ -27,7 +27,7 @@
       <div  class='col-sm-offset-0 col-sm-8'>
         <% obj.each do |article| %> 
           <div class="form-group">
-          	<div class="col-sm-2">
+          	<div class="col-sm-3">
               <% article.images.each do |t| %>
                 <% if t.picture.url %>
                   <%= image_tag t.picture.url, size: "150x100" %>
@@ -41,22 +41,22 @@
               <% end %>
           	</div>
   
-            <div class="article-title col-sm-6">
+            <div class="article-title col-sm-5">
               <%#= article.category %> <%#= article.proptype%>
               <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>
             </div>
-            <div class="article-price col-sm-6">
+            <div class="article-price col-sm-5">
               <% @place = Place.find(article.currency) if article.currency.present? %>
               <%= @place.currency if @place.present? %> <%= number_with_precision(article.amount, precision: 0, delimiter: ',') %>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-5">
               <%= truncate(article.description, length: 100) %>
             </div>
-            <div class="col-sm-6" >
+            <div class="col-sm-5" >
               <small>Created by: <%= article.user.email if article.user%>,
               <%= time_ago_in_words(article.created_at) %> ago. </small>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-5">
               <% if current_user %>
                 <% if current_user && current_user == article.user || current_user.admin? %>
                   <% if current_user.admin? %>
@@ -72,11 +72,11 @@
         <% end %>
     	</div>
   
-    	<div class='col-sm-offset-0 col-sm-4'>
-    	  <div class="bg250x400"></div>
-        <div class="bg250x300"></div>
-    	  <div class="bg250x200"></div>
-        <div class="bg250x100"></div>
+    	<div class='control-label col-sm-offset-0 col-sm-4'>
+    	  <div class="bg250x400"><%= "xxx" %></div>
+        <div class="bg250x300">.</div>
+    	  <div class="bg250x200">.</div>
+        <div class="bg250x100">.</div>
     	</div>
       <% end %>	
 
