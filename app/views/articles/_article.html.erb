@@ -49,10 +49,10 @@
               <% @place = Place.find(article.currency) if article.currency.present? %>
               <%= @place.currency if @place.present? %> <%= number_with_precision(article.amount, precision: 0, delimiter: ',') %>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-6">
               <%= truncate(article.description, length: 100) %>
             </div>
-            <div class="col-sm-5" >
+            <div class="col-sm-6" >
               <small>Created by: <%= article.user.email if article.user%>,
               <%= time_ago_in_words(article.created_at) %> ago. </small>
             </div>
