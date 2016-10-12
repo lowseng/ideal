@@ -18,7 +18,7 @@ class ImagesController < ApplicationController
   # GET /images/new
   def new
     if session[:mpage] == "1"
-      session[:mpage] = "2"
+#  will continue adding images
     else
       redirect_to new_article_path
     end
@@ -37,6 +37,7 @@ class ImagesController < ApplicationController
 
   # GET /images/1/edit
   def edit
+
   end
 
   # POST /images
@@ -47,7 +48,7 @@ class ImagesController < ApplicationController
    #@article = Article.find(@image1.article_idxxxxxxxxxxxxxxxxx)
     respond_to do |format|
       if @image.save
-        format.html { redirect_to new_image_path(:param1 => "0", :param2 => "value2"), notice: 'Image was successfully added.' }
+        format.html { redirect_to edit_article_path(:id => session[:current_article], :param2 => "value2"), notice: 'Image was successfully added.' }
         format.json { render :new, status: :created, location: @image1 }
       else
         format.html { redirect_to new_image_path(:param1 => "0", :param2 => "value2"), alert: 'Image was NOT added. Please select a vaild image to upload!' }
@@ -60,6 +61,7 @@ class ImagesController < ApplicationController
   # PATCH/PUT /images/1
   # PATCH/PUT /images/1.json
   def update
+
     respond_to do |format|
       if @image.update(image_params)
         format.html { redirect_to @image, notice: 'Image was successfully updated.' }

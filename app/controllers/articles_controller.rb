@@ -11,7 +11,13 @@ class ArticlesController < ApplicationController
   end
 
   def new 
+# session[:mpage]
+# = 0 at welcome/index, articles/new
+# = 1 at articles/save, articles/update
+# to allow multiple images upload (stay on in images/form)
 
+
+    session[:mpage] = "0" #init to 0 importatnt
     @article = Article.new 
     @image = @article.images.new
  
@@ -84,19 +90,13 @@ class ArticlesController < ApplicationController
     @article.otherinfo = params[:otherinfo][:name] if params[:otherinfo].present?    
 
     if @article.save 
-#authorize @article removed 28-sep-2016 deemed unused
-      #if params[:images_attributes]
-      #  params[:images_attributes].each do |image|
-      #    @article.images.create(picture: image[:picture])
-      #  end
-      #end
-
       flash[:success]='Article was successfully created' 
       current_article = @article.id
       session[:current_article] = current_article
-#redirect_to images_path to add new images
-      session[:mpage] = "1"
-      redirect_to new_image_path(:param1 => "1", :param2 => "value2")
+      session[:mpage] = "SAVE"
+      #redirect_to new_image_path(:param1 => "1", :param2 => "value2")
+      redirect_to edit_article_path(:id => session[:current_article], :param2 => "value2")
+
     else 
       render 'new' 
     end 
@@ -141,7 +141,11 @@ class ArticlesController < ApplicationController
       @otherinfos_for_dropdown << [i.name, i.id, {class: i.place.id}]
     end
 
-
+# below added to include images management below editing article 10-Oct-2016
+    @image = Image.new
+    session[:mpage] = "1"
+    current_article = @article.id
+    session[:current_article] = current_article
 
   end
   
@@ -184,12 +188,22 @@ class ArticlesController < ApplicationController
       flash[:success]='Article was successfully updated' 
       current_article = @article.id
       session[:current_article] = current_article
-      #redirect_to images_path - to delete
-      redirect_to new_image_path(:param1 => "1", :param2 => "value2")
-      # redirect_to 'http://www.yahoo.com'
+
+#auto save images
+
+      if params[:picture].present?
+        @image = Image.new(image_params)
+        @image.article_id =  session[:current_article]
+        @image.save
+      end
+      
+      redirect_to root_path
     else 
       render 'edit'
     end 
+    
+
+
   end
   
   def destroy 
@@ -199,7 +213,18 @@ class ArticlesController < ApplicationController
   end
   
   private 
-  
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_image
+    @image = Image.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def image_params
+    params.require(:image).permit(:name, :picture, :article_id)
+  end
+    
+    
   def enforce_tenancy
     redirect_to root_path unless session[:m_posting].present?
   end
