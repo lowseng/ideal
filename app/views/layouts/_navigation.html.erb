@@ -36,17 +36,33 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+        <li><%= link_to "<span class='glyphicon glyphicon-home'></span> Home".html_safe, root_path %></li>
+        <% if current_user %>
+          <% if current_user.status == "Premier" %>
+            <% session[:m_posting] = 105 %>
+          <% else %>
+            <% session[:m_posting] = 5 %>
+          <%end %>
+          <li><%= link_to "<span class='glyphicon glyphicon-edit'></span> Insert New Ad".html_safe, new_article_path(:param1 => "new") %></li>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe %> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+          <% if logged_in? and current_user.admin? %>
+            <li><%= link_to "Manage Users", users_path %></li>
+            <li><%= link_to "Manage Ads", articles_path %></li>
+            <%#= link_to "Add Product", new_product_path(:param1 => "value1", :param2 => "value2") %>
+            <li><%= link_to "Manage Images", images_path(:param1 => "listonly") %></li>
+            <li><%= link_to "Manage Country", new_place_path %></li>
+            <li><%= link_to "Manage PayPal Receipts", paypals_path %></li>
+            <li><%= link_to "Manage Credit Cards Receipts", cards_path %></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+          <% end %>
+          <li><%= link_to "My Ads", oneuser_index_path %></li>   
+          <li><%= link_to "My Settings", edit_user_path(current_user.id) %></li>
+          <li ><%= link_to "Sign Out ".html_safe, destroy_user_session_path, :method => :delete %></li>        
+        <% else %>
+          <li><%= link_to "<span class='glyphicon glyphicon-log-in'></span> Sign In".html_safe, new_user_session_path %></li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
