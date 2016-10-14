@@ -4,9 +4,9 @@ class WelcomeController < ApplicationController
     session[:mpage] = "0"    
     @articles = Article.all
     if params[:search]
-      @articles = Article.paginate(page: params[:page], per_page: 15).search(params[:search]).order('updated_at desc')
+      @articles = Article.paginate(page: params[:page], per_page: 15).search(params[:search]).where(xonline: true).order('updated_at desc')
     else
-      @articles = Article.paginate(page: params[:page], per_page: 15).order('updated_at desc')      
+      @articles = Article.paginate(page: params[:page], per_page: 15).where(xonline: true).order('updated_at desc')      
     end  
     @articles = @articles.place(params[:place][:name]) if params[:place].present? and params[:place][:name] !=""
     @articles = @articles.region(params[:region][:name]) if params[:region].present? and params[:region][:name] !=""

@@ -18,7 +18,11 @@
 
         <div class="article-title col-sm-9">
           <%#= article.category %> <%#= article.proptype%>
-          <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>
+          <% if article.xonline? %>
+            <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>         
+          <%else %>
+            <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %><%= " - [OFFLINE]" %> 
+          <% end %>
         </div>
         <div class="article-price col-sm-9">
           <% @place = Place.find(article.currency) if article.currency.present? %>

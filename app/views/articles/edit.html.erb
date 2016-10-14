@@ -3,7 +3,7 @@
     <div class="well well-lg">
       <h4 align="center">Modify Existing Ad</h4>
       <%= render 'form' %>
-
+      <br><a id="images"></a><br>
       <% current_article = @article.id %>
       <% session[:current_article] = current_article %>
       <%= render :partial => 'images/form', :object => @image %>

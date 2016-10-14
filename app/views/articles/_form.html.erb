@@ -5,13 +5,25 @@
   window.onunload=function(){null};
 </script>
 
-<div class='row'> 
-  <div class='col-sm-offset-0 col-xs-12'>
-    <div class="well well-lg">
+
       <%#= form_for(@article, :html => {class: "form-horizontal", role: "form"}) do |f| %> 
       <%#= form_for(@article, :html => {:multipart => true, class: "form-horizontal", role: "form"}) do |f| %> 
       <%= form_for @article, :html => {:multipart => true,  :class => "form-horizontal project" } do |f| %>
-
+        <div class="form-actions">
+          <!--<div class="col-sm-offset-0 col-sm-3">           
+            <h4 align="left">Modify Existing Ad</h4>
+          </div>-->
+          <div class="col-sm-offset-9 col-sm-2"> 
+            <%= f.check_box :xonline  %>&nbsp;&nbsp;<%= 'Display this Ad'%>
+            <%#= link_to t('.cancel', :default => t("helpers.links.cancel")), articles_path, :class => 'btn btn-default' %>
+          </div>
+          <div class="col-sm-1"> 
+            <%= f.submit "Save"%>
+          </div>
+          <div class="col-sm-12"> 
+            <hr>
+          </div>          
+        </div>
         <div class="form-group"> 
           <div class="control-label col-sm-2">
             <%="Location"%> 
@@ -173,7 +185,7 @@
             <%= "Ad Title" %> 
           </div> 
           <div class="col-sm-5"> 
-            <%= f.text_field :title, class: "form-control", placeholder: "Title of Ad", :maxlength => 40 %> 
+            <%= f.text_field :title, class: "form-control", placeholder: "Title of Ad", :maxlength => 50 %> 
           </div> 
           <div class="control-label col-sm-2"><%= "(Max: 40 Characters)" %></div>
         </div> 
@@ -183,7 +195,7 @@
             <%= "(Max: 300 Characters)" %>
           </div> 
           <div class="col-sm-8"> 
-            <%= f.text_area :description, rows: 5, class: "form-control", placeholder: "Body of Ad", :maxlength => 300 %> 
+            <%= f.text_area :description, rows: 5, class: "form-control", placeholder: "Body of Ad", :maxlength => 500 %> 
           </div> 
         </div> 
         
@@ -199,15 +211,6 @@
             </div>     
           <%# end %>
         </div>  -->
-        </div>
-        <div class="form-actions">
-          <div class="col-sm-offset-2 col-sm-10"> 
-            <%= f.submit "Save", :class => 'btn btn-primary' %>&nbsp;&nbsp;&nbsp;
-            <%#= link_to t('.cancel', :default => t("helpers.links.cancel")), articles_path, :class => 'btn btn-default' %>&nbsp;&nbsp;&nbsp;
-            <%= f.check_box :xonline  %><%= 'Display this Ad'%>
-          </div>
-        </div>
+
+
       <% end %> 
-    </div>
-  </div> 
-</div>

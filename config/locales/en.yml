@@ -25,3 +25,13 @@ en:
     attributes:
       your_lower_case_model_name:
         place: Country
+
+
+# following codes 14-Oct-2016 to change DELETE label to X - for Image deletion
+en:
+ helpers:
+    links:
+      back: "Back Page"
+      destroy: "Remove [:X]"
+
+

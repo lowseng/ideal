@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   before_action :enforce_tenancy, except: [:index, :show]
 
   def index
-    @articles = Article.paginate(page: params[:page], per_page: 5).order('updated_at desc')
+    @articles = Article.paginate(page: params[:page], per_page: 5).where(xonline: true).order('updated_at desc')
   end
 
   def new 
@@ -95,7 +95,7 @@ class ArticlesController < ApplicationController
       session[:current_article] = current_article
       session[:mpage] = "SAVE"
       #redirect_to new_image_path(:param1 => "1", :param2 => "value2")
-      redirect_to edit_article_path(:id => session[:current_article], :param2 => "value2")
+      redirect_to edit_article_path(:id => session[:current_article], :param2 => "value2", anchor: "images")
 
     else 
       render 'new' 
@@ -184,19 +184,16 @@ class ArticlesController < ApplicationController
     @article.area = params[:area][:name] if params[:area].present?
     @article.otherinfo = params[:otherinfo][:name] if params[:otherinfo].present?    
 
+
+    @image = Image.new
+    session[:mpage] = "1"
+    current_article = @article.id
+    session[:current_article] = current_article
+
     if @article.update(article_params) 
       flash[:success]='Article was successfully updated' 
       current_article = @article.id
       session[:current_article] = current_article
-
-#auto save images
-
-      if params[:picture].present?
-        @image = Image.new(image_params)
-        @image.article_id =  session[:current_article]
-        @image.save
-      end
-      
       redirect_to root_path
     else 
       render 'edit'

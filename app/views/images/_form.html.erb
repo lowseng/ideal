@@ -1,23 +1,33 @@
 <%= render 'shared/errors', obj: @image %>
-
 <script>
   function preventBack(){window.history.forward();}
   setTimeout("preventBack()", 0);
   window.onunload=function(){null};
 </script>
 
-<div class="well col-xs-12 col-xs-offset-0">
+
   <table width="100%" border="0" cellspacing=5 cellpadding=5>
     <tr valign="center">  
       <%# mcount = @article.images.count %>
       <% mcount = 6 %>
       <% @article.images.each do |t| %>
-        <td align="center" width="280" height="190"><%= image_tag t.picture.url, size: "280x190" %><br><br>
-              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+        <!--<td align="center" width="280" height="190"><%#= image_tag t.picture.url, size: "280x190" %><br><br>
+              <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
                   image_path(t),
                   :method => :delete,
                   :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                   :class => 'btn btn-xs btn-danger' %>
+        </td>-->
+        <td align="center" width="280" height="190">
+          <table border="0" cellspacing=0 cellpadding=0>
+            <tr><td align="right" >
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                image_path(t),
+                :method => :delete,
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }%>
+            </td></tr>
+            <tr><td><%= image_tag t.picture.url, size: "280x190", :class => "style_image" %></td></tr>
+          </table>
         </td>
         <% mcount = mcount - 1 %>
         <% if mcount == 3 %>
@@ -80,7 +90,7 @@
 
     <% end %>
   <% end %>
-</div>  
+
 
 <!--
 <div class="col-sm-1 col-xs-offset-0">
