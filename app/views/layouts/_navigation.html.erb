@@ -1,4 +1,4 @@
-<!--<nav class="navbar navbar-default">-->
+<!--<nav class="navbar navbar-default"> #ROUNDEd eDGE-->
 <nav class=" navbar-inverse">  
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -17,16 +17,16 @@
 
 
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "<span class='glyphicon glyphicon-home'></span> Home".html_safe, root_path %></li>
+        <li><%= link_to "<span class='glyphicon glyphicon-home'></span>&nbsp; Home".html_safe, root_path %></li>
         <% if current_user %>
           <% if current_user.status == "Premier" %>
             <% session[:m_posting] = 105 %>
           <% else %>
             <% session[:m_posting] = 5 %>
           <%end %>
-          <li><%= link_to "<span class='glyphicon glyphicon-edit'></span> Insert New Ad".html_safe, new_article_path(:param1 => "new") %></li>
+          <li><%= link_to "<span class='glyphicon glyphicon-edit'></span>&nbsp; Insert New Ad".html_safe, new_article_path(:param1 => "new") %></li>
           <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe %> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= ('<i class="fa fa-user"></i>&nbsp; ' + truncate(current_user.email, length: 25)).html_safe %> <span class="caret"></span></a>
           <ul class="dropdown-menu">
           <% if logged_in? and current_user.admin? %>
             <li><%= link_to "Manage Users", users_path %></li>
@@ -42,7 +42,7 @@
           <li><%= link_to "My Settings", edit_user_path(current_user.id) %></li>
           <li ><%= link_to "Sign Out ".html_safe, destroy_user_session_path, :method => :delete %></li>        
         <% else %>
-          <li><%= link_to "<span class='glyphicon glyphicon-log-in'></span> Sign In".html_safe, new_user_session_path %></li>
+          <li><%= link_to "<span class='glyphicon glyphicon-log-in'></span>&nbsp; Sign In".html_safe, new_user_session_path %></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
