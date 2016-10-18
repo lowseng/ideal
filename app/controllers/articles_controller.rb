@@ -7,7 +7,11 @@ class ArticlesController < ApplicationController
   before_action :enforce_tenancy, except: [:index, :show]
 
   def index
-    @articles = Article.paginate(page: params[:page], per_page: 5).where(xonline: true).order('updated_at desc')
+    if current_user.admin
+      @articles = Article.paginate(page: params[:page], per_page: 5).order('updated_at desc')
+    else
+      @articles = Article.paginate(page: params[:page], per_page: 5).where(xonline: true).order
+    end
   end
 
   def new 

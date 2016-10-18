@@ -1,0 +1,5 @@
+<%= render 'mmsearch' %><br>
+<%= render 'articles/mmarticle', obj: @articles %>
+<div align="left">
+  <%= will_paginate @articles %>
+</div>

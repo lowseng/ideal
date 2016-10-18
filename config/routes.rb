@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   resources :areas
   resources :otherinfos 
   #for coder use only
-  resources :rawplaces
-  resources :rawregions
-  resources :rawareas  
+  #resources :rawplaces
+  #resources :rawregions
+  #resources :rawareas  
   
   devise_for :users
   #devise_for :users, :controllers => { :registrations => 'registrations' }
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   post "/hook" => "paypals#hook"
   post "/paypals/:id" => "paypals#new"  
 
-
+  get 'welcome/mmindex' => 'welcome#mmindex'
 
   #get 'oneuser/list', to: 'oneuser#list'
   # Example of regular route:
