@@ -1,0 +1,68 @@
+<%= form_tag root_path, :method => "get", id: "search-form", :class => "form-horizontal project" , :enforce_utf8 => false do %>      
+  <div class="row">
+    <% obj.each do |article| %> 
+    	<div class="col-xs-3">
+        <% article.images.each do |t| %>
+          <% if t.picture.url %>
+            <%= image_tag t.picture.url, size: "80x60" %>
+          <% else %>
+            xx<%= image_tag url('images/noimage.gif'), size: "80x60" %>xx
+          <% end %>
+          <% break %>
+        <% end %>
+        <% if !article.images.present? %>
+          <%= image_tag("80x60.gif", :size => '80x60') %>
+        <% end %>
+      </div>
+    	<div class="col-xs-9">
+        <div class="article-title00">
+          <%#= article.category %> <%#= article.proptype%>
+          <% if article.xonline? %>
+            <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>         
+          <%else %>
+            <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %><%= " - [OFFLINE]" %> 
+          <% end %>
+        </div>
+        <div>
+          <%= truncate(article.description, length: 80) %>
+        </div>
+        <div class="row gutter-0">
+          <div class="article-price col-xs-7">
+            <% @place = Place.find(article.currency) if article.currency.present? %>
+            <%= @place.currency if @place.present? %> <%= number_with_precision(article.amount, precision: 0, delimiter: ',') %>
+          </div>
+          <div align="right" class="article-date col-xs-5">
+            <%= article.created_at.to_formatted_s(:short) %>
+          </div>
+        </div>
+        <div>
+          <% if current_user %>
+            <% if current_user && current_user == article.user || current_user.admin? %>
+              <%# if current_user.admin? %>
+                <%= link_to "Edit this Ad", edit_article_path(article), class: "btn btn-xs btn-primary" %>
+              <%# end %>
+              <%= link_to "Delete this Ad", article_path(article), method: :delete,
+              data: { confirm: "Are you sure you want to delete the article?"},
+              class: "btn btn-xs btn-danger" %>
+            <% end %>
+          <% end %> 
+        </div><hr>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<br><br>
+<div class="article-title" align="center">
+  <b><%= "SHARE IT" %></b><br><br>
+  <%= link_to image_tag("facebook.gif"), "https://www.facebook.com/sharer.php?u=http://www.http://sssssb.comy/" %>&nbsp;&nbsp;
+  <%= link_to image_tag("twitter.gif"), "https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus%3DCurrently%2520reading%2520http%3A%2F%2Fwww.srsp.edu.my" %>&nbsp;&nbsp;
+  <%= link_to image_tag("google.gif"), "https://accounts.google.com/ServiceLogin?service=oz&passive=1209600&continue=https://plus.google.com/share?url%3Dhttp://www.sssssb.com%26gpsrc%3Dgplp0&btmpl=popup#identifier" %>&nbsp;&nbsp;
+  <%= image_tag("whatsapp.gif") %>
+</div>
+<br><br><br>	
+<!--= image_tag 'image_url', style: 'height:100%;width:auto;'-->
+<!--<div class="image-fit col-xs-2"><%#= image_tag("500x1000.gif", :size => '80x60') %></div>-->
+<!--<div><%#= image_tag("500x1000.gif", :size => '250x500') %></div>-->
+<div><%= image_tag("500x1000.gif", width: '100%') %></div>
+
+
