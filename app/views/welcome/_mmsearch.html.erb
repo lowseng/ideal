@@ -9,23 +9,25 @@
             <%= text_field_tag :search, params[:search], placeholder: "Search titles & descriptions", class: 'form-control' %>
           </div>
         </div>
-        
-        <div class="form-group">        
-          <div class="col-sm-3"> 
-            <% if params[:place].present? %>
-              <%= select("place", "name", options_for_select(@places_for_dropdown, :selected => params[:place][:name] ),
-                {prompt: 'Select country'}, {class: 'form-control'}) %>
-              <% else if current_user.present? %>
-                  <%= select("place", "name", options_for_select(@places_for_dropdown, current_user.prefercountry), {prompt: 'Select country'}, {class: 'form-control'}) %>            
-                <% else if @places_for_dropdown.count.to_i == 1 %>
-                    <%= select("place", "name", options_for_select(@places_for_dropdown, @places_for_dropdown.first), {prompt: 'Select country'}, {class: 'form-control'}) %>            
-                  <% else%>
-                    <%= select("place", "name", options_for_select(@places_for_dropdown), {prompt: 'Select country'}, {class: 'form-control'}) %>            
+
+        <%# if @places_for_dropdown.count.to_i != 1 %>        
+          <div class="form-group">        
+            <div class="col-sm-3"> 
+              <% if params[:place].present? %>
+                <%= select("place", "name", options_for_select(@places_for_dropdown, :selected => params[:place][:name] ),
+                  {prompt: 'Select country'}, {class: 'form-control'}) %>
+                <% else if current_user.present? %>
+                    <%= select("place", "name", options_for_select(@places_for_dropdown, current_user.prefercountry), {prompt: 'Select country'}, {class: 'form-control'}) %>            
+                  <% else if @places_for_dropdown.count.to_i == 1 %>
+                      <%= select("place", "name", options_for_select(@places_for_dropdown, @places_for_dropdown.first), {prompt: 'Select country'}, {class: 'form-control'}) %>            
+                    <% else%>
+                      <%= select("place", "name", options_for_select(@places_for_dropdown), {prompt: 'Select country'}, {class: 'form-control'}) %>            
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
-          </div> 
-        </div>
+            </div> 
+          </div>
+        <%# end %>
         
         <div class="form-group">          
           <div class="col-sm-3"> 
