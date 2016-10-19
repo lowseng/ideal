@@ -1,14 +1,18 @@
 <nav class="navbar navbar-inverse navbar-fixed-bottom navbar-custom">
   <div class="container-fluid">
     <div class="btn-group btn-group-justified">
-      <a href="#" class="btn btn-primary">Apple</a>
-      <a href="#" class="btn btn-primary">Samsung</a>
-      <%= link_to 'Home', root_path, class: 'btn btn-primary' %>
+      <%= link_to 'Home', welcome_mmindex_path, class: 'btn btn-primary' %>
+      <%= link_to "What's New", root_path, class: 'btn btn-primary' %>
+      <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary' %>
     </div>
   </div>
 </nav>
 
 
 
-<!-- nav-justified to align center-->
+<!-- nav-justified to align center
+      <a href="#" class="btn btn-primary">Apple</a>
+      <a href="#" class="btn btn-primary">Samsung</a>
+
+->
 <!--  <ul class="nav nav-justified">-->
