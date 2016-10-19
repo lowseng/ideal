@@ -81,21 +81,21 @@
               <%= radio_button_tag 'proptype', 'for Sale', checked = true if params[:proptype] == 'for Sale' %> For sale&nbsp;&nbsp;&nbsp;
             <% else %>
               <label class="btn btn-primary btn-sm">
-                <%= radio_button_tag 'proptype', 'for Sale'%> For sale&nbsp;&nbsp;&nbsp;
+                <%= radio_button_tag 'proptype', 'for Sale'%> For sale
               </label>
             <% end %>
             <% if params[:proptype] == 'for Rent' %>
               <%= radio_button_tag 'proptype', 'for Rent', checked = true if params[:proptype] == 'for Rent' %> For rent&nbsp;&nbsp;&nbsp;
             <% else %>
               <label class="btn btn-primary btn-sm">
-                <%= radio_button_tag 'proptype', 'for Rent' %> For rent&nbsp;&nbsp;&nbsp;
+                <%= radio_button_tag 'proptype', 'for Rent' %> For rent
               </label>
             <% end %>
             <% if params[:proptype] == 'for Auction' %>
               <%= radio_button_tag 'proptype', 'for Auction', checked = true if params[:proptype] == 'for Auction' %> For auction&nbsp;&nbsp;&nbsp;
             <% else %>
               <label class="btn btn-primary btn-sm">            
-                <%= radio_button_tag 'proptype', 'for Auction' %> For auction&nbsp;&nbsp;&nbsp;
+                <%= radio_button_tag 'proptype', 'for Auction' %> For auction
               </label>
             <% end %>
             <% if params[:proptype] == 'new Launch' %>
