@@ -53,9 +53,10 @@
         </div><!--/span-->
       </div><!--/row-->
 
-      <% if session[:mobile] ="Y" %>
+      <% if session[:mobile] == "Y" %>
         <%= render 'layouts/footer' %> 
       <% end %>
+      
     </div> <!-- /container -->
     <%= debug(params) if Rails.env.development? %>
   </body>
