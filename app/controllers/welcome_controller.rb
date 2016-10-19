@@ -6,6 +6,6 @@ class WelcomeController < ApplicationController
     session[:mobile] = "Y"  
   end
   def index
-
+    session[:mobile] = "N"  
   end
 end
