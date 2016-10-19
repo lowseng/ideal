@@ -73,37 +73,39 @@
             </select> 
           </div>           
         </div>
- 
-        <div class="btn-group" data-toggle="buttons">
+
+        <div class="form-group"> 
+          <div class="col-sm-offset-0 col-sm-12 btn-group" data-toggle="buttons">
             <!--<%#= radio_button_tag 'proptype', '', checked = true %> All&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
             <% if params[:proptype] == 'for Sale' %>
               <%= radio_button_tag 'proptype', 'for Sale', checked = true if params[:proptype] == 'for Sale' %> For sale&nbsp;&nbsp;&nbsp;
             <% else %>
-              <label class="btn btn-primary">
+              <label class="btn btn-primary btn-sm">
                 <%= radio_button_tag 'proptype', 'for Sale'%> For sale&nbsp;&nbsp;&nbsp;
               </label>
             <% end %>
             <% if params[:proptype] == 'for Rent' %>
               <%= radio_button_tag 'proptype', 'for Rent', checked = true if params[:proptype] == 'for Rent' %> For rent&nbsp;&nbsp;&nbsp;
             <% else %>
-              <label class="btn btn-primary">
+              <label class="btn btn-primary btn-sm">
                 <%= radio_button_tag 'proptype', 'for Rent' %> For rent&nbsp;&nbsp;&nbsp;
               </label>
             <% end %>
             <% if params[:proptype] == 'for Auction' %>
               <%= radio_button_tag 'proptype', 'for Auction', checked = true if params[:proptype] == 'for Auction' %> For auction&nbsp;&nbsp;&nbsp;
             <% else %>
-              <label class="btn btn-primary">            
+              <label class="btn btn-primary btn-sm">            
                 <%= radio_button_tag 'proptype', 'for Auction' %> For auction&nbsp;&nbsp;&nbsp;
               </label>
             <% end %>
             <% if params[:proptype] == 'new Launch' %>
               <%= radio_button_tag 'proptype', 'new Launch', checked = true if params[:proptype] == 'new Launch' %> New launch
             <% else %>
-              <label class="btn btn-primary">  
+              <label class="btn btn-primary btn-sm">  
                 <%= radio_button_tag 'proptype', 'new Launch' %> New launch
               </label>
             <% end %>
+          </div>
         </div>
 
         <div class="form-group">

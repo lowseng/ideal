@@ -104,7 +104,7 @@ margin-right: 5px;
 
 .btn {
 padding: 14px 24px;
-border: 0 none;
+border: 1;
 font-weight: 700;
 letter-spacing: 1px;
 color: #fff !important;
@@ -118,7 +118,9 @@ outline: 0 none;
 background: #007FAD;
 color: #ffffff;
 }
-
+.btn-sm {
+padding: 7px 12px;
+}
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
 background: #33a6cc;
 }
