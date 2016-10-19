@@ -10,8 +10,9 @@
             <% if params[:proptype] == 'for Sale' %>
               <%= radio_button_tag 'proptype', 'for Sale', checked = true if params[:proptype] == 'for Sale' %> For sale&nbsp;&nbsp;&nbsp;
             <% else %>
-              <label class="btn btn-primary btn-sm">
-                <%= radio_button_tag 'proptype', 'for Sale'%> For sale
+              <label class="btn btn-primary btn-sm active">
+                <%= radio_button_tag 'proptype', 'for Sale', checked = true %>
+                <%#= radio_button_tag 'proptype', 'for Sale'%> For sale
               </label>
             <% end %>
             <% if params[:proptype] == 'for Rent' %>
@@ -207,8 +208,8 @@
           </div>
           
           <div class="form-group"> 
-            <div align="right" class="control-label col-xs-offset-0 col-xs-4"> 
-              <%= "Measure:" %>
+            <div align="right" class="control-label col-xs-offset-0 col-xs-8"> 
+              <%= "Unit of Measurement:" %>
             </div>
             <div class="col-xs-offset-0 col-xs-4"> 
               <% if params[:chaina].present? %>
