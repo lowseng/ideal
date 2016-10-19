@@ -10,7 +10,13 @@
           </div>
         </div>
 
-        <%# if @places_for_dropdown.count.to_i != 1 %>        
+        <% if @places_for_dropdown.count.to_i == 1 %>
+          <div class="form-group">        
+            <div class="col-sm-3">         
+              <%= select("place", "name", options_for_select(@places_for_dropdown, @places_for_dropdown.first), {}, {class: 'form-control'}) %>            
+            </div> 
+          </div>
+        <% else %>
           <div class="form-group">        
             <div class="col-sm-3"> 
               <% if params[:place].present? %>
@@ -27,7 +33,7 @@
               <% end %>
             </div> 
           </div>
-        <%# end %>
+        <% end %>
         
         <div class="form-group">          
           <div class="col-sm-3"> 
@@ -125,10 +131,10 @@
 <!--Section-->
         <section id="comments-section">
           <div class="form-group">
-            <div align="right" class="control-label col-xs-offset-0 col-xs-4"> 
+            <div align="right" class="control-label col-xs-offset-0 col-xs-6"> 
               <%= "Rooms:" %>
             </div>
-            <div class="col-xs-offset-0 col-xs-4"> 
+            <div class="col-xs-offset-0 col-xs-3"> 
               <% if params[:chainb].present? %>
                 <%= select("chainb", "name", options_for_select(@roomsmin_for_dropdown, :selected => params[:chainb][:name] ),
                   {prompt: 'Min'}, {class: 'form-control'}) %>
@@ -136,7 +142,7 @@
                 <%= select("chainb", "name", options_for_select(@roomsmin_for_dropdown), {prompt: 'Min'}, {class: 'form-control'}) %>
               <% end %>
             </div>
-            <div class="col-xs-offset-0 col-xs-4"> 
+            <div class="col-xs-offset-0 col-xs-3"> 
               <% if params[:chainc].present? %>
                 <%= select("chainc", "name", options_for_select(@roomsmax_for_dropdown, :selected => params[:chainc][:name] ), 
                   {prompt: 'Max'}, {class: 'form-control'}) %>
@@ -145,23 +151,6 @@
                   {class: 'form-control'}) %>            
               <% end %>
             </div>
-          </div>
-        
-          <div class="form-group"> 
-            <div align="right" class="control-label col-xs-offset-0 col-xs-4"> 
-              <%= "Measure:" %>
-            </div>
-            <div class="col-xs-offset-0 col-xs-4"> 
-              <% if params[:chaina].present? %>
-                <%= select("chaina", "uom", options_for_select(@uoms_for_dropdown, :selected => params[:chaina][:uom] ),
-                  {prompt: 'UOM'}, {class: 'form-control'}) %>
-                <% else if current_user.present? %>
-                    <%= select("chaina", "uom", options_for_select(@uoms_for_dropdown, current_user.preferuom), {prompt: 'UOM'}, {class: 'form-control'}) %>            
-                  <% else %>
-                    <%= select("chaina", "uom", options_for_select(@uoms_for_dropdown), {prompt: 'UOM'}, {class: 'form-control'}) %>            
-                <% end %>
-              <% end %>
-            </div>  
           </div>
 
           <div class="form-group">
@@ -189,29 +178,6 @@
 
           <div class="form-group">
             <div align="right" class="control-label col-xs-offset-0 col-xs-4"> 
-              <%= "Land area:" %>
-            </div>
-            <div class="col-xs-offset-0 col-xs-4"> 
-              <% if params[:chainb].present? %>
-                <%= select("chainb", "landarea", options_for_select(@buildupmin_for_dropdown, :selected => params[:chainb][:landarea] ),
-                  {prompt: 'Min'}, {class: 'form-control'}) %>
-              <% else %>
-                <%= select("chainb", "landarea", options_for_select(@buildupmin_for_dropdown), {prompt: 'Min'}, {class: 'form-control'}) %>
-              <% end %>
-            </div>
-            <div class="col-xs-offset-0 col-xs-4"> 
-              <% if params[:chainc].present? %>
-                <%= select("chainc", "landarea", options_for_select(@buildupmax_for_dropdown, :selected => params[:chainc][:landarea] ), 
-                  {prompt: 'Max'}, {class: 'form-control'}) %>
-              <% else %>
-                <%= select("chainc", "landarea", options_for_select(@buildupmax_for_dropdown), {prompt: 'Max'},
-                  {class: 'form-control'}) %>            
-              <% end %>
-            </div> 
-          </div>
-
-          <div class="form-group">
-            <div align="right" class="control-label col-xs-offset-0 col-xs-4"> 
               <%= "Price:" %>
             </div>
             <div class="col-xs-offset-0 col-xs-4"> 
@@ -231,6 +197,46 @@
                   {class: 'form-control'}) %>            
               <% end %>
             </div>
+          </div>
+          
+          <div class="form-group"> 
+            <div align="right" class="control-label col-xs-offset-0 col-xs-4"> 
+              <%= "Measure:" %>
+            </div>
+            <div class="col-xs-offset-0 col-xs-4"> 
+              <% if params[:chaina].present? %>
+                <%= select("chaina", "uom", options_for_select(@uoms_for_dropdown, :selected => params[:chaina][:uom] ),
+                  {prompt: 'UOM'}, {class: 'form-control'}) %>
+                <% else if current_user.present? %>
+                    <%= select("chaina", "uom", options_for_select(@uoms_for_dropdown, current_user.preferuom), {prompt: 'UOM'}, {class: 'form-control'}) %>            
+                  <% else %>
+                    <%= select("chaina", "uom", options_for_select(@uoms_for_dropdown), {prompt: 'UOM'}, {class: 'form-control'}) %>            
+                <% end %>
+              <% end %>
+            </div>  
+          </div>
+          
+          <div class="form-group">
+            <div align="right" class="control-label col-xs-offset-0 col-xs-4"> 
+              <%= "Land area:" %>
+            </div>
+            <div class="col-xs-offset-0 col-xs-4"> 
+              <% if params[:chainb].present? %>
+                <%= select("chainb", "landarea", options_for_select(@buildupmin_for_dropdown, :selected => params[:chainb][:landarea] ),
+                  {prompt: 'Min'}, {class: 'form-control'}) %>
+              <% else %>
+                <%= select("chainb", "landarea", options_for_select(@buildupmin_for_dropdown), {prompt: 'Min'}, {class: 'form-control'}) %>
+              <% end %>
+            </div>
+            <div class="col-xs-offset-0 col-xs-4"> 
+              <% if params[:chainc].present? %>
+                <%= select("chainc", "landarea", options_for_select(@buildupmax_for_dropdown, :selected => params[:chainc][:landarea] ), 
+                  {prompt: 'Max'}, {class: 'form-control'}) %>
+              <% else %>
+                <%= select("chainc", "landarea", options_for_select(@buildupmax_for_dropdown), {prompt: 'Max'},
+                  {class: 'form-control'}) %>            
+              <% end %>
+            </div> 
           </div>
 
           <div class="form-group">            
