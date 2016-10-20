@@ -4,8 +4,8 @@
   <% else %>
     <div class='col-sm-offset-0 col-xs-12'>
   <% end %>
-    <div class="well well-lg">
       <h4 align="center">Insert a New Ad (# <%= current_user.articles.count+1 %> of <%= session[:m_posting] %>)</h4>
+      <hr>
       <% if current_user.articles.count >= session[:m_posting] %>
         <br><br><br><br><br><br><br><br><br>
         <h4 align="center"><%= "You have exceeded the number of ads permitted from your account!" %></h4>
@@ -17,6 +17,5 @@
           <%= render 'form' %>
         <% end %>
       <% end %>
-    </div>
   </div>
 </div>      
