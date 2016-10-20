@@ -24,37 +24,38 @@
 
   <% if @places_for_dropdown.count.to_i == 1 %>
     <div class="form-group">        
-      <div class="col-sm-3">         
+      <div class="col-sm-6">         
         <%= select("place", "name", options_for_select(@places_for_dropdown, @places_for_dropdown.first), {}, {class: 'form-control'}) %>            
       </div> 
     </div>
   <% else %>
     <div class="form-group"> 
-      <div class="col-xs-3"> 
+      <div class="col-xs-6"> 
         <%#= select("place", "name", options_for_select(@places_for_dropdown, :selected => @article.place), {prompt: 'Select Country'}, {class: 'form-control'}) %>
         <%= select("place", "name", options_for_select(@places_for_dropdown, @article.place || current_user.prefercountry), {prompt: 'Select Country'}, {class: 'form-control'}) %>
       </div> 
     </div>
   <% end %>
   <div class="form-group">  
-    <div class="col-xs-3"> 
+    <div class="col-xs-6"> 
       <%= select("region", "name", options_for_select(@regions_for_dropdown, :selected => @article.region), {prompt: 'Select Region'}, {class: 'form-control'}) %>
     </div> 
-  </div>
-  <div class="form-group">
-    <div class="col-xs-3"> 
+    <div class="col-xs-6"> 
       <%= select("area", "name", options_for_select(@areas_for_dropdown, :selected => @article.area), {prompt: 'Select Area'}, {class: 'form-control'}) %>
     </div> 
   </div>    
 
   <div class="form-group"> 
-    <div class="control-label col-xs-2"> 
+    <div class="control-label col-xs-12"> 
       <%= "Property" %> 
     </div> 
-    <div class=" col-xs-3">
+    <div class=" col-xs-12">
       <%= f.select :category, [['Apartment','Apartment'],['House','House'],['Commercial','Commercial'],['Land','Land'],['Room','Room'],['New','New']], {}, { class: "form-control" } %>
-    </div> 
-    <div class="checkbox col-xs-7"> 
+    </div>
+  </div>
+  
+  <div class="form-group" >
+    <div class="checkbox col-xs-12"> 
         <!-- <%#= f.radio_button :proptype, 'for Sale', :checked => (params[:param1] == "new" if params[:param1])  %> For Sale&nbsp;&nbsp;&nbsp; -->
         <%= f.radio_button :proptype, 'for Sale', :checked => (params[:param1] == "new"  || @article.proptype == "for Sale" )  %> For Sale&nbsp;&nbsp;&nbsp;
         <!-- <%#= f.radio_button :proptype, 'for Sale' %> For Sale&nbsp;&nbsp;&nbsp; -->
@@ -63,20 +64,22 @@
         <%= f.radio_button :proptype, 'new Launch' %> New Launch&nbsp;&nbsp;&nbsp;
     </div> 
   </div>
+  
   <div class="form-group">
-    <div class="control-label col-xs-2"> 
+    <div class="control-label col-xs-3"> 
       <%= "Rooms" %> 
     </div> 
-    <div class=" col-xs-2">
+    <div class=" col-xs-3">
       <%= f.select :bedroom, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9'],['10','10']], {}, { class: "form-control" } %>
     </div>
-    <div class="control-label col-xs-2"> 
+    <div class="control-label col-xs-3"> 
       <%= "Baths" %> 
     </div> 
-    <div class=" col-xs-2">
+    <div class=" col-xs-3">
       <%= f.select :bathroom, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9'],['10','10']], {}, { class: "form-control" } %>
     </div>
-  </div> 
+  </div>
+  
   <div class="form-group">
     <div class="control-label col-xs-2"> 
       <%= "Land" %> 
