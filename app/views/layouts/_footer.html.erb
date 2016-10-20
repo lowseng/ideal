@@ -1,9 +1,10 @@
 <nav class="navbar navbar-inverse navbar-fixed-bottom navbar-custom">
   <div class="container-fluid">
     <div class="btn-group btn-group-justified">
-      <%= link_to 'Home', welcome_mmindex_path, class: 'btn btn-primary' %>
+      <%= link_to "<span class='glyphicon glyphicon-home'></span>&nbsp; Home".html_safe, welcome_mmindex_path, class: 'btn btn-primary' %>
       <%= link_to "What's New", root_path, class: 'btn btn-primary' %>
-      <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary' %>
+      <%#= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary' %>
+      <%= link_to "<span class='glyphicon glyphicon-log-in'></span>&nbsp; Sign In".html_safe, new_user_session_path, class: 'btn btn-primary'  %>
     </div>
   </div>
 </nav>

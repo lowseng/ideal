@@ -103,7 +103,7 @@ margin-right: 5px;
 }
 
 .btn {
-padding: 14px 24px;
+
 border: 1;
 font-weight: 350;
 letter-spacing: 1px;
@@ -117,6 +117,7 @@ outline: 0 none;
 .btn-primary {
 background: #007FAD;
 color: #ffffff;
+padding: 14px 24px;
 }
 .btn-sm {
 background: #C94A30;
@@ -130,7 +131,11 @@ background: #33a6cc;
 background: #007299;
 box-shadow: none;
 }
-
+.btn-info1 {
+background: #F77100;
+color: #F53B0F;
+padding: 10px 20px;
+}
 
 
 .features {
