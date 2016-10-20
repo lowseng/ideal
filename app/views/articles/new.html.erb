@@ -7,7 +7,11 @@
         <h4 align="center"><%= "You have exceeded the number of ads permitted from your account!" %></h4>
         <br><br><br><br><br><br><br><br><br>
       <% else %>
-        <%= render 'form' %>
+        <% if session[:mobile] = "Y" %>
+          <%= render 'mmform' %>        
+        <% else %>
+          <%= render 'form' %>
+        <% end %>
       <% end %>
     </div>
   </div>
