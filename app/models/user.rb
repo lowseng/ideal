@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
   has_many :cards
 
 # must check the following during updates only
-  validates :name, presence: true, :on => :update
-  validates :telephone, presence: true, :on => :update  
+  # validates :name, presence: true, :on => :update --- taken out coz forgot password issue 20/10/2016
+  # validates :telephone, presence: true, :on => :update   --- taken out coz forgot password issue 20/10/2016
   
   serialize :notification_params, Hash
   def paypal_url(return_path)
