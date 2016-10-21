@@ -137,7 +137,7 @@ color: #F53B0F;
 padding: 5px 5px;
 }
 .btn-block { /*search button*/
-background: #0B6CB6;
+background: #0D84E0;
 color: #F53B0F;
 padding: 5px 5px;
 height: 50px;
@@ -318,4 +318,5 @@ img {
 span {
   display: inline-block;
   vertical-align: middle;
+  line-height: 140px; /* <-- adjust this */
 }
