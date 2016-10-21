@@ -118,9 +118,10 @@ outline: 0 none;
 background: #285AA6;
 color: #ffffff;
 }
-.btn-sm {
+.btn-sm { /*radio-button */
 background: #7F8728;
 padding: 8px 10px;
+
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
 background: #33a6cc;
@@ -139,6 +140,7 @@ padding: 5px 5px;
 background: #285AA6;
 color: #F53B0F;
 padding: 5px 5px;
+height: 50px;
 }
 .btn-footer {
 background: #3C4042;
