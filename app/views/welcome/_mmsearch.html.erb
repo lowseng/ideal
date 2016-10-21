@@ -272,10 +272,12 @@
             </div>
           </div><br>
         </section>
-        <div align="center">
+        <div class="col-xs-12" align="center">
           <%= submit_tag("Reset", { :name => 'reset', :id => 'reset_button', :type => "reset", :class => "btn btn-info1" }) %>
-          <%= submit_tag "..:: Search Ads!", :name => nil, :class => "btn btn-info1" %>
-        </div>
+        </div><br><br>
+        <div class="col-xs-12">
+          <%= submit_tag "..:: Search Ads!", :name => nil, :class => "btn btn-primary btn-block" %>
+        </div>        
       <% end %>
     </div>
   </div>
