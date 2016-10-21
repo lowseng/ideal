@@ -3,15 +3,17 @@
 <!--= image_tag 'image_url', style: 'height:100%;width:auto;'-->
 <!--<div class="image-fit col-xs-2"><%#= image_tag("500x1000.gif", :size => '80x60') %></div>-->
 <!--<div><%#= image_tag("500x1000.gif", :size => '250x500') %></div>-->
-<div class="article-title" align="center">
-  <%= "Advertising" %>
-  <%= image_tag("500x1000.gif", width: '100%') %>
-</div>
 <div align="left">
   <%= will_paginate @articles %>
 </div>
 <br>
-<div class="article-title" align="center">
+<div class="row">
+  <div class="col-xs-12 gutter-0" align="center">
+    <%= "Advertising" %>
+    <%= image_tag("500x1000.gif", width: '100%') %>
+  </div>
+</div>
+<div class="col-xs-12 gutter-0" align="center">
   <b><%= "Where now?" %></b><br>
   <b><%= "Found this useful? Share it:" %></b><br><br>
   <%= link_to image_tag("facebook.gif"), "https://www.facebook.com/sharer.php?u=http://www.http://sssssb.comy/" %>&nbsp;&nbsp;
