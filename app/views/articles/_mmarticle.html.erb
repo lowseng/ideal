@@ -2,7 +2,7 @@
   <div class="row">
     <div class='col-xs-offset-0 col-xs-12 gutter-0'>
       <% obj.each do |article| %> 
-      	<div class="col-xs-3">
+      	<div class="col-xs-3 gutter-0">
           <% article.images.each do |t| %>
             <% if t.picture.url %>
               <%= image_tag t.picture.url, size: "80x60" %>
