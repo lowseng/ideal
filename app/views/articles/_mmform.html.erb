@@ -5,7 +5,7 @@
   window.onunload=function(){null};
 </script>
 <%= form_for @article, :html => {:multipart => true,  :class => "form-horizontal project" } do |f| %>
-  <div class="form-group"> 
+  <div class="form-group gutter-0"> 
     <div class="col-sm-offset-0 col-xs-12 btn-group gutter-0" data-toggle="buttons">
       <label class="btn btn-primary btn-sm">
         <%= f.radio_button :proptype, 'for Sale' %> For Sale
@@ -197,11 +197,11 @@
     <%# end %>
   </div>  -->
   <div class="form-actions">
-    <div class="col-sm-offset-9 col-sm-2"> 
+    <div align="center" class="col-sm-12"> 
       <%= f.check_box :xonline  %>&nbsp;&nbsp;<%= 'Display this Ad'%>
       <%#= link_to t('.cancel', :default => t("helpers.links.cancel")), articles_path, :class => 'btn btn-default' %>
     </div>
-    <div class="col-sm-1"> 
+    <div align="center" class="col-sm-12"> 
       <%= f.submit "Save", :class => "btn btn-info1"%>
     </div>
   </div>

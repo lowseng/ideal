@@ -2,9 +2,9 @@
   <% if session[:mobile] = "Y" %>
     <div class='col-sm-offset-0 col-xs-12 gutter-0'>  
   <% else %>
-    <div class='col-sm-offset-0 col-sm-12'>
+    <div class='col-sm-offset-0 col-xs-12'>
   <% end %>
-    <div class="well well-lg gutter-0">
+    <div class="well well-lg">
       <h4 align="center">Insert a New Ad (# <%= current_user.articles.count+1 %> of <%= session[:m_posting] %>)</h4>
       <hr>
       <% if current_user.articles.count >= session[:m_posting] %>
