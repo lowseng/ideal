@@ -148,7 +148,7 @@
         <section id="comments-section">
           <div class="form-group">
             <!--<div align="right" class="control-label col-xs-offset-0 col-xs-4">-->
-            <div id="column-content" class="col-xs-offset-0 col-xs-4"> 
+            <div align="right" id="column-content" class="col-xs-offset-0 col-xs-4 gutter-0"> 
               <span><%= "Rooms:" %></span>
             </div>
             <div class="col-xs-offset-0 col-xs-4"> 
@@ -171,8 +171,8 @@
           </div>
 
           <div class="form-group">
-            <div align="right" class="control-label col-xs-offset-0 col-xs-4"> 
-              <%= "Baths:" %>
+            <div align="right" id="column-content" class="control-label col-xs-offset-0 col-xs-4 gutter-0"> 
+              <span><%= "Baths:" %></span>
             </div>
             <div class="col-xs-offset-0 col-xs-4"> 
               <% if params[:chainb].present? %>
@@ -194,8 +194,8 @@
           </div>
 
           <div class="form-group">
-            <div align="right" class="control-label col-xs-offset-0 col-xs-4"> 
-              <%= "Price:" %>
+            <div align="right" id="column-content" class="control-label col-xs-offset-0 col-xs-4 gutter-0"> 
+              <span><%= "Price:" %></span>
             </div>
             <div class="col-xs-offset-0 col-xs-4"> 
               <% if params[:chainb].present? %>
@@ -217,8 +217,8 @@
           </div>
           
           <div class="form-group"> 
-            <div align="right" class="control-label col-xs-offset-0 col-xs-8"> 
-              <%= "Unit of Measurement:" %>
+            <div align="right" id="column-content"  class="control-label col-xs-offset-0 col-xs-8 gutter-0"> 
+              <span><%= "Unit of Measurement:" %></span>
             </div>
             <div class="col-xs-offset-0 col-xs-4"> 
               <% if params[:chaina].present? %>

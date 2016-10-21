@@ -307,7 +307,7 @@ padding-left: 0;
 //  padding-left: 0
 padding: 1px 1px 1px 1px;
 //margin: 1px 1px 1px 1px;
-//border: 1px solid red;
+border: 1px solid red;
 }
 #column-content {
   display: inline-block;
@@ -315,8 +315,9 @@ padding: 1px 1px 1px 1px;
 img {
   vertical-align: middle;
 }
+
 span {
   display: inline-block;
   vertical-align: middle;
-  line-height: 140px; /* <-- adjust this */
+  line-height: 25px; /* <-- adjust this */
 }
