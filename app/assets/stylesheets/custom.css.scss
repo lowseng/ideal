@@ -1,4 +1,4 @@
-$navbar-default-bg: #DFA178;
+$navbar-default-bg: #3C4042; /*top bar background color */
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -104,7 +104,7 @@ margin-right: 5px;
 
 .btn {
 
-border: 1;
+border: 0;
 font-weight: 350;
 letter-spacing: 1px;
 color: #fff !important;
@@ -115,7 +115,7 @@ outline: 0 none;
 }
 
 .btn-primary {
-background: #007FAD;
+background: #285AA6;
 color: #ffffff;
 }
 .btn-sm {
@@ -135,8 +135,13 @@ background: #383F36;
 color: #F53B0F;
 padding: 5px 5px;
 }
+.btn-block { /*search button*/
+background: #285AA6;
+color: #F53B0F;
+padding: 5px 5px;
+}
 .btn-footer {
-background: #007FAD;
+background: #3C4042;
 color: #ffffff;
 padding: 14px 24px;
 }
@@ -293,12 +298,12 @@ padding-left: 0;
 }
 .navbar-custom {
     color: #ffffff !important;
-    background-color: #5E6061;
+    background-color: #3C4042; /*footer background color*/
 }
 .gutter-0 {
 //  padding-right: 0;
 //  padding-left: 0
 padding: 1px 1px 1px 1px;
 //margin: 1px 1px 1px 1px;
-//border: 1px solid red;
+border: 1px solid red;
 }

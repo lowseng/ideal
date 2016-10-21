@@ -4,7 +4,9 @@
   setTimeout("preventBack()", 0);
   window.onunload=function(){null};
 </script>
-<div class="row">
+<div class='row'> 
+  <div class='col-xs-offset-0 col-xs-12 gutter-0'>
+    <div class="well" >
 <%= form_for @article, :html => {:multipart => true,  :class => "form-horizontal project" } do |f| %>
   <div class="form-group"> 
     <div class="col-xs-12 btn-group gutter-0" data-toggle="buttons">
@@ -200,16 +202,19 @@
       </div>     
     <%# end %>
   </div>  -->
-  <div class="form-actions">
-    <div align="center" class="col-sm-12"> 
+  <div class="form-group form-actions">
+    <div align="center" class="col-xs-12"> 
       <%= f.check_box :xonline  %>&nbsp;&nbsp;<%= 'Display this Ad'%>
       <%#= link_to t('.cancel', :default => t("helpers.links.cancel")), articles_path, :class => 'btn btn-default' %>
     </div>
 
-    <div align="center" class="col-sm-12"><br> 
+    <div align="center" class="col-xs-12"><br> 
       <%= f.submit "Save", :class => "btn btn-primary btn-block"%>
     </div>
   </div>
 <% end %>
-</div><!--/row-->
+
+    </div> <!--/well-->
+  </div>
+</div>
 <br><br><br><br><br>
