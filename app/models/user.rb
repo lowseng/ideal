@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
         #invoice: '229',
         amount: '125.00',
         item_name: 'Premier',
-        currency: 'MYR',
+        currency_code: 'MYR',
         #item_number: id,
         notify_url: "#{Rails.application.secrets.app_host}/hook",
         quantity: '1'
