@@ -35,7 +35,7 @@
           <div align="right" class="font-green col-xs-5 gutter-0">
             <%= article.created_at.to_formatted_s(:short) %>
           </div>
-          <div class="font-green col-xs-12 gutter-0">
+          <div class="font-green col-xs-7 gutter-0">
             <%# if current_user && current_user == article.user || current_user.admin? %>
             <% if current_user.admin? %>
               <%= link_to "Edit this Ad", edit_article_path(article), class: "btn btn-xs btn-primary" %>
