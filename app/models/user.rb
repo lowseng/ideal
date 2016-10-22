@@ -23,11 +23,12 @@ class User < ActiveRecord::Base
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
         #invoice: '229',
-        amount: '15.00',
+        amount: '125.00',
         item_name: 'Premier',
+        currency: 'MYR',
         #item_number: id,
         notify_url: "#{Rails.application.secrets.app_host}/hook",
-        quantity: '10'
+        quantity: '1'
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
