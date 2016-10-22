@@ -1,4 +1,4 @@
-<% if session[:mobile] = "Y" %>
+<% if session[:mobile] == "Y" %>
   <%= render 'mmform' %>        
 <% else %>
   <% if current_user.articles.count >= session[:m_posting] %>
