@@ -1,13 +1,12 @@
-<% if session[:mobile] == "Y" %>
-  <%= render 'mmform' %>        
+<% if current_user.articles.count >= session[:m_posting] %>
+  <br><br><br><br><br><br><br><br><br>
+  <h4 align="center"><%= "You have exceeded the number of ads permitted on your account!" %></h4>
+  <br><br><br><br><br><br><br><br><br>
 <% else %>
-  <% if current_user.articles.count >= session[:m_posting] %>
-    <br><br><br><br><br><br><br><br><br>
-    <h4 align="center"><%= "You have exceeded the number of ads permitted from your account!" %></h4>
-    <br><br><br><br><br><br><br><br><br>
+  <% if session[:mobile] == "Y" %>
+    <%= render 'mmform' %>        
   <% else %>
     <h4 align="center">Insert a New Ad (# <%= current_user.articles.count+1 %> of <%= session[:m_posting] %>)</h4>
     <%= render 'form' %>
   <% end %>
 <% end %>
-    
