@@ -107,7 +107,7 @@ margin-right: 5px;
 border: 1;
 font-weight: 350;
 letter-spacing: 1px;
-color: #000000 !important; /*chose button outline color */
+color: #fff !important;
 }
 
 .btn:focus, .btn:active:focus, .btn.active:focus {
@@ -119,18 +119,17 @@ background: #285AA6;
 color: #ffffff;
 }
 .btn-sm { /*radio & checkbox button*/
-background: #9DA0A1;
+background: #50544F;
 padding: 8px 10px;
 border-radius: 0 !important;
-color: #000000 !important;
+color: #fff !important;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
 background: #33a6cc;
 }
 
 .btn-primary:active, .btn-primary.active {
-//background: #007299; /*radio & checkbox button - selected*/
-background: #ffffff !important;
+background: #007299; /*radio & checkbox button - selected*/
 box-shadow: none;
 }
 .btn-info1 {
