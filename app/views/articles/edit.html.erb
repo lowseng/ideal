@@ -1,12 +1,23 @@
-<div class='row'> 
-  <div class='col-sm-offset-0 col-xs-12'>
-    <div class="well well-lg">
-      <h4 align="center">Modify Existing Ad</h4>
-      <%= render 'form' %>
-      <br><a id="images"></a><br>
-      <% current_article = @article.id %>
-      <% session[:current_article] = current_article %>
-      <%= render :partial => 'images/form', :object => @image %>
-    </div>
+<% if session[:mobile] == "Y" %>
+  <div class='col-xs-offset-0 col-xs-12 gutter-0'>
+    <h4>&nbsp;Modify Existing Ad - Id: <%= @article.id %>
   </div>
-</div>  
+  <%= render 'mmform' %>
+  <br><a id="images"></a><br>
+  <% current_article = @article.id %>
+  <% session[:current_article] = current_article %>
+  <%= render :partial => 'images/mmform', :object => @image %>     
+<% else %>
+  <div class='row'> 
+    <div class='col-sm-offset-0 col-xs-12'>
+      <div class="well well-lg">
+        <h4 align="center">Modify Existing Ad</h4>
+        <%= render 'form' %>
+        <br><a id="images"></a><br>
+        <% current_article = @article.id %>
+        <% session[:current_article] = current_article %>
+        <%= render :partial => 'images/form', :object => @image %>
+      </div>
+    </div>
+  </div>  
+<% end %>

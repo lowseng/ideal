@@ -1,0 +1,56 @@
+<%= render 'shared/errors', obj: @image %>
+<script>
+  function preventBack(){window.history.forward();}
+  setTimeout("preventBack()", 0);
+  window.onunload=function(){null};
+</script>
+
+<div  class="form-group">
+  <% @article.images.each do |t| %>
+    <div align="right" class='col-xs-12 gutter-0'>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+        image_path(t),
+        :method => :delete,
+        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }%>
+    </div>
+    <div align="center" class='col-xs-12 gutter-0'>
+      <%= image_tag t.picture.url, size: "280x190", :class => "style_image" %></td></tr>
+    </div>
+  <% end %>
+</div>
+
+<%= form_for @image, :html => { multipart: true, :class => "form-horizontal image" } do |f| %>
+  <% if @image.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @image.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group"><br>
+    <div class='tdbg col-xs-12 gutter-0'>  
+      <%="Add Images?? 1Amplify your ad ::.."%><br><%="Share more images" %>
+      <%#= f.hidden_field :name, :value => "test hide" %>
+      <%= f.file_field :picture, accept: 'image/jpg,image/jpeg,image/gif,image/png',  :onchange => "this.form.submit()" %>
+    </div><br><br><br>
+  </div>
+  
+<% end %>
+
+<!--# below may NOT be working -->
+<script type="text/javascript">
+  $('#image_picture').bind('change', function() {
+  var size_in_megabytes = this.files[0].size/1024/1024;
+  if (size_in_megabytes > 5) {
+    alert('Maximum file size is 5MB.');
+}
+});
+</script>
