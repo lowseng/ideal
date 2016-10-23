@@ -6,7 +6,8 @@
   <br><a id="images"></a><br>
   <% current_article = @article.id %>
   <% session[:current_article] = current_article %>
-  <%= render :partial => 'images/mmform', :object => @image %>     
+  <%= render :partial => 'images/mmform', :object => @image %>
+  <br><br><br><br>
 <% else %>
   <div class='row'> 
     <div class='col-sm-offset-0 col-xs-12'>
