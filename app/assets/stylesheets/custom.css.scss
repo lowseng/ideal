@@ -118,17 +118,17 @@ outline: 0 none;
 background: #285AA6;
 color: #ffffff;
 }
-.btn-sm { /*radio-button */
-background: #7F8728;
+.btn-sm { /*radio & checkbox button*/
+background: #50544F;
 padding: 8px 10px;
-
+border-radius: 0 !important;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
 background: #33a6cc;
 }
 
 .btn-primary:active, .btn-primary.active {
-background: #007299;
+background: #007299; /*radio & checkbox button - selected*/
 box-shadow: none;
 }
 .btn-info1 {
