@@ -29,6 +29,7 @@
               <%= f.select :bathroom, [['Baths:',''],['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9'],['10','10']], {}, { class: "form-control" } %>
             </div>
           </div>
+          
           <div class="form-group">
             <div class=" col-xs-4 gutter-0">
               <%#= f.number_field :size, :step => 2, class: "form-control", placeholder: "Size", :value => (number_with_precision(f.object.size, :precision => 0) ) %> 
@@ -43,78 +44,105 @@
             </div>
           </div>         
 
-          <div class="form-group">
-            <div class = "col-xs-12 gutter-0">
-              <br>Facilities
-            </div>
-            <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-primary btn-sm">
-                <%#= f.radio_button :proptype, 'for Sale' %> 
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xlift %> Lift/ Elevator
-              </label>
-              <label class="btn btn-primary btn-sm">
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xpool %> Swimming Pool
-              </label>
-              <label class="btn btn-primary btn-sm">
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xsqua %> Squash Court
-              </label>
-        
-              <label class="btn btn-primary btn-sm">
-                <%#= f.radio_button :proptype, 'for Sale' %> 
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xlift %><%= f.check_box :xplay %> Playground
-              </label>
-              <label class="btn btn-primary btn-sm">
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xpool %><%= f.check_box :xbalc %> Balcony
-              </label>
-              <label class="btn btn-primary btn-sm">
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xsqua %><%= f.check_box :xgymn %> Gymnasium
-              </label>
-        
-        
-              <label class="btn btn-primary btn-sm">
-                <%#= f.radio_button :proptype, 'for Sale' %> 
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xlift %><%= f.check_box :xplay %><%= f.check_box :xmini %> Mini Market
-              </label>
-              <label class="btn btn-primary btn-sm">
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xpool %><%= f.check_box :xbalc %><%= f.check_box :xjogg %> Jogging Track
-              </label>
-              <label class="btn btn-primary btn-sm">
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xsqua %><%= f.check_box :xgymn %><%= f.check_box :xcabl %> Cable TV
-              </label>
-        
-              <label class="btn btn-primary btn-sm">
-                <%#= f.radio_button :proptype, 'for Sale' %> 
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xlift %><%= f.check_box :xplay %><%= f.check_box :xmini %><%= f.check_box :xtenn %> Tennis Court
-              </label>
-              <label class="btn btn-primary btn-sm">
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xpool %><%= f.check_box :xbalc %><%= f.check_box :xjogg %><%= f.check_box :xpark %> Covered Car Park
-              </label>
-              <label class="btn btn-primary btn-sm">
-                <input type="checkbox" autocomplete="off"><%= f.check_box :xsqua %><%= f.check_box :xgymn %><%= f.check_box :xcabl %><%= f.check_box :xsecu %> 24 hours Security
-              </label>
-            </div>
+        <div class="form-group">
+          <div class="control-label col-sm-2"> 
+            <%= "Facilities" %> 
+          </div> 
+          <div class="checkbox col-sm-offset-1 col-sm-3">
+            <%= f.check_box :xlift  %><%= 'Lift/ Elevator'%>
+          </div> 
+
+          <div class="checkbox col-sm-3">
+            <%= f.check_box :xpool %><%= 'Swimming Pool'%>          
+          </div>   
+          <div class="checkbox col-sm-3">
+            <%= f.check_box :xsqua %><%= 'Squash Court'%>          
           </div>
+        </div>       
+        <div class="form-group">
+          <div class="control-label col-sm-2"> 
+            <%= "" %> 
+          </div> 
+          <div class="checkbox col-sm-offset-1 col-sm-3">
+            <%= f.check_box :xplay %><%= 'Playground'%>
+          </div> 
+          <div class="checkbox col-sm-3">
+            <%= f.check_box :xbalc %><%= 'Balcony'%>          
+          </div>   
+          <div class="checkbox col-sm-3">
+            <%= f.check_box :xgymn %><%= 'Gymnasium'%>          
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="control-label col-sm-2"> 
+            <%= "" %> 
+          </div> 
+          <div class="checkbox col-sm-offset-1 col-sm-3">
+            <%= f.check_box :xmini %><%= 'Mini Market'%>
+          </div> 
+          <div class="checkbox col-sm-3">
+            <%= f.check_box :xjogg %><%= 'Jogging Track'%>          
+          </div>   
+          <div class="checkbox col-sm-3">
+            <%= f.check_box :xcabl %><%= 'Cable TV'%>          
+          </div>
+        </div>        
+        <div class="form-group">
+          <div class="control-label col-sm-2"> 
+            <%= "" %> 
+          </div> 
+          <div class="checkbox col-sm-offset-1 col-sm-3">
+            <%= f.check_box :xtenn %><%= 'Tennis Court'%>
+          </div> 
+          <div class="checkbox col-sm-3">
+            <%= f.check_box :xpark %><%= 'Covered Car Park'%>          
+          </div>   
+          <div class="checkbox col-sm-3">
+            <%= f.check_box :xsecu %><%= '24 hours Security'%>          
+          </div>
+        </div>
         <% end %><!--land or else-->
       
       <% else %>
         <div class="form-group"> 
           <div class="col-xs-12 gutter-0">&nbsp;Property Type:</div>
           <div class="col-xs-12 btn-group gutter-0" data-toggle="buttons">
-            <label class="btn btn-primary btn-sm">
-              <%= f.radio_button :proptype, 'for Sale' %> For Sale
-            </label>
-            <label class="btn btn-primary btn-sm">
+
+            <% if @article.proptype == 'for Sale' %> 
+              <label class="btn btn-primary btn-sm active">
+            <% else %>
+              <label class="btn btn-primary btn-sm">
+            <% end %>
+                <%= f.radio_button :proptype, 'for Sale' %> For Sale
+              </label>
+            
+            <% if @article.proptype == 'for Rent' %>
+              <label class="btn btn-primary btn-sm active">
+            <% else %>
+              <label class="btn btn-primary btn-sm">
+            <% end %>            
               <%= f.radio_button :proptype, 'for Rent' %> For Rent
             </label>
-            <label class="btn btn-primary btn-sm">
+
+            <% if @article.proptype == 'for Auction' %>
+              <label class="btn btn-primary btn-sm active">
+            <% else %>            
+              <label class="btn btn-primary btn-sm">
+            <% end %>
               <%= f.radio_button :proptype, 'for Auction' %> For Auction
             </label>
-            <label class="btn btn-primary btn-sm">
+            
+            <% if @article.proptype == 'new Launch' %>
+              <label class="btn btn-primary btn-sm active">
+            <% else %>            
+              <label class="btn btn-primary btn-sm">
+            <% end %>
               <%= f.radio_button :proptype, 'new Launch' %> New Launch
             </label>
+            
           </div>
         </div>
-              
+
         <% if @places_for_dropdown.count.to_i == 1 %>
           <div class="form-group">        
             <div class="col-xs-6 gutter-0">         

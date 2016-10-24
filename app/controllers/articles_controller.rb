@@ -94,7 +94,7 @@ class ArticlesController < ApplicationController
     @article.otherinfo = params[:otherinfo][:name] if params[:otherinfo].present?    
 
     if @article.save 
-      flash[:success]='Article was successfully created' 
+      #flash[:success]='Article was successfully created' 
       current_article = @article.id
       session[:current_article] = current_article
       session[:mpage] = "SAVE"
