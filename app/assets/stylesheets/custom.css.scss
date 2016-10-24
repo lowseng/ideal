@@ -137,7 +137,7 @@ background: #383F36;
 color: #F53B0F;
 padding: 5px 5px;
 }
-.btn-block { /*search button*/
+.btn-block { /*search button full size*/
 background: #0D84E0;
 color: #F53B0F;
 padding: 2px 2px;
@@ -321,5 +321,5 @@ img {
 span {
   display: inline-block;
   vertical-align: middle;
-  line-height: 35px; /* <-- adjust this */
+  line-height: 35px; /*to adjust label to valign <-- adjust this */
 }

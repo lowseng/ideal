@@ -187,7 +187,11 @@
         </div>
     
         <div align="center" class="col-xs-12 gutter-0"><br> 
-          <%= f.submit "NEXT", :class => "btn btn-primary btn-block"%>
+          <% if params[:param1]='newAd' %>
+            <%= f.submit "CONFIRM", :class => "btn btn-primary btn-block"%>          
+          <% else %>
+            <%= f.submit "NEXT", :class => "btn btn-primary btn-block"%>
+          <% end %>
         </div>
       </div>
     <% end %>

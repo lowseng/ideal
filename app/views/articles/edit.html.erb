@@ -1,6 +1,10 @@
 <% if session[:mobile] == "Y" %>
   <div class='col-xs-offset-0 col-xs-12 gutter-0'>
-    <h4>&nbsp;Modify Existing Ad - Id: <%= @article.id %>
+    <% if params[:param1]='newAd' %>
+      <h4>&nbsp;Insert New Ad - Step 2 </h4>   
+    <% else %>
+      <h4>&nbsp;Modify Existing Ad - Id: <%= @article.id %></h4>
+    <% end %>
   </div>
   <%= render 'mmform' %>
   <br><a id="images"></a><br>
