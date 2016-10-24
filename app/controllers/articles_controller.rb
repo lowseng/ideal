@@ -99,7 +99,7 @@ class ArticlesController < ApplicationController
       session[:current_article] = current_article
       session[:mpage] = "SAVE"
       #redirect_to new_image_path(:param1 => "1", :param2 => "value2")
-      redirect_to edit_article_path(:id => session[:current_article], :param1 => "newAd", :param2 => "value2", anchor: "images")
+      redirect_to edit_article_path(:id => session[:current_article], :param1 => "confirm", :param2 => "value2", anchor: "images")
 
     else 
       render 'new' 

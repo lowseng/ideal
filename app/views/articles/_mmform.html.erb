@@ -181,13 +181,18 @@
         <%# end %>
       </div>  -->
       <div class="form-group form-actions">
-        <div align="center" class="col-xs-12"> 
-          <%= f.check_box :xonline  %>&nbsp;&nbsp;<%= 'Display this Ad'%>
-          <%#= link_to t('.cancel', :default => t("helpers.links.cancel")), articles_path, :class => 'btn btn-default' %>
-        </div>
-    
+        
+        <% if params[:param1] == 'confirm' %>
+          <div align="center" class="col-xs-12"> 
+            <%= f.check_box :xonline  %>&nbsp;&nbsp;<%= 'Display this Ad'%>
+            <%#= link_to t('.cancel', :default => t("helpers.links.cancel")), articles_path, :class => 'btn btn-default' %>
+          </div>
+        <% else %>
+          <%= f.hidden_field :xonline, value: false %>
+        <% end %>
+        
         <div align="center" class="col-xs-12 gutter-0"><br> 
-          <% if params[:param1] == 'newAd' %>
+          <% if params[:param1] == 'confirm' %>
             <%= f.submit "CONFIRM", :class => "btn btn-primary btn-block"%>          
           <% else %>
             <%= f.submit "NEXT", :class => "btn btn-primary btn-block"%>
