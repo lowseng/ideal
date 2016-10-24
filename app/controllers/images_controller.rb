@@ -48,7 +48,7 @@ class ImagesController < ApplicationController
    #@article = Article.find(@image1.article_idxxxxxxxxxxxxxxxxx)
     respond_to do |format|
       if @image.save
-        format.html { redirect_to edit_article_path(:id => session[:current_article], :param2 => "value2", anchor: "images"), notice: 'Image was successfully added.' }
+        format.html { redirect_to edit_article_path(:id => session[:current_article], :param1 => "confirm", :param2 => "value2", anchor: "images"), notice: 'Image was successfully added.' }
         format.json { render :new, status: :created, location: @image1 }
       else
         format.html { redirect_to new_image_path(:param1 => "0", :param2 => "value2"), alert: 'Image was NOT added. Please select a vaild image to upload!' }
