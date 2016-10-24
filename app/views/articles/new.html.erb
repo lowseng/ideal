@@ -1,7 +1,10 @@
 <% if current_user.articles.count >= session[:m_posting] %>
-  <br><br><br><br><br><br><br><br><br>
-  <h4 align="center"><%= "You have exceeded the number of ads permitted on your account!" %></h4>
-  <br><br><br><br><br><br><br><br><br>
+  <% if current_user.admin? %>
+  <% else %>
+    <br><br><br><br><br><br><br><br><br>
+    <h4 align="center"><%= "You have exceeded the number of ads permitted on your account!" %></h4>
+    <br><br><br><br><br><br><br><br><br>
+  <% end %>
 <% else %>
   <% if session[:mobile] == "Y" %>
     <div class='col-xs-offset-0 col-xs-12 gutter-0'>
