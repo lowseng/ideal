@@ -190,7 +190,7 @@
           <% if params[:param1] == 'confirm' %>
             <%= f.submit "CONFIRM", :class => "btn btn-primary btn-block"%>          
           <% else %>
-            <%= f.submit "NEXT", :class => "btn btn-primary btn-block"%>
+            <%= f.submit "NEXT", name: "mmaction1", value: "NEXT", :class => "btn btn-primary btn-block"%>
           <% end %>
         </div>
       </div>

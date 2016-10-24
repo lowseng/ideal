@@ -195,10 +195,15 @@ class ArticlesController < ApplicationController
     session[:current_article] = current_article
 
     if @article.update(article_params) 
-      flash[:success]='Article was successfully updated' 
+      #flash[:success]='Article was successfully updated' 
       current_article = @article.id
       session[:current_article] = current_article
-      redirect_to root_path
+      if params[:mmaction1] == "NEXT"
+        redirect_to edit_article_path(:id => session[:current_article], :param1 => "confirm", :param2 => "value2", anchor: "images")        
+      else  
+        redirect_to oneuser_index_path
+      end
+
     else 
       render 'edit'
     end 
