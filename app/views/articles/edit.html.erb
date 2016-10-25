@@ -1,9 +1,19 @@
 <% if session[:mobile] == "Y" %>
   <div class='col-xs-offset-0 col-xs-12 gutter-0'>
     <% if params[:param1] == 'confirm' %>
-      <h4><%= session[:step2]%> Id. <%= @article.id %> - Step 2 </h4>   
+      <div align = "left" class='col-xs-6 gutter-0'>
+        <h4><%= session[:step2]%> - Continue...</h4> 
+      </div>
+      <div align = "right" class='col-xs-6 gutter-0'>
+        <h4>Id: <%= @article.id %></h4> 
+      </div>
     <% else %>
-      <h4>&nbsp;Modify Ad Id. <%= @article.id %></h4>
+      <div align = "left" class='col-xs-6 gutter-0'>
+        <h4>Modify Ad</h4>
+      </div>
+      <div align = "right" class='col-xs-6 gutter-0'>
+        <h4>Id: <%= @article.id %></h4>
+      </div>      
       <% session[:step2] = "Modify Ad" %>
     <% end %>
   </div>
