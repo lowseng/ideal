@@ -1,10 +1,10 @@
 <h3><b><%= @article.title %></b></h3>
 <h4><b><%= @area.name if @area.present? %> &#183; <%= @region.name if @region.present?%> &#183; <%= @place.name if @place.present?%></b></h4><br>
-<div class='col-xs-4 gutter-0'>
-  <%= "Category:" %>
+<div align="right" class='col-xs-4 gutter-0'>
+  <%= "Category:" %>&nbsp;
 </div>  
 <div class='col-xs-8 gutter-0'>
-  <%= @article.category %> <%= @article.proptype %>
+  <%= @article.category%> <%= @article.proptype %>
 </div>
 <div class='col-xs-4 gutter-0'>
   <%= "Id: " %>
@@ -67,9 +67,9 @@
   <div align="center" class='well col-xs-12'>
     <% if params[:param1] == "1" %>
       <% if current_user && current_user == @article.user || current_user && current_user.admin? %>
-        <%= gravatar_for @article.user, size:120 %>
+        <%= gravatar_for @article.user, size: 180 %>
       <% else %>
-        <%= gravatar_for @article.user, size:120 %>
+        <%= gravatar_for @article.user, size: 180 %>
       <% end %>
     <% end %>
     <h3><%= @article.user.name %></h3>
