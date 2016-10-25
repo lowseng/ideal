@@ -1,10 +1,17 @@
-<h3><b><%= @article.title %></b></h3>
-<h4><b><%= @area.name if @area.present? %> &#183; <%= @region.name if @region.present?%> &#183; <%= @place.name if @place.present?%></b></h4><br>
+<div class='col-xs-12 gutter-0 article-title'>
+  <br><%= @article.title %><hr>
+</div>
 <div align="right" class='col-xs-3 gutter-0'>
   <%= "Category:" %>&nbsp;
 </div>  
 <div class='col-xs-9 gutter-0'>
   <%= @article.category%> <%= @article.proptype %>
+</div>
+<div align="right" class='col-xs-3 gutter-0'>
+  <%= "Location:" %>&nbsp;
+</div>  
+<div class='col-xs-9 gutter-0'>
+  <%= @area.name if @area.present? %> &#183; <%= @region.name if @region.present?%> &#183; <%= @place.name if @place.present?%>
 </div>
 <div align="right" class='col-xs-3 gutter-0'>
   <%= "Id:" %>&nbsp;
@@ -33,22 +40,10 @@
   <%= "24 hours Security, " if @article.xsecu? %><%= "etc." %>
 </div>
 <div align="right" class='col-xs-3 gutter-0'>
-  <%= "Other info:" %>&nbsp;
-</div>
-<div class='col-xs-9 gutter-0'>
-  <%= @otherinfo.name if @otherinfo.present? %>&nbsp;
-</div>
-<div align="right" class='col-xs-3 gutter-0'>
   <%= "Bedrooms:" %>&nbsp;
 </div>
 <div class='col-xs-9 gutter-0'>
   <%= @article.bedroom %>
-</div>
-<div align="right" class='col-xs-3 gutter-0'>
-  <%= "Amount:" %>&nbsp;
-</div>
-<div class='col-xs-9 gutter-0'>
-  <%= @places.currency if @places.present? %> <%= number_with_precision(@article.amount, precision: 0, delimiter: ',') %>
 </div>
 <div align="right" class='col-xs-3 gutter-0'>
   <%= "Bathrooms:" %>&nbsp;
@@ -57,11 +52,24 @@
   <%= @article.bathroom %>
 </div>
 <div align="right" class='col-xs-3 gutter-0'>
+  <%= "Other info:" %>&nbsp;
+</div>
+<div class='col-xs-9 gutter-0'>
+  <%= @otherinfo.name if @otherinfo.present? %>&nbsp;
+</div>
+<div align="right" class='col-xs-3 gutter-0'>
+  <%= "Amount:" %>&nbsp;
+</div>
+<div class='col-xs-9 gutter-0'>
+  <%= @places.currency if @places.present? %> <%= number_with_precision(@article.amount, precision: 0, delimiter: ',') %>
+</div>
+<div align="right" class='col-xs-3 gutter-0'>
   <%= "Description:" %>&nbsp;
 </div>
 <div class='col-xs-9 gutter-0'>
-  <%= simple_format(@article.description) %><br><br><br>
+  <%= simple_format(@article.description) %><br><br>
 </div>
+
 
 <% if @article.user %>
   <div align="center" class='well col-xs-12'>
@@ -80,7 +88,9 @@
     <%= link_to pluralize(@article.user.articles.count, "listing"), user_path(@article.user) if @article.user.articles %> <span class='glyphicon glyphicon-tasks'></span><br>
     <%= @article.created_at %> <span class='glyphicon glyphicon-time'></span>
   </div>
-  <br><br><br><br><br><br>
+  <div align="center" class='col-xs-12'>
+    <br><br><br><br>
+  </div>
   <!--
   <table width="100%" border="0" cellspacing="5" cellpadding="5">
     <tr valign="center">  
