@@ -2,6 +2,13 @@
   <div  class='col-sm-8 gutter-0'>
     <% obj.each do |article| %> 
       <div class="form-group">
+        <% if params[:oneuser] == "Y" %>
+        	<% if !article.xonline? %>
+            <%= "[DRAFT COPY]" %><br>
+          <% else %>
+            <%= "[LIVE]" %><br>
+          <% end %>
+        <% end %>
       	<div class="col-sm-3">
           <% article.images.each do |t| %>
             <% if t.picture.url %>
@@ -24,21 +31,22 @@
             <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %><%= " - [OFFLINE]" %> 
           <% end %>
         </div>
-        <div class="article-price col-sm-9">
-          <% @place = Place.find(article.currency) if article.currency.present? %>
-          <%= @place.currency if @place.present? %> <%= number_with_precision(article.amount, precision: 0, delimiter: ',') %>
-        </div>
         <div class="col-sm-9">
           <%= truncate(article.description, length: 80) %>
         </div>
-        <div class="col-sm-9" >
-          <small>Created by: <%= article.user.email if article.user%>,
-          <%= time_ago_in_words(article.created_at) %> ago. </small>
+        
+        <div class="font-green col-sm-5">
+          <% @place = Place.find(article.currency) if article.currency.present? %>
+          <%= @place.currency if @place.present? %> <%= number_with_precision(article.amount, precision: 0, delimiter: ',') %>
         </div>
+        <div align="right" class="font-green col-sm-4">
+          <%= article.created_at.to_formatted_s(:short) %>
+        </div>
+          
         <div class="col-sm-9">
           <% if current_user %>
-            <% if current_user && current_user == article.user || current_user.admin? %>
-              <%# if current_user.admin? %>
+            <%# if current_user && current_user == article.user || current_user.admin? %>
+            <% if current_user.admin? or params[:oneuser] == "Y" %>
                 <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-xs btn-primary" %>
               <%# end %>
               <%= link_to "Delete this article", article_path(article), method: :delete,

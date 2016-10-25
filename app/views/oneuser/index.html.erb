@@ -1,10 +1,10 @@
 <% if session[:mobile] == "Y" %>
   <div class='col-xs-offset-0 col-xs-12 gutter-0'>
     <div align = "left" class='article-title col-xs-7 gutter-0'>
-      <h5><b>My Ads</b></h5>
+      <h5>My Ads</h5>
     </div>
     <div align = "right" class='article-title col-xs-5 gutter-0'>
-      <h5><b><%= current_user.articles.count %> of <%= session[:m_posting] %></b></h5>   
+      <h5><%= current_user.articles.count %> of <%= session[:m_posting] %></h5>   
     </div>
     <div align="center">
       <%= will_paginate @articles %>
@@ -22,6 +22,7 @@
       <div align="center">
         <%= will_paginate @articles %>
       </div>
+      <% params[:oneuser] = "Y" %>
       <%= render 'articles/article', obj: @articles %>
       <div align="center">
         <%= will_paginate @articles %>
