@@ -2,14 +2,14 @@
   <div  class='col-sm-8 gutter-0'>
     <% obj.each do |article| %> 
       <div class="form-group">
-        <% if params[:oneuser] == "Y" %>
-        	<% if !article.xonline? %>
-            <%= "[DRAFT COPY]" %><br>
-          <% else %>
-            <%= "[LIVE]" %><br>
-          <% end %>
-        <% end %>
       	<div class="col-sm-3">
+          <% if params[:oneuser] == "Y" %>
+          	<% if !article.xonline? %>
+              <%= "[DRAFT COPY]" %><br>
+            <% else %>
+              <%= "[LIVE]" %><br>
+            <% end %>
+          <% end %>
           <% article.images.each do |t| %>
             <% if t.picture.url %>
               <%= image_tag t.picture.url, size: "150x100" %>
@@ -25,11 +25,7 @@
 
         <div class="article-title col-sm-9">
           <%#= article.category %> <%#= article.proptype%>
-          <% if article.xonline? %>
-            <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>         
-          <%else %>
-            <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %><%= " - [OFFLINE]" %> 
-          <% end %>
+          <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>         
         </div>
         <div class="col-sm-9">
           <%= truncate(article.description, length: 80) %>
