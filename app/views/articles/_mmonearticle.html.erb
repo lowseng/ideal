@@ -50,10 +50,10 @@
 <div class='col-xs-8 gutter-0'>
   <%= @places.currency if @places.present? %> <%= number_with_precision(@article.amount, precision: 0, delimiter: ',') %>
 </div>
-<div align="right" class='col-xs-4 gutter-0'>
+<div align="right" class='col-xs-3 gutter-0'>
   <%= "Bathrooms: " %>&nbsp;
 </div>
-<div class='col-xs-8 gutter-0'>
+<div class='col-xs-9 gutter-0'>
   <%= @article.bathroom %>
 </div>
 <div align="right" class='col-xs-4 gutter-0'>
@@ -79,6 +79,7 @@
     <%= link_to @article.user.email, "mailto:"+@article.user.email %> <span class='glyphicon glyphicon-envelope'></span><br>          
     <%= link_to pluralize(@article.user.articles.count, "listing"), user_path(@article.user) if @article.user.articles %> <span class='glyphicon glyphicon-tasks'></span><br>
     <%= @article.created_at %> <span class='glyphicon glyphicon-time'></span>
+    <br><br><br><br><br><br>
   </div>
   <!--
   <table width="100%" border="0" cellspacing="5" cellpadding="5">
