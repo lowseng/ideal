@@ -86,7 +86,7 @@ class ImagesController < ApplicationController
     else
       #redirect_to(:back)
       respond_to do |format|
-        format.html { redirect_to edit_article_path(:id => session[:current_article], :param2 => "value2", anchor: "images"), notice: 'Image was successfully removed.' }
+        format.html { redirect_to edit_article_path(:id => session[:current_article], :param1 => "confirm", anchor: "images"), notice: 'Image was successfully removed.' }
       end
     end
   end
