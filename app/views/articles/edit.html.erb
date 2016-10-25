@@ -1,17 +1,17 @@
 <% if session[:mobile] == "Y" %>
   <div class='col-xs-offset-0 col-xs-12 gutter-0'>
     <% if params[:param1] == 'confirm' %>
-      <div align = "left" class='col-xs-6 gutter-0'>
+      <div align = "left" class='article-title col-xs-6 gutter-0'>
         <h4><%= session[:step2]%> - Continue...</h4> 
       </div>
-      <div align = "right" class='col-xs-6 gutter-0'>
+      <div align = "right" class='article-title col-xs-6 gutter-0'>
         <h4>Id: <%= @article.id %></h4> 
       </div>
     <% else %>
-      <div align = "left" class='col-xs-6 gutter-0'>
+      <div align = "left" class='article-title col-xs-6 gutter-0'>
         <h4>Modify Ad</h4>
       </div>
-      <div align = "right" class='col-xs-6 gutter-0'>
+      <div align = "right" class='article-title col-xs-6 gutter-0'>
         <h4>Id: <%= @article.id %></h4>
       </div>      
       <% session[:step2] = "Modify Ad" %>
