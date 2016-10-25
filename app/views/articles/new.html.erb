@@ -4,12 +4,14 @@
     <br><br><br><br><br><br><br><br><br>
 <% else %>
   <% if session[:mobile] == "Y" %>
-    <div align = "left" class='article-title col-xs-6 gutter-0'>
-      <br><% session[:step2] = "Insert a New Ad" %>
-      Insert a New Ad  
-    </div>
-    <div align = "right" class='article-title col-xs-6 gutter-0'>
-      <br><%= current_user.articles.count+1 %> of <%= session[:m_posting] %>   
+    <div class='col-xs-offset-0 col-xs-12 gutter-0'>
+      <div align = "left" class='article-title col-xs-7 gutter-0'>
+        <% session[:step2] = "Insert a New Ad" %>
+        <h4>Insert a New Ad</h4>
+      </div>
+      <div align = "right" class='article-title col-xs-5 gutter-0'>
+        <h4><%= current_user.articles.count+1 %> of <%= session[:m_posting] %></h4>   
+      </div>
     </div>
     <%= render 'mmform' %> 
   <% else %>
