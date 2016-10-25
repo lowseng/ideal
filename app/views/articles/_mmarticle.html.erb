@@ -3,6 +3,11 @@
     <div class='col-xs-offset-0 col-xs-12 gutter-0'>
       <% obj.each do |article| %> 
       	<div class="col-xs-3 gutter-0">
+        	<% if !article.xonline? %>
+            <%= "[DRAFT COPY]" %><br>
+          <% else %>
+            <%= "[LIVE]" %><br>
+          <% end %>
           <% article.images.each do |t| %>
             <% if t.picture.url %>
               <%= image_tag t.picture.url, size: "80x60" %>
@@ -18,11 +23,7 @@
       	<div class="col-xs-9 gutter-0">
           <div class="article-title00">
             <%#= article.category %> <%#= article.proptype%>
-            <% if article.xonline? %>
-              <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>         
-            <%else %>
-              <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %><%= " - [OFFLINE]" %> 
-            <% end %>
+            <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>         
           </div>
           <div>
             <%= truncate(article.description, length: 80) %>
