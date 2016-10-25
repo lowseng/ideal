@@ -9,6 +9,7 @@
     <div align="center">
       <%= will_paginate @articles %>
     </div>
+    <% params[:oneuser] = "Y" %>
     <%= render 'articles/mmarticle', obj: @articles %>
     <div align="center">
       <%= will_paginate @articles %>
