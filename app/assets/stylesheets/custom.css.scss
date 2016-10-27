@@ -133,9 +133,12 @@ background: #007299; /*radio & checkbox button - selected*/
 box-shadow: none;
 }
 .btn-info1 {
-background: #383F36;
+background: #0D84E0;
 color: #F53B0F;
-padding: 5px 5px;
+padding: 2px 2px;
+height: 45px;
+font-size: 1.2em; 
+letter-spacing: 2px; 
 }
 .btn-block { /*search button full size*/
 background: #0D84E0;
@@ -151,7 +154,11 @@ background: #3C4042;
 color: #ffffff;
 padding: 14px 24px;
 }
-
+.btn-green {
+background: #13940D;
+color: #ffffff;
+padding: 14px 24px;
+}
 
 .features {
 ul {
