@@ -241,13 +241,13 @@ function showSlides(n) {
     Agent Id: <%= @article.user.agentno %><br>
     <%= @article.created_at %> <span class='glyphicon glyphicon-time'></span>
   </div>
-  <div align="left" class='gutter-0 col-xs-2'>  
-    <%= link_to "Email".html_safe, "mailto:"+@article.user.email, :id => "button_id", :class => "btn btn-green" %> 
+  <div align="left" class='gutter-0 col-xs-4'>  
+    <%= link_to "Email Me".html_safe, "mailto:"+@article.user.email, :id => "button_id", :class => "btn btn-green" %> 
   </div>
-  <div align="center" class='gutter-0 col-xs-4'>  
-    <button class="btn btn-green">Call<%#= @article.user.telephone %></button>
+  <div align="center" class='col-xs-4'>  
+    <button class="btn btn-green">Call Me<%#= @article.user.telephone %></button>
   </div> 
-  <div  align="right" class='gutter-0 col-xs-6'>  
+  <div  align="right" class='gutter-0 col-xs-4'>  
     <%= link_to pluralize(@article.user.articles.count, "listing").html_safe, user_path(@article.user), :id => "button_id", :class => "btn btn-green" %> 
   </div>    
   <div align="center" class='col-xs-12'>
