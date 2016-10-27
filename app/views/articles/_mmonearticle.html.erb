@@ -157,25 +157,25 @@ function showSlides(n) {
 }
 </script>
 <br><br>
-<div align="right" class='col-xs-3 gutter-0'>
+<div align="right" class='font-green col-xs-3 gutter-0'>
   <%= "Category:" %>&nbsp;
 </div>  
 <div class='col-xs-9 gutter-0'>
   <%= @article.category%> <%= @article.proptype %>
 </div>
-<div align="right" class='col-xs-3 gutter-0'>
+<div align="right" class='font-green col-xs-3 gutter-0'>
   <%= "Location:" %>&nbsp;
 </div>  
 <div class='col-xs-9 gutter-0'>
   <%= @area.name if @area.present? %> &#183; <%= @region.name if @region.present?%> &#183; <%= @place.name if @place.present?%>
 </div>
-<div align="right" class='col-xs-3 gutter-0'>
+<div align="right" class='font-green col-xs-3 gutter-0'>
   <%= "Id:" %>&nbsp;
 </div>
 <div  class='col-xs-9 gutter-0'>
   <%= @article.id %>
 </div>
-<div align="right"  class='col-xs-3 gutter-0'>
+<div align="right"  class='font-green col-xs-3 gutter-0'>
   <%= "Size:" %>&nbsp;
 </div>
 <div class='col-xs-9 gutter-0'>
@@ -185,7 +185,7 @@ function showSlides(n) {
       <%= number_with_precision(@article.size.to_i*10.7639, precision: 2, delimiter: ',') if @article.uom == "4" and @article.size.present? %><%= " SqFt" if @article.uom == "4" %>
       )
 </div>
-<div align="right" class='col-xs-3 gutter-0'>
+<div align="right" class='font-green col-xs-3 gutter-0'>
   <%= "Facilities:" %>&nbsp;
 </div>
 <div class='col-xs-9 gutter-0'>
@@ -195,31 +195,31 @@ function showSlides(n) {
   <%= "Tennis Court, " if @article.xtenn? %><%= "Covered Car Park, " if @article.xpark? %>
   <%= "24 hours Security, " if @article.xsecu? %><%= "etc." %>
 </div>
-<div align="right" class='col-xs-3 gutter-0'>
+<div align="right" class='font-green col-xs-3 gutter-0'>
   <%= "Bedrooms:" %>&nbsp;
 </div>
 <div class='col-xs-9 gutter-0'>
   <%= @article.bedroom %>
 </div>
-<div align="right" class='col-xs-3 gutter-0'>
+<div align="right" class='font-green col-xs-3 gutter-0'>
   <%= "Bathrooms:" %>&nbsp;
 </div>
 <div class='col-xs-9 gutter-0'>
   <%= @article.bathroom %>
 </div>
-<div align="right" class='col-xs-3 gutter-0'>
+<div align="right" class='font-green col-xs-3 gutter-0'>
   <%= "Other info:" %>&nbsp;
 </div>
 <div class='col-xs-9 gutter-0'>
   <%= @otherinfo.name if @otherinfo.present? %>&nbsp;
 </div>
-<div align="right" class='col-xs-3 gutter-0'>
+<div align="right" class='font-green col-xs-3 gutter-0'>
   <%= "Amount:" %>&nbsp;
 </div>
 <div class='col-xs-9 gutter-0'>
   <%= @places.currency if @places.present? %> <%= number_with_precision(@article.amount, precision: 0, delimiter: ',') %>
 </div>
-<div align="right" class='col-xs-3 gutter-0'>
+<div align="right" class='font-green col-xs-3 gutter-0'>
   <%= "Description:" %>&nbsp;
 </div>
 <div class='col-xs-9 gutter-0'>
