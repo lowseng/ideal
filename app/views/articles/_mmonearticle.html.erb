@@ -108,7 +108,7 @@ body {font-family: Verdana,sans-serif;margin:0}
 <div class="slideshow-container">
   <% @article.images.each do |t| %>
     <div align="center" class="mySlides fade"> 
-      <%= image_tag t.picture.url, size: "100%x300" %>
+      <%= image_tag t.picture.url, size: "320x240" %>
     </div>
   <% end %>
   <a class="prev" onclick="plusSlides(-1)">❮</a>
