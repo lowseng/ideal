@@ -237,11 +237,11 @@ function showSlides(n) {
       <% end %>
     <% end %>
     <h3><%= @article.user.name %></h3>
-    Agency Name: <%= @article.user.company %><br>
-    Agent Id: <%= @article.user.agentno %>
-    <%= @article.user.telephone %> <span class='glyphicon glyphicon-earphone'></span><br>
-    <%= link_to @article.user.email, "mailto:"+@article.user.email %> <span class='glyphicon glyphicon-envelope'></span><br>          
-    <%= link_to pluralize(@article.user.articles.count, "listing"), user_path(@article.user) if @article.user.articles %> <span class='glyphicon glyphicon-tasks'></span><br>
+    Agency Name: <%= @article.user.company %><br><br>
+    Agent Id: <%= @article.user.agentno %><br><br>
+    <%= @article.user.telephone %> <span class='glyphicon glyphicon-earphone'></span><br><br>
+    <%= link_to @article.user.email, "mailto:"+@article.user.email %> <span class='glyphicon glyphicon-envelope'></span><br><br>          
+    <%= link_to pluralize(@article.user.articles.count, "listing"), user_path(@article.user) if @article.user.articles %> <span class='glyphicon glyphicon-tasks'></span><br><br>
     <%= @article.created_at %> <span class='glyphicon glyphicon-time'></span>
   </div>
   <div align="center" class='col-xs-12'>
