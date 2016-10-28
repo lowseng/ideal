@@ -1,8 +1,6 @@
 <% if session[:mobile] == "Y" %>
   <%= render 'mmonearticle' %>
 <% else %>
-  <div class="well col-xs-12 col-xs-offset-0">
-    <%= render 'onearticle' %>
-    <%#= render 'showimages' %>
-  </div>
+  <%= render 'onearticle' %>
+  <%#= render 'showimages' %>
 <% end %>
