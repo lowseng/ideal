@@ -36,7 +36,7 @@
           <%= @place.currency if @place.present? %> <%= number_with_precision(article.amount, precision: 0, delimiter: ',') %>
         </div>
         <div align="right" class="font-green col-sm-4">
-          <%= article.created_at.to_formatted_s(:short) %>
+          <%= article.updated_at.to_formatted_s(:short) %>
         </div>
           
         <div class="col-sm-9">
