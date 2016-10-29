@@ -80,72 +80,6 @@
         dots[slideIndex-1].className += " w3-opacity-off";
       }
       </script>
-
-      <div class="form-group">
-        <div align="right" class='col-sm-offset-0 col-sm-3'>          
-          <%= "Category:" %>
-        </div>
-        <div align="left" class='col-sm-offset-0 col-sm-9 gutter-0'>        
-          <%= @article.category %> <%= @article.proptype %>
-        </div>
-        <div align="right" class='col-sm-offset-0 col-sm-3'>          
-          <%= "Location:" %>
-        </div>
-        <div align="left" class='col-sm-offset-0 col-sm-9 gutter-0'>        
-          <%= @area.name if @area.present? %>, <%= @region.name if @region.present?%>, <%= @place.name if @place.present?%>.
-        </div>        
-        <div align="right" class='col-sm-offset-0 col-sm-3'>  
-          <%= "Size:" %>
-        </div>
-        <div align="left"class='col-sm-offset-0 col-sm-9 gutter-0'>   
-          <%= @article.size %> 
-                <%= "SqFt" if @article.uom == "3" %><%= "SqM" if @article.uom == "4" %><%= "Acres" if @article.uom == "5" %><%= "Hectres" if @article.uom == "6" %>
-                  (<%= number_with_precision(@article.size.to_i*0.092903, precision: 2, delimiter: ',') if @article.uom == "3" %><%= " SqM" if @article.uom == "3" %>
-                  <%= number_with_precision(@article.size.to_i*10.7639, precision: 2, delimiter: ',') if @article.uom == "4" and @article.size.present? %><%= " SqFt" if @article.uom == "4" %>
-                  )
-        </div>
-        <div align="right" class='col-sm-offset-0 col-sm-3'>  
-          <%= "Facilities:" %>
-        </div>
-        <div align="left"class='col-sm-offset-0 col-sm-9 gutter-0'>         
-              <%= "Lift/ Elevator, " if @article.xlift? %><%= "Swimming Pool, " if @article.xpool? %><%= "Squash Court, " if @article.xsqua? %>
-              <%= "Playground, " if @article.xplay? %><%= "Balcony, " if @article.xbalc? %><%= "Gymnasium, " if @article.xgymn? %>
-              <%= "Mini Market, " if @article.xmini? %><%= "Jogging Track, " if @article.xjogg? %><%= "Cable TV, " if @article.xcabl? %>
-              <%= "Tennis Court, " if @article.xtenn? %><%= "Covered Car Park, " if @article.xpark? %>
-              <%= "24 hours Security, " if @article.xsecu? %><%= "etc." %>
-        </div>
-        <div align="right" class='col-sm-offset-0 col-sm-3'>  
-          <%= "Bedrooms: " %>
-        </div>
-        <div align="left" class='col-sm-offset-0 col-sm-9 gutter-0'>  
-          <%= @article.bedroom %>
-        </div>
-        <div align="right" class='col-sm-offset-0 col-sm-3'>  
-          <%= "Bathrooms: " %>
-        </div>
-        <div align="left" class='col-sm-offset-0 col-sm-9 gutter-0'> 
-          <%= @article.bathroom %>
-        </div>
-        <div align="right" class='col-sm-offset-0 col-sm-3'>  
-          <%= "Other info:" %>
-        </div>
-        <div align="left" class='col-sm-offset-0 col-sm-9 gutter-0'>         
-          <%= @otherinfo.name if @otherinfo.present? %>&nbsp;
-        </div>
-        <div align="right" class='col-sm-offset-0 col-sm-3'>  
-          <%= "Amount:" %>
-        </div>
-        <div align="left" class='col-sm-offset-0 col-sm-9 gutter-0'> 
-          <%= @places.currency if @places.present? %> <%= number_with_precision(@article.amount, precision: 0, delimiter: ',') %>
-        </div>
-        <div align="right" class='col-sm-offset-0 col-sm-3'>  
-          <%= "Description:" %>
-        </div>
-        <div align="left" class='col-sm-offset-0 col-sm-9 gutter-0'> 
-          <%= simple_format(@article.description) %>
-        </div>
-
-      </div> 
     </div> <!--end of sm-8-->
      
     <div class='col-sm-4'>      
@@ -157,7 +91,7 @@
             <% else %>
               <%= gravatar_for @article.user, size:120 %>
             <% end %>
-          <% end %>
+          <% end %><br><br>
           <h3><%= @article.user.name %></h3>
           <%= @article.user.company %><br>
           Id: <%= @article.user.agentno %><br>
@@ -168,4 +102,78 @@
         </div>
       <% end %>
     </div> <!--end of sm-4-->
+
+    <div class="col-sm-12">
+      <div align="right" class='col-sm-offset-0 col-sm-2'>          
+        <%= "Category:" %>
+      </div>
+      <div align="left" class='font-green col-sm-offset-0 col-sm-10 gutter-0'>        
+        <b><%= @article.category %> <%= @article.proptype %></b>
+      </div>
+
+      <div align="right" class='col-sm-offset-0 col-sm-2'>          
+        <%= "Location:" %>
+      </div>
+      <div align="left" class='font-green col-sm-offset-0 col-sm-3 gutter-0'>        
+        <%= @area.name if @area.present? %>, <%= @region.name if @region.present?%>, <%= @place.name if @place.present?%>.
+      </div>        
+      <div align="right" class='col-sm-offset-0 col-sm-3'>  
+        <%= "Bedrooms: " %>
+      </div>
+      <div align="left" class='font-green col-sm-offset-0 col-sm-3 gutter-0'>  
+        <%= @article.bedroom %>
+      </div>
+      <div align="right" class='col-sm-offset-0 col-sm-2'>  
+        <%= "Size:" %>
+      </div>
+      <div align="left"class='font-green col-sm-offset-0 col-sm-3 gutter-0'>   
+        <%= @article.size %> 
+              <%= "SqFt" if @article.uom == "3" %><%= "SqM" if @article.uom == "4" %><%= "Acres" if @article.uom == "5" %><%= "Hectres" if @article.uom == "6" %>
+                (<%= number_with_precision(@article.size.to_i*0.092903, precision: 2, delimiter: ',') if @article.uom == "3" %><%= " SqM" if @article.uom == "3" %>
+                <%= number_with_precision(@article.size.to_i*10.7639, precision: 2, delimiter: ',') if @article.uom == "4" and @article.size.present? %><%= " SqFt" if @article.uom == "4" %>
+                )
+      </div>
+      <div align="right" class='col-sm-offset-0 col-sm-3'>  
+        <%= "Bathrooms: " %>
+      </div>
+      <div align="left" class='font-green col-sm-offset-0 col-sm-3 gutter-0'> 
+        <%= @article.bathroom %>
+      </div>
+      <div align="right" class='col-sm-offset-0 col-sm-2'>  
+        <%= "Amount:" %>
+      </div>
+      <div align="left" class='font-green col-sm-offset-0 col-sm-3 gutter-0'> 
+        <%= @places.currency if @places.present? %> <%= number_with_precision(@article.amount, precision: 0, delimiter: ',') %>
+      </div>
+      <div align="right" class='col-sm-offset-0 col-sm-3'>  
+        <%= "Other info:" %>
+      </div>
+      <div align="left" class='font-green col-sm-offset-0 col-sm-3 gutter-0'>         
+        <%= @otherinfo.name if @otherinfo.present? %>&nbsp;
+      </div>
+      <div align="right" class='col-sm-offset-0 col-sm-12'>  
+        <br>
+      </div>
+      <div align="right" class='col-sm-offset-0 col-sm-2'>  
+        <%= "Facilities:" %>
+      </div>
+      <div align="left"class='font-green col-sm-offset-0 col-sm-10 gutter-0'>         
+            <%= "Lift/ Elevator, " if @article.xlift? %><%= "Swimming Pool, " if @article.xpool? %><%= "Squash Court, " if @article.xsqua? %>
+            <%= "Playground, " if @article.xplay? %><%= "Balcony, " if @article.xbalc? %><%= "Gymnasium, " if @article.xgymn? %>
+            <%= "Mini Market, " if @article.xmini? %><%= "Jogging Track, " if @article.xjogg? %><%= "Cable TV, " if @article.xcabl? %>
+            <%= "Tennis Court, " if @article.xtenn? %><%= "Covered Car Park, " if @article.xpark? %>
+            <%= "24 hours Security, " if @article.xsecu? %><%= "etc." %>
+      </div>
+      <div align="right" class='col-sm-offset-0 col-sm-2'>  
+        <%= "Description:" %>
+      </div>
+      <div align="left" class='font-green col-sm-offset-0 col-sm-10 gutter-0'> 
+        <%= simple_format(@article.description) %>
+      </div>
+
+
+    </div>
+
+
+
 </div>
