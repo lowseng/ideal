@@ -27,7 +27,7 @@
       </div>
 
       <div align="left" class="col-sm-12 w3-row-padding w3-section gutter-0">
-
+        <br>
         <% mm = 1 %>
         <% @article.images.each do |t| %>
           <% if mm == 1 %>
@@ -84,7 +84,7 @@
      
     <div class='col-sm-4'>      
       <% if @article.user %>
-        <div align="center">
+        <div align="center"><br>
           <% if params[:param1] == "1" %>
             <% if current_user && current_user == @article.user || current_user && current_user.admin? %>
               <%= gravatar_for @article.user, size:120 %>
