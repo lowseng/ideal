@@ -16,7 +16,7 @@
           Ad Id:&nbsp;<%= @article.id %>
         </div>
         <div align="right" class='col-sm-6 gutter-0'>          
-          <%= @article.updated_at %>
+          <%= @article.updated_at.to_formatted_s(:short) %>
         </div>
       </div>
       
