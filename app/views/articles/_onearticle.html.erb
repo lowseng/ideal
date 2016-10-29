@@ -3,7 +3,7 @@
     <div class='col-xs-12 article-title'>
       <br><%= @article.title %><br>
     </div>
-    <div class='col-sm-9'>
+    <div class='col-sm-8'>
       
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
@@ -146,9 +146,9 @@
         </div>
 
       </div> 
-    </div> <!--end of sm-9-->
+    </div> <!--end of sm-8-->
      
-    <div class='col-sm-3'>      
+    <div class='col-sm-4'>      
       <% if @article.user %>
         <div align="center">
           <% if params[:param1] == "1" %>
@@ -164,10 +164,8 @@
     
           Tel: <%= @article.user.telephone %><br>
           Email: <%= link_to @article.user.email, "mailto:"+@article.user.email %><br>          
-          Listings: <%= link_to pluralize(@article.user.articles.count, "listing"), user_path(@article.user) if @article.user.articles %><br>
+          <!--Listings: <%#= link_to pluralize(@article.user.articles.count, "listing"), user_path(@article.user) if @article.user.articles %>--><br>
         </div>
       <% end %>
     </div> <!--end of sm-4-->
-
 </div>
-  

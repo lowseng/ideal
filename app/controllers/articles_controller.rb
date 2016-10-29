@@ -8,9 +8,9 @@ class ArticlesController < ApplicationController
 
   def index
     if current_user.admin
-      @articles = Article.paginate(page: params[:page], per_page: 5).order('updated_at desc')
+      @articles = Article.paginate(page: params[:page], per_page: 10).order('updated_at desc')
     else
-      @articles = Article.paginate(page: params[:page], per_page: 5).where(xonline: true).order
+      @articles = Article.paginate(page: params[:page], per_page: 10).where(xonline: true).order('updated_at desc')
     end
   end
 
@@ -108,7 +108,8 @@ class ArticlesController < ApplicationController
   end
 
   def show 
-    
+# @articles used to list individual ads for public only
+      @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: params[:usr], xonline: true).order('updated_at desc')    
       @places = Place.find(@article.currency) if @article.currency.present?
       @place = Place.find(@article.place) if @article.place.present?
       @region = Region.find(@article.region) if @article.region.present?

@@ -6,8 +6,6 @@
           <% if params[:oneuser] == "Y" %>
           	<% if !article.xonline? %>
               <%= "[DRAFT COPY]" %><br>
-            <% else %>
-              <%= "[LIVE]" %><br>
             <% end %>
           <% end %>
           <% article.images.each do |t| %>
@@ -25,7 +23,7 @@
 
         <div class="article-title col-sm-9">
           <%#= article.category %> <%#= article.proptype%>
-          <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>         
+          <%= link_to article.title, article_path(article,:param1 => "1", :usr => article.user) %>         
         </div>
         <div class="col-sm-9">
           <%= truncate(article.description, length: 80) %>
