@@ -3,7 +3,7 @@
 <% else %>
   <%= render 'onearticle' %>
   <% params[:oneuser] = "Y" %>
-  <br><h3>Another <%=pluralize(@article.user.articles.count, "listing")%> under <%= @article.user.name %>...</h3><br>
+  <br><h3><%=pluralize(@article.user.articles.count, "listing")%> under <%= @article.user.name %>...</h3><hr>
   <%= render 'article', obj: @articles %>
   <div align="left">
     <%= will_paginate %>
