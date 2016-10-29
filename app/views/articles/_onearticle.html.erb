@@ -5,8 +5,8 @@
     </div>
     <div class='col-sm-8'>
       
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+      <!--<meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">-->
       <style>
       .mySlides {display:none}
       .demo {cursor:pointer}
@@ -121,7 +121,7 @@
         <%= "Bedrooms: " %>
       </div>
       <div align="left" class='font-green col-sm-offset-0 col-sm-3 gutter-0'>  
-        <%= @article.bedroom %>
+        <%= @article.bedroom %>&nbsp;
       </div>
       <div align="right" class='col-sm-offset-0 col-sm-2'>  
         <%= "Size:" %>
@@ -131,19 +131,19 @@
               <%= "SqFt" if @article.uom == "3" %><%= "SqM" if @article.uom == "4" %><%= "Acres" if @article.uom == "5" %><%= "Hectres" if @article.uom == "6" %>
                 (<%= number_with_precision(@article.size.to_i*0.092903, precision: 2, delimiter: ',') if @article.uom == "3" %><%= " SqM" if @article.uom == "3" %>
                 <%= number_with_precision(@article.size.to_i*10.7639, precision: 2, delimiter: ',') if @article.uom == "4" and @article.size.present? %><%= " SqFt" if @article.uom == "4" %>
-                )
+                )&nbsp;
       </div>
       <div align="right" class='col-sm-offset-0 col-sm-3'>  
         <%= "Bathrooms: " %>
       </div>
       <div align="left" class='font-green col-sm-offset-0 col-sm-3 gutter-0'> 
-        <%= @article.bathroom %>
+        <%= @article.bathroom %>&nbsp;
       </div>
       <div align="right" class='col-sm-offset-0 col-sm-2'>  
         <%= "Amount:" %>
       </div>
       <div align="left" class='font-green col-sm-offset-0 col-sm-3 gutter-0'> 
-        <%= @places.currency if @places.present? %> <%= number_with_precision(@article.amount, precision: 0, delimiter: ',') %>
+        <%= @places.currency if @places.present? %> <%= number_with_precision(@article.amount, precision: 0, delimiter: ',') %>&nbsp;
       </div>
       <div align="right" class='col-sm-offset-0 col-sm-3'>  
         <%= "Other info:" %>
@@ -168,7 +168,7 @@
         <%= "Description:" %>
       </div>
       <div align="left" class='font-green col-sm-offset-0 col-sm-10 gutter-0'> 
-        <%= simple_format(@article.description) %>
+        <%= simple_format(@article.description) %>&nbsp;
       </div>
 
 
