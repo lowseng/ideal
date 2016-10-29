@@ -81,29 +81,34 @@
     </script>
   </div> <!--end of sm-8-->
    
-  <div class='col-sm-4'>      
-    <% if @article.user %>
-      <div align="center"><br>
-        <% if params[:param1] == "1" %>
-          <% if current_user && current_user == @article.user || current_user && current_user.admin? %>
-            <%= gravatar_for @article.user, size:120 %>
-          <% else %>
-            <%= gravatar_for @article.user, size:120 %>
+  <div class='row'> 
+    <div class='col-sm-4'><br>
+      <div class="well well-lg">
+          <% if @article.user %>
+            <div align="center">
+              <% if params[:param1] == "1" %>
+                <% if current_user && current_user == @article.user || current_user && current_user.admin? %>
+                  <%= gravatar_for @article.user, size:120 %>
+                <% else %>
+                  <%= gravatar_for @article.user, size:120 %>
+                <% end %>
+              <% end %><br><br>
+              <h3><%= @article.user.name %></h3>
+              <%= @article.user.company %><br>
+              Id: <%= @article.user.agentno %><br>
+        
+              Tel: <%= @article.user.telephone %><br>
+              Email: <%= link_to @article.user.email, "mailto:"+@article.user.email %><br>          
+              <!--Listings: <%#= link_to pluralize(@article.user.articles.count, "listing"), user_path(@article.user) if @article.user.articles %>--><br>
+            </div>
           <% end %>
-        <% end %><br><br>
-        <h3><%= @article.user.name %></h3>
-        <%= @article.user.company %><br>
-        Id: <%= @article.user.agentno %><br>
-  
-        Tel: <%= @article.user.telephone %><br>
-        Email: <%= link_to @article.user.email, "mailto:"+@article.user.email %><br>          
-        <!--Listings: <%#= link_to pluralize(@article.user.articles.count, "listing"), user_path(@article.user) if @article.user.articles %>--><br>
       </div>
-    <% end %>
-  </div> <!--end of sm-4-->
+    </div>      
+  </div> 
+  
 </div>
 <div class='row'> 
-  <div class='col-sm-offset-0 col-xs-12'>
+  <div class='col-sm-offset-0 col-sm-12'>
     <div class="well well-lg">
 
       <div class="form-group"> 
@@ -188,7 +193,7 @@
           <%= simple_format(@article.description) %>&nbsp;
         </div>
       </div>
-      
+      <br><br><br><br><br><br><br><br><br>
     </div>
   </div> <!--end well-->
 </div>

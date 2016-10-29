@@ -1,13 +1,19 @@
 <% if session[:mobile] == "Y" %>
   <%= render 'mmonearticle' %>
 <% else %>
-  <%= render 'onearticle' %>
-  <% params[:oneuser] = "Y" %>
-  <div class='gutter-0 col-xs-12 article-title'>
-    <br>Other Ads from <%= @article.user.name %><hr><br>
+  <div class='row'> 
+    <div class='col-sm-offset-0 col-sm-12'>
+      <div class="well">
+        <%= render 'onearticle' %>
+        <% params[:oneuser] = "Y" %>
+        <div class='gutter-0 col-sm-12 article-title'>
+          <br>Other Ads from <%= @article.user.name %><hr><br>
+        </div>
+        <%= render 'article', obj: @articles %>
+        <div align="left">
+          <%= will_paginate %>
+        </div>
+      </div>
+    </div>
   </div>
-  <%= render 'article', obj: @articles %>
-  <div align="left">
-    <%= will_paginate %>
-  </div>
-<% end %>
+  <% end %>
