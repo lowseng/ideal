@@ -27,21 +27,21 @@
       </div>
 
       <div align="left" class="col-sm-12 w3-row-padding w3-section gutter-0">
-        <br>
+
         <% mm = 1 %>
         <% @article.images.each do |t| %>
           <% if mm == 1 %>
-            <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(1)" %>&nbsp;
+            <%= image_tag t.picture.url, :class => "gutter-0 border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(1)" %>&nbsp;
             <% else if mm == 2 %>
-              <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(2)" %>&nbsp;
+              <%= image_tag t.picture.url, :class => "gutter-0 border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(2)" %>&nbsp;
               <% else if mm == 3 %>
-                <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(3)" %>&nbsp;
+                <%= image_tag t.picture.url, :class => "gutter-0 border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(3)" %>&nbsp;
                 <% else if mm == 4 %>
-                  <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(4)" %>&nbsp;
+                  <%= image_tag t.picture.url, :class => "gutter-0 border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(4)" %>&nbsp;
                   <% else if mm == 5 %>
-                    <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(5)" %>&nbsp;
+                    <%= image_tag t.picture.url, :class => "gutter-0 border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(5)" %>&nbsp;
                   <% else %>
-                    <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(6)" %>
+                    <%= image_tag t.picture.url, :class => "gutter-0 border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(6)" %>
                   <% end %>
                 <% end %>  
               <% end %>
