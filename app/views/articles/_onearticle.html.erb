@@ -1,7 +1,7 @@
 <div class='row'> 
-  <div class='col-sm-offset-0 col-sm-12'>
-    <div class='col-xs-12 gutter-0 article-title'>
-      <br><%= @article.title %><hr>
+
+    <div class='col-xs-12 article-title'>
+      <br><br><%= @article.title %><br><br>
     </div>
     <div class='col-sm-8'>
       
@@ -11,30 +11,37 @@
       .mySlides {display:none}
       .demo {cursor:pointer}
       </style>
+      <div class="form-group">
+        <div align="left" class='col-sm-6 gutter-0'>          
+          Ad Id:&nbsp;<%= @article.id %>
+        </div>
+        <div align="right" class='col-sm-6 gutter-0'>          
+          <%= @article.updated_at %>
+        </div>
+      </div>
       
-      <div align="center" class="w3-content style-image">
+      <div align="left" class="col-sm-12 w3-content style-image gutter-0">
         <% @article.images.each do |t| %>
-          <%= image_tag t.picture.url, height: "400", class: " mySlides style-image" %>
+          <%= image_tag t.picture.url, height: "400", class: " mySlides style-image1" %>
         <% end %>
-
       </div>
 
-      <div align="left" class="col-xs-12 w3-row-padding w3-section ">
+      <div align="left" class="col-sm-12 w3-row-padding w3-section gutter-0">
         <br>
         <% mm = 1 %>
         <% @article.images.each do |t| %>
           <% if mm == 1 %>
-            <%= image_tag t.picture.url, :class => "demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(1)" %>&nbsp;
+            <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(1)" %>&nbsp;
             <% else if mm == 2 %>
-              <%= image_tag t.picture.url, :class => "demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(2)" %>&nbsp;
+              <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(2)" %>&nbsp;
               <% else if mm == 3 %>
-                <%= image_tag t.picture.url, :class => "demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(3)" %>&nbsp;
+                <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(3)" %>&nbsp;
                 <% else if mm == 4 %>
-                  <%= image_tag t.picture.url, :class => "demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(4)" %>&nbsp;
+                  <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(4)" %>&nbsp;
                   <% else if mm == 5 %>
-                    <%= image_tag t.picture.url, :class => "demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(5)" %>&nbsp;
+                    <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(5)" %>&nbsp;
                   <% else %>
-                    <%= image_tag t.picture.url, :class => "demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(6)" %>
+                    <%= image_tag t.picture.url, :class => "border-only demo w3-opacity w3-hover-opacity-off", size: "80x60", :onClick => "currentDiv(6)" %>
                   <% end %>
                 <% end %>  
               <% end %>
@@ -42,6 +49,7 @@
           <% end %>
           <% mm = mm + 1 %>
         <% end %>
+        <br><br>
       </div>
 
       <script>
@@ -72,8 +80,8 @@
         dots[slideIndex-1].className += " w3-opacity-off";
       }
       </script>
-      <br><br>
-      <div class="row well well-lg">
+
+      <div class="form-group">
         <div align="right" class='col-sm-offset-0 col-sm-3'>          
           <%= "Category:" %>
         </div>
@@ -136,12 +144,7 @@
         <div align="left" class='col-sm-offset-0 col-sm-9 gutter-0'> 
           <%= simple_format(@article.description) %>
         </div>
-        <div align="right" class='col-sm-offset-0 col-sm-3'>          
-          <%= "Id: " %>
-        </div>  
-        <div align="left" class='col-sm-offset-0 col-sm-9 gutter-0'> 
-          <%= @article.id %>
-        </div>
+
       </div> 
     </div> <!--end of sm-8-->
      
@@ -162,10 +165,9 @@
           Tel: <%= @article.user.telephone %><br>
           Email: <%= link_to @article.user.email, "mailto:"+@article.user.email %><br>          
           Listings: <%= link_to pluralize(@article.user.articles.count, "listing"), user_path(@article.user) if @article.user.articles %><br>
-          <%= @article.updated_at %>
         </div>
       <% end %>
     </div> <!--end of sm-4-->
-  </div>
+
 </div>
   

@@ -319,9 +319,18 @@ padding-left: 0;
 .style-image {
 border: 1px solid #000;
 background-color: #AEB5C3;
+//max-width:700px;
+max-width: 100%;
+margin: auto;
+display:block;
+}
+.style-image1 {
 max-width:700px;
 margin: auto;
 display:block;
+}
+.border-only {
+border: 1px solid #000;
 }
 .navbar-custom {
     color: #ffffff !important;
@@ -330,7 +339,7 @@ display:block;
 .gutter-0 {
 padding: 1px 1px 1px 1px;
 //margin: 1px 1px 1px 1px;
-// border: 1px solid red;
+//border: 1px solid red;
 }
 #column-content {
   display: inline-block;
