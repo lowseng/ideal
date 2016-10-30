@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_article, only: [:edit, :update, :show, :destroy]
   before_action :require_user, except: [:index, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
@@ -7,10 +7,18 @@ class ArticlesController < ApplicationController
   before_action :enforce_tenancy, except: [:index, :show]
 
   def index
-    if current_user.admin
+    #if current_user.admin
+    #  @articles = Article.paginate(page: params[:page], per_page: 10).order('updated_at desc')
+    #else
+    #  @articles = Article.paginate(page: params[:page], per_page: 10).where(xonline: true).order('updated_at desc')
+    #end
+    if logged_in? and current_user.admin?
       @articles = Article.paginate(page: params[:page], per_page: 10).order('updated_at desc')
-    else
-      @articles = Article.paginate(page: params[:page], per_page: 10).where(xonline: true).order('updated_at desc')
+      else if params[:usr] != ""
+        @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: params[:usr]).order('updated_at desc')      
+      else
+        @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: current_user, xonline: true).order('updated_at desc')
+      end
     end
   end
 
@@ -211,8 +219,6 @@ class ArticlesController < ApplicationController
       render 'edit'
     end 
     
-
-
   end
   
   def destroy 
