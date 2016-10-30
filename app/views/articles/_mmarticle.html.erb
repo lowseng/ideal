@@ -25,7 +25,7 @@
       	<div class="col-xs-9 gutter-0">
           <div class="article-title00">
             <%#= article.category %> <%#= article.proptype%>
-            <%= link_to article.title, article_path(article,:param1 => "1", :param2 => "value2") %>         
+            <%= link_to article.title, article_path(article,:param1 => "1", :usr => article.user_id) %>         
           </div>
           <div>
             <%= truncate(article.description, length: 80) %>
