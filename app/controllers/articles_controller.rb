@@ -3,22 +3,27 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :show, :destroy]
   before_action :require_user, except: [:index, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
-  before_action :require_admin, only: [:index]
+  #before_action :require_admin, only: [:index]
   before_action :enforce_tenancy, except: [:index, :show]
 
   def index
-    #if current_user.admin
-    #  @articles = Article.paginate(page: params[:page], per_page: 10).order('updated_at desc')
-    #else
-    #  @articles = Article.paginate(page: params[:page], per_page: 10).where(xonline: true).order('updated_at desc')
-    #end
-    if logged_in? and current_user.admin?
-      @articles = Article.paginate(page: params[:page], per_page: 10).order('updated_at desc')
-      else if params[:usr] != ""
-        @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: params[:usr]).order('updated_at desc')      
+#for managed ads(admin) and user's listing only
+    if logged_in? 
+      if current_user.admin?
+        if params[:usr].present?
+          @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: params[:usr]).order('updated_at desc') 
+        else
+          @articles = Article.paginate(page: params[:page], per_page: 10).order('updated_at desc')              
+        end
       else
-        @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: current_user, xonline: true).order('updated_at desc')
+        if params[:usr].present?
+          @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: params[:usr]).order('updated_at desc')
+        else
+          @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: current_user).order('updated_at desc') 
+        end
       end
+    else  
+      @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: params[:usr]).order('updated_at desc')      
     end
   end
 

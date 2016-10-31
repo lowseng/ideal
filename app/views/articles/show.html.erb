@@ -8,6 +8,7 @@
         <div class='gutter-0 col-sm-12 article-title'>
           <br>Other Ads from <%= @article.user.name %><hr><br>
         </div>
+        <% params[:donotdisplay] = "Y" %>
         <%= render 'article', obj: @articles %>
         <div align="left">
           <%= will_paginate %>

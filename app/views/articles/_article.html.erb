@@ -2,12 +2,17 @@
   <div  class='col-sm-8 gutter-0'>
     <% obj.each do |article| %> 
       <div class="form-group">
-      	<div class="col-sm-3">
-          <% if params[:oneuser] == "Y" %>
-          	<% if !article.xonline? %>
-              <%= "[DRAFT COPY]" %><br>
+          <% if current_user %>
+            <% if current_user == article.user || current_user.admin? %>
+            	<% if !article.xonline? %>
+                <div class="alert alert-danger col-sm-12 ">
+                  <strong>Notice: </strong> Please take note that this is only a draft copy!
+                </div>
+              <% end %>
             <% end %>
           <% end %>
+          
+      	<div class="col-sm-3">
           <% article.images.each do |t| %>
             <% if t.picture.url %>
               <%= image_tag t.picture.url, size: "150x100" %>
@@ -23,7 +28,7 @@
 
         <div class="article-title col-sm-9">
           <%#= article.category %> <%#= article.proptype%>
-          <%= link_to article.title, article_path(article,:param1 => "1", :usr => article.user) %>         
+          <%= link_to article.title, article_path(article, :usr => article.user_id) %>         
         </div>
         <div class="col-sm-9">
           <%= truncate(article.description, length: 250) %>
@@ -39,10 +44,8 @@
           
         <div class="col-sm-9">
           <% if current_user %>
-            <%# if current_user && current_user == article.user || current_user.admin? %>
-            <% if current_user.admin? or params[:oneuser] == "Y" %>
-                <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-xs btn-primary" %>
-              <%# end %>
+            <% if params[:donotdisplay] != "Y" && current_user == article.user || current_user.admin? %>
+              <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-xs btn-primary" %>
               <%= link_to "Delete this article", article_path(article), method: :delete,
               data: { confirm: "Are you sure you want to delete the article?"},
               class: "btn btn-xs btn-danger" %>

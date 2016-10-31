@@ -30,7 +30,7 @@
           <ul class="dropdown-menu">
           <% if logged_in? and current_user.admin? %>
             <li><%= link_to "Manage Users", users_path %></li>
-            <li><%= link_to "Manage Ads", articles_path %></li>
+            <%#= link_to "Manage Ads", articles_path %>
             <%#= link_to "Add Product", new_product_path(:param1 => "value1", :param2 => "value2") %>
             <li><%= link_to "Manage Images", images_path(:param1 => "listonly") %></li>
             <li><%= link_to "Manage Country", new_place_path %></li>
@@ -38,7 +38,8 @@
             <li><%= link_to "Manage Credit Cards Receipts", cards_path %></li>
             <li role="separator" class="divider"></li>
           <% end %>
-          <li><%= link_to "My Ads", oneuser_index_path %></li>   
+          <li><%#= link_to "My Ads", oneuser_index_path %>
+          <%= link_to "My Ads", articles_path %></li>
           <li><%= link_to "My Settings", edit_user_path(current_user.id) %></li>
           <li ><%= link_to "Sign Out ".html_safe, destroy_user_session_path, :method => :delete %></li>        
         <% else %>

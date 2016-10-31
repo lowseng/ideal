@@ -1,7 +1,7 @@
 class OneuserController < ApplicationController
 
   def index
-    @articles = Article.paginate(page: params[:page], per_page: 15).where(user_id: current_user.id).order('updated_at desc')
+    @articles = Article.paginate(page: params[:page], per_page: 5).where(user_id: current_user.id).order('updated_at desc')
   end
 
   def show
