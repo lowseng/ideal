@@ -3,15 +3,6 @@
     <div class='col-xs-offset-0 col-xs-12 gutter-0'>
       <% obj.each do |article| %> 
       	<div class="col-xs-3 gutter-0">
-          <% if current_user %>
-            <% if current_user == article.user || current_user.admin? %>
-            	<% if !article.xonline? %>
-                <div class="alert alert-danger col-sm-12 ">
-                  <strong>Notice: </strong> Please take note that this is only a draft copy!
-                </div>
-              <% end %>
-            <% end %>
-          <% end %>
           <% article.images.each do |t| %>
             <% if t.picture.url %>
               <%= image_tag t.picture.url, size: "80x60" %>
@@ -47,6 +38,11 @@
                 <%= link_to "Edit this Ad", edit_article_path(article), class: "btn btn-xs btn-primary" %>
                 <%= link_to "Delete this Ad", article_path(article), method: :delete,
                           data: { confirm: "Are you sure you want to delete the article?"}, class: "btn btn-xs btn-danger" %>
+              	<% if !article.xonline? %>
+                  <div align="right" class="btn btn-xs btn-warning col-sm-offset-0 col-sm-2 ">
+                    Draft copy!
+                  </div>&nbsp;&nbsp;
+                <% end %>
               </div>
             <% end %>
           <% end %>
