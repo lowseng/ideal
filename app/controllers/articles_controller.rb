@@ -11,19 +11,20 @@ class ArticlesController < ApplicationController
     if logged_in? 
       if current_user.admin?
         if params[:usr].present?
-          @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: params[:usr]).order('updated_at desc') 
+          @articles = Article.paginate(page: params[:page], per_page: 10).where(xonline: true, user_id: params[:usr]).order('updated_at desc') 
         else
           @articles = Article.paginate(page: params[:page], per_page: 10).order('updated_at desc')              
         end
       else
         if params[:usr].present?
-          @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: params[:usr]).order('updated_at desc')
+          @articles = Article.paginate(page: params[:page], per_page: 10).where(xonline: true, user_id: params[:usr]).order('updated_at desc')
         else
           @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: current_user).order('updated_at desc') 
+          params[:displayedit] = "Y"
         end
       end
     else  
-      @articles = Article.paginate(page: params[:page], per_page: 10).where(user_id: params[:usr]).order('updated_at desc')      
+      @articles = Article.paginate(page: params[:page], per_page: 10).where(xonline: true, user_id: params[:usr]).order('updated_at desc')      
     end
   end
 

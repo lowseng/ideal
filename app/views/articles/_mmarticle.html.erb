@@ -42,7 +42,7 @@
           </div>
 
           <% if current_user %>
-            <% if params[:donotdisplay] != "Y" && current_user == article.user || current_user.admin? %>
+            <% if params[:displayedit] == "Y" && current_user == article.user || current_user.admin? %>
               <div class="col-xs-12 gutter-0">
                 <%= link_to "Edit this Ad", edit_article_path(article), class: "btn btn-xs btn-primary" %>
                 <%= link_to "Delete this Ad", article_path(article), method: :delete,

@@ -86,13 +86,12 @@
       <div class="well well-lg">
           <% if @article.user %>
             <div align="center">
-              <% if params[:param1] == "1" %>
-                <% if current_user && current_user == @article.user || current_user && current_user.admin? %>
-                  <%= gravatar_for @article.user, size:120 %>
-                <% else %>
-                  <%= gravatar_for @article.user, size:120 %>
-                <% end %>
-              <% end %><br><br>
+              <% if current_user && current_user == @article.user || current_user && current_user.admin? %>
+                <%= gravatar_for @article.user, size:120 %>
+              <% else %>
+                <%= gravatar_for @article.user, size:120 %>
+              <% end %>
+              <br><br>
               <h3><%= @article.user.name %></h3>
               <%= @article.user.company %><br>
               Id: <%= @article.user.agentno %><br>

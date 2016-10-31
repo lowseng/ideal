@@ -2,16 +2,6 @@
   <div  class='col-sm-8 gutter-0'>
     <% obj.each do |article| %> 
       <div class="form-group">
-          <% if current_user %>
-            <% if current_user == article.user || current_user.admin? %>
-            	<% if !article.xonline? %>
-                <div class="alert alert-danger col-sm-12 ">
-                  <strong>Notice: </strong> Please take note that this is only a draft copy!
-                </div>
-              <% end %>
-            <% end %>
-          <% end %>
-          
       	<div class="col-sm-3">
           <% article.images.each do |t| %>
             <% if t.picture.url %>
@@ -44,25 +34,26 @@
           
         <div class="col-sm-9">
           <% if current_user %>
-            <% if params[:donotdisplay] != "Y" && current_user == article.user || current_user.admin? %>
+            <% if params[:displayedit] == "Y" && current_user == article.user || current_user.admin? %>
               <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-xs btn-primary" %>
               <%= link_to "Delete this article", article_path(article), method: :delete,
               data: { confirm: "Are you sure you want to delete the article?"},
               class: "btn btn-xs btn-danger" %>
+            	<% if !article.xonline? %>
+                <div align="right" class="btn btn-xs btn-warning col-sm-offset-0 col-sm-2 ">
+                  Draft copy!
+                </div>&nbsp;&nbsp;
+              <% end %>
+
             <% end %>
           <% end %>  
+
+
+
         </div>
       </div><hr>
     <% end %>
 	</div>
-<!--
-	<div class='control-label col-sm-offset-0 col-sm-4'>
-	  <div class="bg250x400">.</div>
-    <div class="bg250x300">.</div>
-	  <div class="bg250x200">.</div>
-    <div class="bg250x100">.</div>
-	</div>-->
-	
   <div class="row">
     <div class="col-xs-4" align="center">
       <%= image_tag("500x1000.gif", width: '100%') %>
@@ -76,9 +67,4 @@
       <%= image_tag("whatsapp.gif") %>
     </div>
   </div>	
-	
-	
-	
 <% end %>	
-
-

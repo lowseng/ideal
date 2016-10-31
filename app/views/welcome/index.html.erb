@@ -15,6 +15,18 @@ Usually if you want to pass some variable to erb , you can fetch that variable i
         <h3><%#= current_user.email %></h3>
       </div><br>
       <%= render 'search' %>
+      <div align="left" class='col-sm-8 gutter-0'>
+        Your search criteria,
+        <%= params[:category] if params[:category].present? %> <%= params[:proptype] if params[:proptype].present? %>
+        returns
+        <%= @articles.count if @articles%> records.
+      </div>
+      <div align="center" class='col-sm-4 gutter-0'>      
+
+      </div>  
+      <div class='col-sm-8 gutter-0'>
+        <hr>
+      </div>
       <%= render 'articles/article', obj: @articles %>
       <div align="left">
         <%= will_paginate @articles %>
