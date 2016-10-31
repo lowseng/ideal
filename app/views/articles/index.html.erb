@@ -1,11 +1,12 @@
 <div class='row'> 
   <div class='col-sm-offset-0 col-xs-12'>
     <div class="well well-lg">
-      <h4>List all Ads</h4>
-      <div align="left">
-        <%= will_paginate %>
-      </div>
-      <%= render 'article', obj: @articles %>
+      <h4>List all Ads</h4><br>
+      <% if session[:mobile] == "Y" %>
+        <%= render 'mmarticle', obj: @articles %>      
+      <% else %>
+        <%= render 'article', obj: @articles %>
+      <% end %>
       <div align="left">
         <%= will_paginate %>
       </div>

@@ -1,4 +1,10 @@
 <%= render 'mmsearch' %>
+<div align="left" class='col-sm-8 gutter-0'>
+  Your search criteria,
+  <%= params[:category] if params[:category].present? %> <%= params[:proptype] if params[:proptype].present? %>
+  returns
+  <%= @articles.count if @articles%> records.<br><br><bR>
+</div>
 <%= render 'articles/mmarticle', obj: @articles %>
 <!--= image_tag 'image_url', style: 'height:100%;width:auto;'-->
 <!--<div class="image-fit col-xs-2"><%#= image_tag("500x1000.gif", :size => '80x60') %></div>-->
