@@ -12,11 +12,11 @@
           <%= f.text_field :email, class: "form-control", :disabled=>true %> 
           <%= hidden_field(:user, :email) %>
         </div> 
-        <div class="control-label col-sm-2">
-          <% if @user.status == 'Premier' %>
+        <% if @user.status == 'Premier' %>
+          <div align = "right" class="col-sm-2 btn btn-warning ">
             <%= "Premier Account" %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div> 
       <div class="form-group"> 
         <div class="control-label col-sm-2"> 
@@ -63,12 +63,11 @@
       <%# if @user.status != 'Premier' %>
       <% if @user.status != 'Premier' %>      
         <div class="form-group"> 
-          <div class="checkbox col-sm-offset-2 col-sm-5">
-            <%= f.check_box :gold %><%= 'Upgrade to Premier Account @ RM150.00' %><br><br>
+          <div class="checkbox col-sm-offset-2 col-sm-8">
+            <%= f.check_box :gold %><%= 'Upgrade to Premier Account @ RM125.00' %><br><br>
             &nbsp;&nbsp;&nbsp;&nbsp;<%= f.radio_button :m_gold, 'PayPal', { :checked => true } %>&nbsp;&nbsp;<%= "PayPal" %>
-            &nbsp;&nbsp;&nbsp;&nbsp;<%= f.radio_button :m_gold, 'CreditCards' %>&nbsp;&nbsp;<%= "Credit Cards" %>
-          </div>
-          <div class="paypal col-sm-3">
+            <!--&nbsp;&nbsp;&nbsp;&nbsp;<%#= f.radio_button :m_gold, 'CreditCards' %>&nbsp;&nbsp;<%= "Credit Cards" %>-->
+            <%= image_tag("paypal.gif") %>
           </div>
         </div> 
       <% end %>
@@ -146,6 +145,20 @@
             </div> 
             <div class="col-sm-4"> 
               <%= f.text_field :updated_at, class: "form-control", :disabled=>true %> 
+            </div> 
+          </div>
+          <div class="form-group"> 
+            <div class="control-label col-sm-2"> 
+              <%= "Status" %> 
+            </div> 
+            <div class="col-sm-4"> 
+          <%= f.select :status, options_for_select([['',''],['Premier','Premier'],['Gold','Gold'],['Platinum','Platinum']], @user.status), {}, { class: "form-control" } %>
+            </div> 
+            <div class="control-label col-sm-2"> 
+              <%= "Purchase Date" %> 
+            </div> 
+            <div class="col-sm-4"> 
+              <%= f.text_field :purchased_at, class: "form-control" %> 
             </div> 
           </div>
         <% end %>

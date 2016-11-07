@@ -218,7 +218,7 @@ class ArticlesController < ApplicationController
         #redirect_to edit_article_path(:id => session[:current_article], :param1 => "confirm", :param2 => "value2", anchor: "images")        
         redirect_to edit_article_path(:id => session[:current_article], :param1 => "confirm", :param2 => "value2")        
       else  
-        redirect_to oneuser_index_path
+        redirect_to articles_path
       end
 
     else 
@@ -230,7 +230,7 @@ class ArticlesController < ApplicationController
   def destroy 
     @article.destroy 
     flash[:danger] = "Article was successfully deleted" 
-    redirect_to oneuser_index_path
+    redirect_to articles_path
   end
   
   private 

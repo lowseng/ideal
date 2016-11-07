@@ -1,7 +1,12 @@
 <div class='row'> 
   <div class='col-sm-offset-0 col-xs-12'>
     <div class="well well-lg">
-      <h4 align="center">Users Listing</h1>
+      <div class="article-title">
+        <%= link_to "Basic A/C", users_path(:status => "Basic"), class: "btn btn-success" %>  
+        <%= link_to "Pending", users_path(:status => "Pending"), class: "btn btn-info" %>  
+        <%= link_to "Premier A/C", users_path(:status => "Premier"), class: "btn btn-warning" %>
+        - <%= params[:status] %><br><br>
+      </div>
       <%= will_paginate %>
       <table class="table table-striped">
         <% @users.each do |user| %>
@@ -10,12 +15,13 @@
               <%= link_to gravatar_for(user), user_path(user) %>
             </td>
             <td>
-              <%= user.email %>
-              <li><small><%= link_to pluralize(user.articles.count, "article"), user_path(user) if user.articles %></small></li>
-               <% if logged_in? and current_user.admin? %>
-                  <br><%= link_to "Delete this user", user_path(user), method: :delete,
-                  data: { confirm: "Are you sure you want to delete the user and all their articles?" } %>&nbsp;|
-                  <%= link_to "Update this user", edit_user_path(user) %>
+              <b><%= user.email %></b>
+              <li><%= link_to pluralize(user.articles.count, "article"), user_path(user) if user.articles %></li>
+              <li>Premier Date: <%= user.purchased_at %></li>
+              <% if logged_in? and current_user.admin? %>
+                <br><%= link_to "Delete this user", user_path(user), method: :delete,
+                data: { confirm: "Are you sure you want to delete the user and all their articles?" }, class: "btn btn-xs btn-danger" %>&nbsp;
+                <%= link_to "Update this user", edit_user_path(user), class: "btn btn-xs btn-primary" %>
               <% end %>
             </td>
           </tr>
