@@ -8,11 +8,11 @@ class UsersController < ApplicationController
   
   def index
     if params[:status] == "Premier"
-      @users = User.paginate(page: params[:page], per_page: 5).where(:status => params[:status]).order('updated_at desc')
+      @users = User.paginate(page: params[:page], per_page: 10).where(:status => params[:status]).order('updated_at desc')
       else if params[:status] == "Pending"
-        @users = User.paginate(page: params[:page], per_page: 5).where(:status => "", gold: true).order('updated_at desc')
+        @users = User.paginate(page: params[:page], per_page: 10).where(:status => "", gold: true).order('updated_at desc')
       else
-        @users = User.paginate(page: params[:page], per_page: 5).where(:status => "").order('updated_at desc')
+        @users = User.paginate(page: params[:page], per_page: 10).order('updated_at desc')
       end
     end
   end
