@@ -27,18 +27,31 @@
   <% end %>
   <br><br><br><br>
 <% else %>
-  <div class='row'> 
-    <div class='col-sm-offset-0 col-xs-12'>
-      <div class="well well-lg">
-        <h4 align="center">Modify Ad</h4>
-        <%= render 'form' %>
-        <% if params[:param1] == 'confirm' %>
-          <br><a id="images"></a><br>
-          <% current_article = @article.id %>
-          <% session[:current_article] = current_article %>
-          <%= render :partial => 'images/form', :object => @image %>
-      <% end %>
+  <div class='col-xs-offset-0 col-xs-12 gutter-0'>
+    <% if params[:param1] == 'confirm' %>
+      <div align = "left" class='article-title col-xs-7 gutter-0'>
+        <h5><%= session[:step2]%> - Continue...</h5> 
       </div>
-    </div>
-  </div>  
+      <div align = "right" class='article-title col-xs-5 gutter-0'>
+        <h5>Id: <%= @article.id %></h5> 
+      </div>
+    <% else %>
+      <div align = "left" class='article-title col-xs-7 gutter-0'>
+        <h5>Modify Ad</h5>
+      </div>
+      <div align = "right" class='article-title col-xs-5 gutter-0'>
+        <h5>Id: <%= @article.id %></h5>
+      </div>      
+      <% session[:step2] = "Modify Ad" %>
+    <% end %>
+  </div>
+  <%= render 'form' %>
+  <% if params[:param1] == 'confirm' %>
+    <a id="images"></a>
+    <% current_article = @article.id %>
+    <% session[:current_article] = current_article %>
+    <%= render :partial => 'images/form', :object => @image %>
+    <%#= render :partial => 'images/mmform' %>
+  <% end %>
+  <br><br><br><br> 
 <% end %>

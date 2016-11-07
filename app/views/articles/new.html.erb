@@ -15,7 +15,15 @@
     </div>
     <%= render 'mmform' %> 
   <% else %>
-    <h4 align="left">Insert a New Ad - No. <%= current_user.articles.count+1 %> of <%= session[:m_posting] %></h4>
-    <%= render 'form' %>
+    <div class='col-xs-offset-0 col-xs-12 gutter-0'>
+      <div align = "left" class='article-title col-xs-7 gutter-0'>
+        <% session[:step2] = "Insert a New Ad" %>
+        <h5>Insert a New Ad</h5>
+      </div>
+      <div align = "right" class='article-title col-xs-5 gutter-0'>
+        <h5><%= current_user.articles.count+1 %> of <%= session[:m_posting] %></h5>   
+      </div>
+    </div>
+    <%= render 'form' %> 
   <% end %>
 <% end %>

@@ -1,7 +1,15 @@
 <div class='row'> 
   <div class='col-sm-offset-0 col-xs-12'>
     <div class="well well-lg">
-      <h4>List all Ads</h4><br>
+      <% if params[:displayedit] == "Y" %>
+        <div class="row article-title">
+          <h4>My Ads</h4><hr>
+        </div>
+      <% else %>
+        <div class="row article-title">      
+          <h4>All Ads from <%= @articles.first.user.name %></h4><hr>
+        </div>
+      <% end %>
       <% if session[:mobile] == "Y" %>
         <%= render 'mmarticle', obj: @articles %>      
       <% else %>
