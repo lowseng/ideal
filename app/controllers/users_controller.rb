@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if params[:status] == "Premier"
       @users = User.paginate(page: params[:page], per_page: 10).where(:status => params[:status]).order('updated_at desc')
       else if params[:status] == "Pending"
-        @users = User.paginate(page: params[:page], per_page: 10).where(:status => nil, gold: true).order('updated_at desc')
+        @users = User.paginate(page: params[:page], per_page: 10).where(:status => [nil,""], gold: true).order('updated_at desc')
         else if params[:status] == "Basic"
           @users = User.paginate(page: params[:page], per_page: 10).where(:status => nil).order('updated_at desc')
         end
