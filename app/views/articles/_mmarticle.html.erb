@@ -35,12 +35,12 @@
           <% if current_user %>
             <% if params[:displayedit] == "Y" && current_user == article.user || current_user.admin? %>
               <div class="col-xs-12 gutter-0">
-                <%= link_to "Edit this Ad", edit_article_path(article), class: "btn btn-xs btn-primary" %>
-                <%= link_to "Delete this Ad", article_path(article), method: :delete,
+                <%= link_to "Editd", edit_article_path(article), class: "btn btn-xs btn-primary" %>
+                <%= link_to "Delete", article_path(article), method: :delete,
                           data: { confirm: "Are you sure you want to delete the article?"}, class: "btn btn-xs btn-danger" %>
               	<% if !article.xonline? %>
                   <div class="btn btn-xs btn-warning ">
-                    Draft copy!
+                    * Draft copy *
                   </div>&nbsp;&nbsp;
                 <% end %>
               </div>
