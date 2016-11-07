@@ -39,7 +39,7 @@
                 <%= link_to "Delete this Ad", article_path(article), method: :delete,
                           data: { confirm: "Are you sure you want to delete the article?"}, class: "btn btn-xs btn-danger" %>
               	<% if !article.xonline? %>
-                  <div align="right" class="btn btn-xs btn-warning col-sm-offset-0 col-sm-2 ">
+                  <div class="btn btn-xs btn-warning ">
                     Draft copy!
                   </div>&nbsp;&nbsp;
                 <% end %>
