@@ -67,7 +67,7 @@
               <div class="form-group"> 
                 <div align="center" class="checkbox col-sm-offset-0 col-xs-12 gutter-0"><br>
                   <%= image_tag("paypal.gif") %><br><br><br>
-                  &nbsp;<%= f.check_box :gold, { checked: false } %>&nbsp;&nbsp;Upgrade to Premier @ RM125.00
+                  &nbsp;<%= f.check_box :gold, { checked: false } %>&nbsp;&nbsp;<span>Upgrade to Premier @ RM125.00</span>
                   <%= f.hidden_field :m_gold, value: 'PayPal', :class => 'form-control' %> <!--#becos only paypal-->
                   <!--&nbsp;&nbsp;&nbsp;&nbsp;<%#= f.radio_button :m_gold, 'PayPal', { :checked => true } %>&nbsp;&nbsp;<%#= "PayPal" %>-->
                   <!--&nbsp;&nbsp;&nbsp;&nbsp;<%#= f.radio_button :m_gold, 'CreditCards' %>&nbsp;&nbsp;<%#= "Credit Cards" %>-->
