@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   post "/hook" => "paypals#hook"
   post "/paypals/:id" => "paypals#new"  
 
-  get 'welcome/mmindex' => 'welcome#mmindex'
+  get 'welcome/mmindex' => 'welcome#mmindex', :proptype => "for Sale"
 
   #get 'oneuser/list', to: 'oneuser#list'
   # Example of regular route:
