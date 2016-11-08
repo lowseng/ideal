@@ -64,11 +64,11 @@
       <% if @user.status != 'Premier' %>      
         <div class="form-group"> 
           <div align="center" class="checkbox col-sm-offset-1 col-xs-11"><br>
-            <%= f.check_box :gold, {}, checked = false %>Upgrade to Premier Account @ RM125.00<br><br>
+            <%= f.check_box :gold, {}, checked = false %>&nbsp;<span>Upgrade to Premier Account @ RM125.00</span><br>
             <%= f.hidden_field :m_gold, value: 'PayPal', :class => 'form-control' %> <!--#becos only paypal-->
             <!--&nbsp;&nbsp;&nbsp;&nbsp;<%#= f.radio_button :m_gold, 'PayPal', { :checked => true } %>&nbsp;&nbsp;<%#= "PayPal" %>-->
             <!--&nbsp;&nbsp;&nbsp;&nbsp;<%#= f.radio_button :m_gold, 'CreditCards' %>&nbsp;&nbsp;<%#= "Credit Cards" %>-->
-            <%= image_tag("paypal.gif") %>
+            <br><br><%= image_tag("paypal.gif") %>
           </div>
         </div> 
       <% end %>
