@@ -1,0 +1,175 @@
+<%= render 'shared/errors', obj: @user %>
+<div class='row'> 
+  <div class='col-xs-12'>
+    <%= form_for(@user, :html => {class: "form-horizontal", role: "form"}) do |f| %> 
+      <div class="form-group">
+        <div class="control-label col-xs-3"> 
+          <%= "Email" %> 
+        </div> 
+        <div class="col-xs-9"> 
+          <%#= @user.email %> 
+          <%= f.text_field :email, class: "form-control", :disabled=>true %> 
+          <%= hidden_field(:user, :email) %>
+        </div> 
+      </div>
+      <div class="form-group"> 
+        <div class="control-label col-xs-3"> 
+          <%="Name" %> 
+        </div> 
+        <div class="col-xs-9"> 
+          <%= f.text_field :name, class: "form-control", placeholder: "Agent Name", autofocus: true %> 
+        </div> 
+      </div>
+      <div class="form-group"> 
+        <div class="control-label col-xs-3"> 
+          <%= "Telephone" %> 
+        </div> 
+        <div class="col-xs-9"> 
+          <%= f.text_field :telephone, class: "form-control", placeholder: "Contact Number", autofocus: true %> 
+        </div> 
+      </div>
+      <div class="form-group"> 
+        <div class="control-label col-xs-3"> 
+          <%= "Agent No" %> 
+        </div> 
+        <div class="col-xs-9"> 
+          <%= f.text_field :agentno, class: "form-control", placeholder: "", autofocus: true %> 
+        </div> 
+      </div>
+      <div class="form-group"> 
+        <div class="control-label col-xs-3"> 
+          <%= "Company" %> 
+        </div> 
+        <div class="col-xs-9"> 
+          <%= f.text_field :company, class: "form-control", placeholder: "Company Name", autofocus: true %> 
+        </div> 
+      </div>
+      <div class="form-group"> 
+        <div class="control-label col-xs-3"> 
+          <%= "Default Country" %> 
+        </div> 
+        <div class="col-xs-9"> 
+          <%= f.collection_select(:prefercountry, Place.where(status: true), :id, :name, {}, {:class => 'form-control'}) %>
+        </div> 
+      </div>
+      <div class="form-group"> 
+        <div class="control-label col-xs-3"> 
+          <%= "Default Area" %> 
+        </div> 
+        <div class="col-xs-9"> 
+          <%= f.select :preferuom, options_for_select([['SqFt','3'],['SqM','4'],['Acres','5'],['Hectres','6']], @user.preferuom), {}, { class: "form-control" } %>
+        </div> 
+      </div>    
+      <%# if @user.status != 'Premier' %>
+      <% if @user.status != 'Premier' %>      
+        <div class="form-group"> 
+          <div class="checkbox col-xs-offset-2 col-xs-8">
+            <%= f.check_box :gold %><%= 'Upgrade to Premier Account @ RM125.00' %><br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<%= f.radio_button :m_gold, 'PayPal', { :checked => true } %>&nbsp;&nbsp;<%= "PayPal" %>
+            <!--&nbsp;&nbsp;&nbsp;&nbsp;<%#= f.radio_button :m_gold, 'CreditCards' %>&nbsp;&nbsp;<%= "Credit Cards" %>-->
+            <%= image_tag("paypal.gif") %>
+          </div>
+        </div> 
+      <% end %>
+      <!--
+      <div class="form-group"> 
+        <div class="control-label col-sm-2"> 
+          <%#= f.label :admin, "Administrator" %> 
+        </div> 
+        <div class="col-sm-8", class: "form-control" > 
+            <%#= f.radio_button :admin, 'true' %> Yes&nbsp;&nbsp;&nbsp;
+            <%#= f.radio_button :admin, 'false' %> No
+        </div> 
+      </div> -->
+
+
+      <% if logged_in? and current_user.admin? %>
+        <%# AJAX
+        1. id and section id and id here
+        2. customs.css.scss for comments-section
+        3. comments.coffee
+        %>
+        <!--<p><%#= link_to "More Information", "#", id: "comments-link" %></p>
+        <section id="comments-section">-->
+          <div class="form-group"> 
+            <div class="control-label col-xs-2"> 
+              <%= "Last Signed-In" %> 
+            </div> 
+            <div class="col-xs-4"> 
+              <%= f.text_field :last_sign_in_at, class: "form-control", :disabled=>true %> 
+            </div> 
+            <div class="control-label col-xs-2"> 
+              <%= "Now Signed-In" %> 
+            </div> 
+            <div class="col-xs-4"> 
+              <%= f.text_field :current_sign_in_at, class: "form-control", :disabled=>true %> 
+            </div> 
+          </div>
+          <div class="form-group"> 
+            <div class="control-label col-xs-2"> 
+              <%= "Signed-In Count" %> 
+            </div> 
+            <div class="col-xs-4"> 
+              <%= f.text_field :sign_in_count, class: "form-control", :disabled=>true %> 
+            </div> 
+            <div class="control-label col-xs-2"> 
+              <%= "Now Signed-In ip" %> 
+            </div> 
+            <div class="col-xs-4"> 
+              <%= f.text_field :current_sign_in_ip, class: "form-control", :disabled=>true %> 
+            </div> 
+          </div>
+          <div class="form-group"> 
+            <div class="control-label col-xs-2"> 
+              <%= "Last Signed-In IP" %> 
+            </div> 
+            <div class="col-xs-4"> 
+              <%= f.text_field :last_sign_in_ip, class: "form-control", :disabled=>true %> 
+            </div> 
+            <div class="control-label col-xs-2"> 
+              <%= "Created" %> 
+            </div> 
+            <div class="col-xs-4"> 
+              <%= f.text_field :created_at, class: "form-control", :disabled=>true %> 
+            </div> 
+          </div> 
+          <div class="form-group"> 
+            <div class="control-label col-xs-2"> 
+              <%= "Confirmed" %> 
+            </div> 
+            <div class="col-xs-4"> 
+              <%= f.text_field :confirmed_at, class: "form-control", :disabled=>true %> 
+            </div> 
+            <div class="control-label col-xs-2"> 
+              <%= "Updated" %> 
+            </div> 
+            <div class="col-xs-4"> 
+              <%= f.text_field :updated_at, class: "form-control", :disabled=>true %> 
+            </div> 
+          </div>
+          <div class="form-group"> 
+            <div class="control-label col-xs-2"> 
+              <%= "Status" %> 
+            </div> 
+            <div class="col-xs-4"> 
+          <%= f.select :status, options_for_select([['',''],['Premier','Premier'],['Gold','Gold'],['Platinum','Platinum']], @user.status), {}, { class: "form-control" } %>
+            </div> 
+            <div class="control-label col-xs-2"> 
+              <%= "Purchase Date" %> 
+            </div> 
+            <div class="col-xs-4"> 
+              <%= f.text_field :purchased_at, class: "form-control" %> 
+            </div> 
+          </div>
+        <% end %>
+        <div class="form-group"> 
+          <div class="col-xs-offset-2 col-xs-2"> 
+            <br><br><%= f.submit class: 'btn btn-primary btn-lg' %> 
+            <%#= f.submit class: 'btn btn-primary btn-lg' %> 
+            <%#= link_to "Change Password", edit_user_registration_path, class: 'btn btn-primary btn-lg' %>
+          </div> 
+        </div> 
+      </section>
+    <% end %> 
+  </div> 
+</div>

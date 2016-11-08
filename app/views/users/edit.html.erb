@@ -1,10 +1,19 @@
-<div class='row'> 
-  <div class='col-sm-offset-0 col-xs-12'>
-    <div class="well well-lg ">
-      <div class='row col-sm-offset-0 col-xs-12 article-title'>
-        <h4 align="left">My Settings</h4><hr><br>
-      </div>
-      <%= render 'form' %>
+<% if session[:mobile] == "Y" %>
+  <div class='row'> 
+    <div class='row col-sm-offset-0 col-xs-12 article-title'>
+      <h5 align="left">My Settings</h5><hr>
     </div>
   </div>
-</div>  
+  <%= render 'mmform' %>
+<% else %>
+  <div class='row'> 
+    <div class='col-sm-offset-0 col-xs-12'>
+      <div class="well well-lg ">
+        <div class='row col-sm-offset-0 col-xs-12 article-title'>
+          <h4 align="left">My Settings</h4><hr><br>
+        </div>
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div> 
+<% end %>
