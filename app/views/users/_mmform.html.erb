@@ -3,10 +3,10 @@
   <div class='col-xs-12'>
     <%= form_for(@user, :html => {class: "form-horizontal", role: "form"}) do |f| %> 
       <div class="form-group">
-        <div align="right" class="col-xs-3"> 
-          <%= "Email" %>
+        <div align="right" class="gutter-0 col-xs-3"> 
+          <span><%= "Email:" %>&nbsp;</span>
         </div> 
-        <div class="col-xs-9"> 
+        <div class="gutter-0 col-xs-9"> 
           <%#= @user.email %> 
           <%= f.text_field :email, class: "form-control", :disabled=>true %> 
           <%= hidden_field(:user, :email) %>
@@ -45,25 +45,25 @@
         </div> 
       </div>
       <div class="form-group"> 
-        <div class="control-label col-xs-3"> 
+        <div class="control-label col-xs-5"> 
           <%= "Default Country" %> 
         </div> 
-        <div class="col-xs-9"> 
+        <div class="col-xs-7"> 
           <%= f.collection_select(:prefercountry, Place.where(status: true), :id, :name, {}, {:class => 'form-control'}) %>
         </div> 
       </div>
       <div class="form-group"> 
-        <div class="control-label col-xs-3"> 
+        <div class="control-label col-xs-5"> 
           <%= "Default Area" %> 
         </div> 
-        <div class="col-xs-9"> 
+        <div class="col-xs-7"> 
           <%= f.select :preferuom, options_for_select([['SqFt','3'],['SqM','4'],['Acres','5'],['Hectres','6']], @user.preferuom), {}, { class: "form-control" } %>
         </div> 
       </div>    
       <%# if @user.status != 'Premier' %>
       <% if @user.status != 'Premier' %>      
         <div class="form-group"> 
-          <div class="checkbox col-xs-offset-3 col-xs-9">
+          <div class="checkbox col-xs-offset-1 col-xs-11">
             <%= f.check_box :gold %><%= 'Upgrade to Premier Account @ RM125.00' %><br><br>
             &nbsp;&nbsp;&nbsp;&nbsp;<%= f.radio_button :m_gold, 'PayPal', { :checked => true } %>&nbsp;&nbsp;<%= "PayPal" %>
             <!--&nbsp;&nbsp;&nbsp;&nbsp;<%#= f.radio_button :m_gold, 'CreditCards' %>&nbsp;&nbsp;<%= "Credit Cards" %>-->
