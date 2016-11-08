@@ -1,6 +1,6 @@
 <%= render 'shared/errors', obj: @user %>
 <div class='row'> 
-  <div class='col-xs-12'>
+
     <%= form_for(@user, :html => {class: "form-horizontal", role: "form"}) do |f| %> 
       <div class="form-group">
         <div align="right" class="gutter-0 col-xs-3"> 
@@ -13,50 +13,50 @@
         </div> 
       </div>
       <div class="form-group"> 
-        <div class="control-label col-xs-3"> 
-          <%="Name" %> 
+        <div align="right" class="gutter-0  col-xs-3"> 
+          <span><%="Name:" %>&nbsp;</span> 
         </div> 
-        <div class="col-xs-9"> 
+        <div class="gutter-0 col-xs-9"> 
           <%= f.text_field :name, class: "form-control", placeholder: "Agent Name", autofocus: true %> 
         </div> 
       </div>
       <div class="form-group"> 
-        <div class="control-label col-xs-3"> 
-          <%= "Telephone" %> 
+        <div align="right" class="gutter-0  col-xs-3"> 
+          <span><%= "Telephone:" %>&nbsp;</span> 
         </div> 
-        <div class="col-xs-9"> 
+        <div class="gutter-0 col-xs-9"> 
           <%= f.text_field :telephone, class: "form-control", placeholder: "Contact Number", autofocus: true %> 
         </div> 
       </div>
       <div class="form-group"> 
-        <div class="control-label col-xs-3"> 
-          <%= "Agent No" %> 
+        <div align="right" class="gutter-0  col-xs-3"> 
+          <span><%= "Agent No:" %>&nbsp;</span> 
         </div> 
-        <div class="col-xs-9"> 
+        <div class="gutter-0 col-xs-9"> 
           <%= f.text_field :agentno, class: "form-control", placeholder: "", autofocus: true %> 
         </div> 
       </div>
       <div class="form-group"> 
-        <div class="control-label col-xs-3"> 
-          <%= "Company" %> 
+        <div align="right" class="gutter-0  col-xs-3"> 
+          <span><%= "Company:" %>&nbsp;</span> 
         </div> 
-        <div class="col-xs-9"> 
+        <div class="gutter-0 col-xs-9"> 
           <%= f.text_field :company, class: "form-control", placeholder: "Company Name", autofocus: true %> 
         </div> 
       </div>
       <div class="form-group"> 
-        <div class="control-label col-xs-5"> 
-          <%= "Default Country" %> 
+        <div align="right" class="gutter-0  col-xs-6"> 
+         <span> <%= "Default Country:" %>&nbsp;</span> 
         </div> 
-        <div class="col-xs-7"> 
+        <div class="gutter-0 col-xs-6"> 
           <%= f.collection_select(:prefercountry, Place.where(status: true), :id, :name, {}, {:class => 'form-control'}) %>
         </div> 
       </div>
       <div class="form-group"> 
-        <div class="control-label col-xs-5"> 
-          <%= "Default Area" %> 
+        <div align="right" class="gutter-0  col-xs-6"> 
+          <span><%= "Default Area:" %>&nbsp;</span> 
         </div> 
-        <div class="col-xs-7"> 
+        <div class="gutter-0 col-xs-6"> 
           <%= f.select :preferuom, options_for_select([['SqFt','3'],['SqM','4'],['Acres','5'],['Hectres','6']], @user.preferuom), {}, { class: "form-control" } %>
         </div> 
       </div>    
@@ -171,5 +171,5 @@
         </div> 
       </section>
     <% end %> 
-  </div> 
+
 </div>
