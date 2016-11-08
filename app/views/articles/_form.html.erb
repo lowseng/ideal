@@ -106,11 +106,13 @@
 
             <% if @article.proptype == 'for Sale' or params[:proptype] == 'for Sale' %> 
               <label class="btn btn-primary btn-sm active">
+                <%= f.radio_button :proptype, 'for Sale', :checked =>  params[:proptype] == 'for Sale' %> For Sale
+              </label>
             <% else %>
               <label class="btn btn-primary btn-sm">
-            <% end %>
                 <%= f.radio_button :proptype, 'for Sale' %> For Sale
               </label>
+            <% end %>
             
             <% if @article.proptype == 'for Rent' or params[:proptype] == 'for Rent' %>
               <label class="btn btn-primary btn-sm active">
