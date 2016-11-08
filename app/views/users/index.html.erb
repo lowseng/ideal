@@ -1,33 +1,34 @@
+<div class="article-title"><BR>
+  <%= link_to "Basic A/C", users_path(:status => "Basic"), class: "btn btn-success" %>  
+  <%= link_to "Pending", users_path(:status => "Pending"), class: "btn btn-info" %>  
+  <%= link_to "Premier A/C", users_path(:status => "Premier"), class: "btn btn-warning" %>
+</div>
+<div class="article-title">
+  <br><%= params[:status] %> accounts listings...<br><br>
+</div>  
+
 <div class='row'> 
   <div class='col-sm-offset-0 col-xs-12'>
-    <div class="well well-lg">
-      <div class="article-title">
-        <%= link_to "Basic A/C", users_path(:status => "Basic"), class: "btn btn-success" %>  
-        <%= link_to "Pending", users_path(:status => "Pending"), class: "btn btn-info" %>  
-        <%= link_to "Premier A/C", users_path(:status => "Premier"), class: "btn btn-warning" %>
-        - <%= params[:status] %><br><br>
-      </div>
-      <%= will_paginate %>
-      <table class="table table-striped">
-        <% @users.each do |user| %>
-          <tr>
-            <td>
-              <%= link_to gravatar_for(user), user_path(user) %>
-            </td>
-            <td>
-              <b><%= user.email %></b>
-              <li><%= link_to pluralize(user.articles.count, "article"), user_path(user) if user.articles %></li>
-              <li>Premier Date: <%= user.purchased_at %></li>
-              <% if logged_in? and current_user.admin? %>
-                <br><%= link_to "Delete this user", user_path(user), method: :delete,
-                data: { confirm: "Are you sure you want to delete the user and all their articles?" }, class: "btn btn-xs btn-danger" %>&nbsp;
-                <%= link_to "Update this user", edit_user_path(user), class: "btn btn-xs btn-primary" %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-      <%= will_paginate %>
-    </div>
+    <%= will_paginate %>
+    <table class="table table-striped">
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to gravatar_for(user), user_path(user) %>
+          </td>
+          <td>
+            <b><%= user.email %></b>
+            <li><%= link_to pluralize(user.articles.count, "article"), user_path(user) if user.articles %></li>
+            <li>Premier Date: <%= user.purchased_at %></li>
+            <% if logged_in? and current_user.admin? %>
+              <br><%= link_to "Delete user", user_path(user), method: :delete,
+              data: { confirm: "Are you sure you want to delete the user and all their articles?" }, class: "btn btn-xs btn-danger" %>&nbsp;
+              <%= link_to "Update user", edit_user_path(user), class: "btn btn-xs btn-primary" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <%= will_paginate %>
   </div>
 </div>

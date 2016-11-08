@@ -24,7 +24,7 @@
           <% else %>
             <% session[:m_posting] = 5 %>
           <%end %>
-          <li><%= link_to "<span class='glyphicon glyphicon-edit'></span>&nbsp; Insert New Ad".html_safe, new_article_path(:param1 => "new") %></li>
+          <li><%= link_to "<span class='glyphicon glyphicon-edit'></span>&nbsp; Insert New Ad".html_safe, new_article_path(:param1 => "new", :proptype => "for Sale") %></li>
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= ('<span class="glyphicon glyphicon-user"></span>&nbsp; ' + truncate(current_user.email, length: 25)).html_safe %> <span class="caret"></span></a>
           <ul class="dropdown-menu">
