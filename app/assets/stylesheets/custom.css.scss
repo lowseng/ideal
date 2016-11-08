@@ -113,7 +113,10 @@ color: #fff !important;
 .btn:focus, .btn:active:focus, .btn.active:focus {
 outline: 0 none;
 }
-
+.btn-default {
+background: #ffffff;
+color: #949292 !important;
+}
 .btn-primary {
 background: #285AA6;
 color: #ffffff;
@@ -354,11 +357,7 @@ span {
   vertical-align: middle;
   line-height: 35px; /*to adjust label to valign <-- adjust this */
 }
-span1 {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 28px; /*to adjust label to valign <-- adjust this */
-}
+
 .glyphicon {
     font-size: 20px;
 }
