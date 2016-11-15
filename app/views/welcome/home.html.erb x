@@ -1,5 +1,0 @@
-<div class="center jumbotron" 
-  <nav class="navbar navbar-default"> 
-  <h1>ALPHA BLOG</h1> #2 classes here - center will middle justify 
-<%= link_to "Sign up now", signup_path, class: "btn btn-danger btn-lg btn-xlarge" %>
-</div>
